@@ -11,7 +11,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-      #expect params to have username and password
+      #expect params to have :email and :password
       email = params[:email]
       password = params[:password]
       @user = User.find_by_credentials(email, password)

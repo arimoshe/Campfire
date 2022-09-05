@@ -16,7 +16,7 @@ ApplicationRecord.transaction do
   ApplicationRecord.connection.reset_pk_sequence!('users')
 
 #   puts "Creating users..."
-  # Create one user with an easy to remember username, email, and password:
+  # Create one user with an easy to remember email and password:
   User.create!(
     email: 'ari@ari.com', 
     password: 'password',
