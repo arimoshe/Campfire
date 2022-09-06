@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { loginSessionUser } from "../../store/session";
 import './LoginForm.css'
 
-export const LoginFormPage = (props) => {
+export const LoginForm = (props) => {
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -43,18 +43,26 @@ export const LoginFormPage = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="user" >User</label><br />
-            <input type="text" id="user" onChange={e => setEmail(e.target.value)} value={email} required /><br /><br />
-            <label htmlFor="password">Password</label><br />
-            <input type="password" id="password" onChange={e => setPassword(e.target.value)} value={password} required /><br /><br />
-            <button type="submit">Log In</button>
+        <>
+        <div id="LoginContainer">
+            <div id="loginHeader">Welcome!</div>
+            <div id="loginSubHead">Lets dive into nature.</div>
+            <form id="loginForm" onSubmit={handleSubmit}>
+                    <input type="text" id="user" onChange={e => setEmail(e.target.value)} value={email} required placeholder={"Email address..."} />
+                
+                <input type="password" id="password" onChange={e => setPassword(e.target.value)} value={password} placeholder={"Password..."} required />
+                <button type="submit">Log In</button>
+            </form>
+            <button id="demoLoginButton" >Demo User Log In</button>
+            <p>"Don't have a Campf🔥re accont? <Link to={"/signup"} >Sign Up!</Link></p>
             <br />
             <ul>
                 {errors.map(error => (<li key={Math.random()}>{error}</li>))}
             </ul>
-        </form>
+            
+        </div>
+        </>
     )
 }
 
-export default LoginFormPage
+export default LoginForm

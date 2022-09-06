@@ -1,0 +1,119 @@
+#signupContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+::placeholder{
+    color: rgb(51,51,51); 
+    font-weight: bold;
+    border-radius: none;
+}
+
+
+#signupLoginForm {
+    border:1px solid rgb(51,51,51);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    height: 68px;
+    width: 342px;
+    height: 525px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+#signupLoginForm p {
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+
+#signupLoginFormLogo {
+    margin-top: 10px;
+    line-height: 50px;
+    font-size: 30px;
+}
+
+#signupLoginForm > input, #signupLoginForm > .passwordFieldContainer input  {
+    height: 68px;
+    margin: 5px 10px;
+    padding-left:16px;
+    border-width: 1px;
+
+}
+
+.formDouble :nth-child(1) {
+    margin-right: 5px;
+    height: 68px;
+    width: 100%;
+    padding-left: 16px;
+    border-width: 1px;
+}
+
+.formDouble :nth-child(2) {
+    margin-left: 5px;
+    height: 68px;
+    width: 100%;
+    padding-left: 16px;
+    border-width: 1px;
+}
+
+
+.formDouble {
+
+    display: flex;
+    margin: 10px 10px 5px 10px;
+    justify-content: space-between;
+}
+
+#signupLoginForm button {
+    margin: 15px 10px 5px 10px;
+    height: 60px;
+    border-radius: 100px;
+    border-style: none;
+    background-color: rgb(64, 217, 172);
+    color: white; 
+    font-size: 20px;
+    transition: box-shadow  0.2s ease, transform 0.2s ease;
+}
+#signupLoginForm button:hover {
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 40%);
+    transform: translateY(-3px);
+}
+
+
+#signupBackground {
+    position: fixed;
+    height: 120vh;
+    z-index: -10;
+}
+
+#signupBackground div {
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+    height: 190vh;
+}
+#signupBackground img {
+    border-right: 8px solid #ffffff;
+    border-top: 8px solid #ffffff;
+}
+#signupBackgroundDarkener {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0,0,0,.7);
+    z-index: -1;
+}
+
+#signupLoginButton button {
+    font-size: 16px;
+    position: fixed;
+    width: 100px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+}

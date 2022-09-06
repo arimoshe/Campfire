@@ -1,0 +1,131 @@
+#profileButttonContainer {
+    position: relative;
+    align-self: center;
+}
+
+.profileButton {
+    color: #777777;
+    font-size: 28px;
+}
+
+
+
+li {
+    list-style-type: none;
+}
+
+.profileMenu {
+    background-color: #FFFFFF;
+    width: 240px;
+    height: 240px;
+    position: absolute;
+    right:0;
+    top: 50px;
+    box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    border-radius: 4px;
+
+}
+
+.profileMenu ul {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 16px;
+}
+
+.profileMenu li {
+}
+
+
+#rightNavContainer{ 
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#rightNavContainer a {
+    color: rgba(0, 0, 0, 1);
+    text-decoration: none;
+}
+
+.rightNavContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.underline:hover {
+    border-bottom: 2px solid rgba(0,197,133, 1);
+    
+}
+.underline {
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.25s ease 0s;
+    cursor: pointer;
+}
+
+
+#navBarContainer {
+    width:auto;
+    position: fixed;
+    width: 100vw;
+    background-color: rgb(243, 242, 239);
+}
+
+.navBar {
+    margin:auto;
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    height: 70px;
+    align-items: center;
+    background-color: rgb(243, 242, 239);
+    max-width: 1280px;
+    padding:0 24px;
+    
+}
+
+#rightNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    
+}
+
+#rightNav li {
+    margin:0 16px;
+}
+
+.navBar li {
+    font-family: 'Roboto', sans-serif;
+}
+
+.profileMenu li{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 0;
+    color: rgba(0, 0, 0, 1);
+
+    
+}
+.profileMenu li a {
+    color: rgba(0, 0, 0, 1);
+    border-bottom: 1px solid rgb(194, 194, 194);
+    text-decoration: none;
+}
+
+.logo {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 30px;
+    color: rgb(196, 71, 71);
+    width: 150px;
+}

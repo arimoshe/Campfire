@@ -1,0 +1,103 @@
+#LoginContainer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 70px;
+    width: 100vw;
+    height: 100vh;
+    justify-content: first baseline;
+    
+}
+
+
+#loginForm {
+    width: 302px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 0 20px 20px 20px;
+}
+
+#loginForm input {
+    height: 68px;
+    margin-bottom: 10px;
+    padding-left: 26px;
+}
+
+#loginForm button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    background-color: rgb(64, 217, 172);
+    color: white;
+    height:60px;
+    border-style: none;
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#loginForm button:hover {
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 40%);
+    transform: translateY(-3px);
+}
+
+#LoginSignupContainer p , #LoginSignupContainer a {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color:rgb(119, 119, 119);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    
+    transition: border-color .2s ease-in-out;
+}
+
+#LoginSignupContainer a {
+    font-weight: bold;
+}
+
+#LoginSignupContainer a:hover {
+    border-bottom-color: #333333 ;
+}
+
+#loginHeader {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+    padding: 28px 0 15px 0;
+    text-align: center;
+}
+
+#loginSubHead {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(119, 119, 119);
+    padding: 0 0 18px 0;
+    text-align: center;
+}
+
+#demoLoginButton {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    background-color: rgb(19, 156, 115);
+    color: white;
+    height: 60px;
+    border-style: none;
+    border-radius: 4px;
+    margin-top: 15px;
+    width: 302px;
+}
+#LoginSignupContainer {
+    width: 342px;
+    background-color: #F9F9F9 ;
+    padding:20px 0;
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#LoginModalContainer {
+    width: 342px;
+    position:fixed;
+    left: 50%;
+    margin-top: -600px;
+    margin-left: -172px;
+    box-shadow: 0 5px 15px rgb(0 0 0 / 20%);
+    transition: margin-top .3s ease-in-out;
+}
