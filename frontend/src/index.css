@@ -1,1 +1,12 @@
-/* TODO Add site wide styles */
+div {
+   
+}
+
+.errors {
+    margin-top:15px;
+    padding: 10px;
+    color: red;
+    width: 100%;
+    background-color: #fdf0ef;
+    box-sizing: border-box;
+}

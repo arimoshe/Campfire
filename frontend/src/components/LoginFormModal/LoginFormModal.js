@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { loginSessionUser } from "../../store/session";
 import { toggleLoginModal } from "../../store/ui";
 import './LoginFormModal.css'
@@ -18,12 +18,15 @@ export const LoginFormModal = ({toggle}) => {
     const loginModal = useRef(null);
 
     const loginContainer = useRef(null);
- 
+    
+
     useEffect(()=>{
-        loginModal.current.style.marginTop = "130px"
         const removeLogin = (e) => {
-            dispatch(toggleLoginModal())
+            loginModal.current.style.marginTop = "-600px"
+            setTimeout(() => dispatch(toggleLoginModal(false)), 300)
         };
+        if (loginModal && loginModal.current) {loginModal.current.style.marginTop = "130px"}
+        
         if (loginContainer && loginContainer.current) { 
             loginContainer.current.addEventListener('click', removeLogin); 
         }
@@ -33,10 +36,8 @@ export const LoginFormModal = ({toggle}) => {
 
 
     if (sessionUser) {
-
-        return (
-            <Redirect to="/" />
-        );
+        dispatch(toggleLoginModal(false))
+        
     }
 
 
@@ -47,9 +48,8 @@ export const LoginFormModal = ({toggle}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        setErrors([]);
-        dispatch(toggleLoginModal()) 
-        return dispatch(loginSessionUser(email, password))
+        setErrors([]); 
+        dispatch(loginSessionUser(email, password))
             .catch(async (res) => {
                 let data;
                 try {
@@ -62,8 +62,8 @@ export const LoginFormModal = ({toggle}) => {
                 if (data && data.errors) { setErrors(data.errors); }
                 else if (data) { setErrors([data]); }
                 else { setErrors([res.statusText]) }
-
             })
+            
 
 
     }
@@ -80,10 +80,12 @@ export const LoginFormModal = ({toggle}) => {
                     <input type="password" id="password" onChange={e => setPassword(e.target.value)} value={password} placeholder={"Password..."} required />
                     <button type="submit">Log In</button>
                     <button id="demoLoginButton" onClick={handleDemoClick} >Demo User Log In</button>
+                    {errors[0] ? <ul className="errors">{errors.map(error => (<li key={Math.random()}>{error}</li>))}</ul> : null}
                 </form>
-                <div id="LoginSignupContainer"><p>"Don't have a Campf🔥re accont? <Link to={"/signup"} >Sign Up!</Link></p></div>
+                
+                <div id="LoginSignupContainer"><p>"Don't have a Campfire accont? <Link to={"/signup"} >Sign Up!</Link></p></div>
             </div>
-            {errors ? <ul>{errors.map(error => (<li key={Math.random()}>{error}</li>))}</ul> : null}
+           
             
         
         </>

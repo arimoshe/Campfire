@@ -127,5 +127,12 @@ li {
     font-weight: 700;
     font-size: 30px;
     color: rgb(196, 71, 71);
-    width: 150px;
+    
+}
+
+.logoPng {
+    width: 150px;   
+}
+.logoIcon {
+    width: 35px
 }

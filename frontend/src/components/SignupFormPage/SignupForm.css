@@ -15,12 +15,13 @@
 
 #signupLoginForm {
     border:1px solid rgb(51,51,51);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     font-family: 'Roboto', sans-serif;
     height: 68px;
     width: 342px;
-    height: 525px;
+    height: auto;
     text-align: center;
     background-color: #ffffff;
 }
@@ -116,4 +117,9 @@
     height: 50px;
     top: 20px;
     right: 20px;
+}
+
+#signupLoginForm img {
+    width:200px;
+    margin: 10px auto 0 auto;
 }

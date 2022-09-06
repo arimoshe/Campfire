@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, Redirect } from "react-router-dom"
 import { signupUser } from "../../store/session"
 import './SignupForm.css'
-import pixaData from "../../pixabay_images"
+import { toggleLoginModal } from "../../store/ui"
+import logo from './../../CampfireLogo.png'
+import { fetchPixaImages } from "../../store/pixabay"
 
 function SignupForm() {
     const [firstName, setFirstName] = useState('')
@@ -20,9 +22,29 @@ function SignupForm() {
         const resizer = () => {
             setWidowWidth(window.innerWidth);
         }
-        window.addEventListener('resize',resizer)
-        return()=>(window.removeEventListener('resize', resizer))
-     },[])
+        window.addEventListener('resize',resizer);
+        dispatch(fetchPixaImages()) 
+        .catch(async (res) => {
+            let data;
+            try {
+
+                data = await res.clone().json()
+            }
+            catch {
+                data = await res.text()
+            }
+            if (data && data.errors) { setErrors(data.errors); }
+            else if (data) { setErrors([data]); }
+            else { setErrors([res.statusText]) }
+        })
+        
+            
+        
+        return()=>(window.removeEventListener('resize', resizer));
+        
+     },[dispatch])
+
+     const images = useSelector(state => state.pixa)
 
     if (sessionUser) {
 
@@ -60,14 +82,14 @@ function SignupForm() {
 
     }
 
-    const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + (i * step));
+    
 
     return (
         <>  
             <div id="signupBackgroundDarkener"></div>
             <div id="signupBackground">
                 <div className="col-1">
-                    {range(15,60 ,1).map (i => (<img src={pixaData.hits[i].webformatURL} width={(widowWidth - 16) / 3} />)) }
+                    {Array.isArray(images) ? images.map(image => (<img key={image.id} alt="background" src={image.webformatURL} width={(widowWidth - 16) / 3} />)) : null}
                     
                     
                 </div>
@@ -76,11 +98,11 @@ function SignupForm() {
                 <div className="col-1"></div>
                 <div className="col-1"></div>
             </div>
-            <div id="signupLoginButton"><Link to={'/login'}><button> Log In</button></Link></div>
+            <div id="signupLoginButton"><Link to={'/'}><button onClick={() => dispatch(toggleLoginModal(true))}> Log In</button></Link></div>
             <div id="signupContainer">
                 
                     <form id="signupLoginForm" onSubmit={handleSubmit}>
-                        <div id="signupLoginFormLogo">Campf🔥re</div>
+                        <img src={logo} alt="logo" />
                         <p>Search and book the great outdoors!</p>
                         <div className="formDouble">
                             <input type="text" id="firstName"
@@ -100,10 +122,8 @@ function SignupForm() {
                     <input type="password" id="passwordConfirm"
                         onChange={e => setPasswordConfirm(e.target.value)}
                         value={passwordConfirm} required placeholder={'Confirm Password'} />
-                        <ul>
-                            {errors.map(error => (<li key={Math.random()}>{error}</li>))}
-                        </ul>
-                        <button>Join Campf🔥re</button>
+                    {errors[0] ? <ul className="errors">{errors.map(error => (<li key={Math.random()}>{error}</li>))}</ul> : null}
+                        <button>Join Campfire</button>
                     </form>
                 
             </div>

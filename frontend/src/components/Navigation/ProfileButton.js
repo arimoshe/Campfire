@@ -1,12 +1,11 @@
-import { useEffect } from "react";
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import { logout } from "../../store/session";
+import logoIcon from './../../CampfireIcon.svg'
 
 const ProfileButton = () => {
     const [showMenu, setShowMenu] = useState(false)
-    const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     const logoutUser = (e) => {
@@ -14,24 +13,6 @@ const ProfileButton = () => {
         dispatch(logout());
     };
 
-    // const openMenu = () => {
-    //     if (showMenu)
-    //         setShowMenu(true)
-    // }
-
-    // const handleClick = (e) => {
-    //     e.preventDefault();
-    //     setShowMenu(true);
-    //     openMenu();
-    // }
-
-    // useEffect(() => {
-    //     const closeMenu = () => {
-    //         setShowMenu(false);
-    //     }
-    //     if (showMenu) window.addEventListener('click', closeMenu);
-    //     return () => window.removeEventListener('click', closeMenu)
-    // }, [showMenu])
 
 
     const menu =
@@ -50,7 +31,7 @@ const ProfileButton = () => {
     return (
         <>
             <div className="profileButton" onMouseOver={(e)=>(setShowMenu(true))}>
-                <i className="fa-solid fa-user" ></i>
+                <img className="logoIcon" src={logoIcon} alt="icon" />
             </div>
             {showMenu ? menu : undefined}
         </>
