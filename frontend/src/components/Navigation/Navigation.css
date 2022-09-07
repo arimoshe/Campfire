@@ -1,3 +1,8 @@
+.hamburgerMenu {
+    display: none;
+}
+
+
 #profileButttonContainer {
     position: relative;
     align-self: center;
@@ -39,23 +44,22 @@ li {
 }
 
 
-#rightNavContainer{ 
+.rightNavContainer{ 
+    display: flex;
+    justify-content: left;
     padding: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 400;
 }
 
-#rightNavContainer a {
-    color: rgba(0, 0, 0, 1);
+.rightNavContainer a {
     text-decoration: none;
+    color: rgb(0, 0, 0);
+    margin-top:4px
 }
 
-.rightNavContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-}
+
 
 .underline:hover {
     border-bottom: 2px solid rgba(0,197,133, 1);
@@ -70,14 +74,15 @@ li {
 
 
 #navBarContainer {
-    width:auto;
+    
     position: fixed;
     width: 100vw;
     background-color: rgb(243, 242, 239);
 }
 
 .navBar {
-    margin:auto;
+    margin:0 auto;
+    justify-self:end;
     display: flex;
     justify-content: space-between;
     justify-items: center;
@@ -87,15 +92,15 @@ li {
     align-items: center;
     background-color: rgb(243, 242, 239);
     max-width: 1280px;
-    padding:0 24px;
+    padding-left:24px;
     
 }
 
 #rightNav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 70px;
+    padding-inline-start: 1px;
     
 }
 
@@ -131,8 +136,92 @@ li {
 }
 
 .logoPng {
-    width: 150px;   
+    width: 150px;
+    margin-bottom: -10px;   
 }
 .logoIcon {
     width: 35px
+}
+
+.signupPill {
+    background-color: rgb(0, 197, 133);
+    height:36px;
+    padding: 0 20px;
+    margin: 0 0 20px 0;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.signupPill:hover {
+    background-color: transparent;
+    border-color: rgb(0, 197, 133);
+}
+
+.signupPill  a {
+    color: white;
+    transition: color 0.2s ease-in-out
+}
+.signupPill:hover a {
+    color: rgb(0, 197, 133);
+}
+#menuLogo {
+    display: flex;
+}
+
+.hamburgerMenuContainer {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .hamburgerMenu {
+        display: block;
+        border-radius: 6px ;
+        background-color: rgb(255,255,255);
+        border: 1px solid rgb(222,222,222);
+        padding: 10px;
+        margin-right: 10px;
+    }
+
+    .logoPng {
+        margin-bottom: -15px;
+    }
+        
+    .hamburgerMenuContainer {
+        width:100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .hamburgerMenuContainer li {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 25px;
+        padding: 27px 0px;
+        border-bottom: 1px solid rgb(222, 222, 222);
+
+    }
+
+    .hamburgerMenuContainer a, .hamburgerMenuContainer p {
+        font-size: 20px;
+        font-weight: 500;
+        color: rgb(0, 0, 0); 
+
+        text-decoration: none;
+    }
+        
+    #closeXLi  {
+        border-style: none;
+
+    }
+
+    #closeXLi i {
+       font-size: 22px;
+    }
 }

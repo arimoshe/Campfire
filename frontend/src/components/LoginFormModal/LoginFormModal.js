@@ -30,15 +30,17 @@ export const LoginFormModal = ({toggle}) => {
         if (loginContainer && loginContainer.current) { 
             loginContainer.current.addEventListener('click', removeLogin); 
         }
+       
         
-        },[dispatch])
-
-
-
-    if (sessionUser) {
-        dispatch(toggleLoginModal(false))
+        },[])
         
-    }
+    useEffect(()=>{
+        if (sessionUser) {
+            dispatch(toggleLoginModal(false))
+
+        }
+    }, [sessionUser])
+    
 
 
     const handleDemoClick = (e) => {    

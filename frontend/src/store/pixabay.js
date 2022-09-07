@@ -15,7 +15,6 @@ export const fetchPixaImages = () => async dispatch => {
         )
     if(res.ok) {
         const pixaData = await res.json()
-        console.log(pixaData.hits)
         dispatch(importImages(pixaData.hits));
     }
     else {

@@ -1,6 +1,6 @@
 // import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import {  Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {  Redirect } from "react-router-dom";
 // import { loginSessionUser } from "../../store/session";
 import { toggleLoginModal } from "../../store/ui";
 import './LoginForm.css'
@@ -10,14 +10,18 @@ export const LoginForm = (props) => {
     // const [email, setEmail] = useState("")
     // const [password, setPassword] = useState("")
     // const [errors, setErrors] = useState([])
-    // const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user)
+      const dispatch = useDispatch();
+        
 
-     const dispatch = useDispatch();
+
+    if (sessionUser) {
+
         dispatch(toggleLoginModal(true));
-    // if (sessionUser) {
-
-        // return <Redirect to="/" />
-    // }
+    }
+    return <Redirect to="/" />
+   
+    //
 
     // const handleSubmit = (event) => {
     //     event.preventDefault();

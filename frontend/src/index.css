@@ -1,5 +1,7 @@
-div {
-   
+@media only screen and (max-width: 600px) {
+    .mobileHide {
+        display: none;
+    }
 }
 
 .errors {
