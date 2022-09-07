@@ -16,6 +16,7 @@ gem "pry-rails"
 
 gem "bcrypt"
 gem "jbuilder"
+gem 'aws-sdk-s3'
 
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
