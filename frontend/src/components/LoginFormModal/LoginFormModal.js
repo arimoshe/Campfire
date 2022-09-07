@@ -33,7 +33,7 @@ export const LoginFormModal = ({toggle}) => {
        
         
         },[])
-        
+
     useEffect(()=>{
         if (sessionUser) {
             dispatch(toggleLoginModal(false))
@@ -45,7 +45,7 @@ export const LoginFormModal = ({toggle}) => {
 
     const handleDemoClick = (e) => {    
         e.preventDefault()
-        dispatch(loginSessionUser('demo@user.com', 'password'))
+        dispatch(loginSessionUser('demo@demo.com', '123456'))
     }
 
     const handleSubmit = (event) => {
