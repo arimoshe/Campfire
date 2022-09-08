@@ -17,6 +17,18 @@ class User < ApplicationRecord
 
   before_validation :ensure_session_token
 
+  has_many :spots,
+  foreign_key: :owner_id,
+        dependent: :destroy
+
+  has_many :bookings,
+  foreign_key: :customer_id,
+        dependent: :destroy
+
+  belongs_to :booking,
+  foreign_key: :owner_id,
+  class_name: :Booking
+  
 
   has_secure_password
 

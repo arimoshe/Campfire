@@ -12,3 +12,10 @@
     background-color: #fdf0ef;
     box-sizing: border-box;
 }
+
+.siteBody{ 
+    top: 70px;
+    position: relative;
+    max-width: 1280px;
+    margin:0 auto
+}

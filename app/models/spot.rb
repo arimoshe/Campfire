@@ -32,8 +32,10 @@ class Spot < ApplicationRecord
     validates :longitude, :latitude, numericality: {less_than_or_equal_to: 360, greater_than_or_equal_to: -360 }
     
 
-    has_many :tags
-    has_many :bookings
+    has_many :spot_tags,
+        dependent: :destroy
+    has_many :bookings,
+        dependent: :destroy
 
     belongs_to :owner,
         foreign_key: :owner_id,

@@ -1,6 +1,5 @@
-json.spot do 
-  json.set! @spot.id do
-        json.extract! @spot, 
+json.extract! @spot, 
+        :id,
         :name, 
         :address1, 
         :address2, 
@@ -19,6 +18,4 @@ json.spot do
         :high_demand, 
         :owner_id
 
-        json.photo_urls @spot.photos.map{ |file| url_for(file) }
-      end
-end
+        json.photo_urls @spot.photos.map{ |file| file.url }
