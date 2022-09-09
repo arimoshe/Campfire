@@ -27,7 +27,7 @@ class Spot < ApplicationRecord
     has_many_attached :photos
 
     validates :name, :address1, :city, :state, :zipcode, :longitude, :latitude, :price, :acres,  :capacity, :about, :lodgings, :rvs, :tents, :high_demand, :owner_id,  presence:true
-    validates :state, inclusion: {in: ['AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MP', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UM', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY']}
+    validates :state, inclusion: {in: ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Minor Outlying Islands', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Puerto Rico', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'U.S. Virgin Islands', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']}
     validates :zipcode, length: {minimum:5, maximum:5}, format: {with: /\d{5}/, message: "Please enter zipcode in the format 12345"}
     validates :longitude, :latitude, numericality: {less_than_or_equal_to: 360, greater_than_or_equal_to: -360 }
     
@@ -37,8 +37,12 @@ class Spot < ApplicationRecord
     has_many :bookings,
         dependent: :destroy
 
+    has_many :reviews
+    
     belongs_to :owner,
         foreign_key: :owner_id,
         class_name: :User
+
+    
 
 end

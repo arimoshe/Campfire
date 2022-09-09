@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_220658) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_183528) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_220658) do
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["owner_id"], name: "index_bookings_on_owner_id"
     t.index ["spot_id"], name: "index_bookings_on_spot_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "spot_id", null: false
+    t.bigint "author_id", null: false
+    t.boolean "recommended", null: false
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_reviews_on_author_id"
+    t.index ["spot_id"], name: "index_reviews_on_spot_id"
   end
 
   create_table "spot_tags", force: :cascade do |t|
@@ -119,6 +130,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_220658) do
   add_foreign_key "bookings", "spots"
   add_foreign_key "bookings", "users", column: "customer_id"
   add_foreign_key "bookings", "users", column: "owner_id"
+  add_foreign_key "reviews", "spots"
+  add_foreign_key "reviews", "users", column: "author_id"
   add_foreign_key "spot_tags", "spots"
   add_foreign_key "spot_tags", "tags"
   add_foreign_key "spots", "users", column: "owner_id"

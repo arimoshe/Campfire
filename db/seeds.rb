@@ -11,15 +11,15 @@ require 'open-uri'
 ApplicationRecord.transaction do 
 #   puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
-  User.destroy_all
   Spot.destroy_all
+  User.destroy_all
 
 #   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('spots')
 
-#   puts "Creating users..."
+  puts "Creating users..."
   # Create one user with an easy to remember email and password:
   User.create!(
     email: 'ari@ari.com', 
@@ -40,7 +40,7 @@ spot = Spot.create!(
     name: 'Yosemite',
     address1: '6107 Big Oak Flat Rd',
     city: 'Groveland',
-    state: 'CA',
+    state: 'California',
     zipcode: 95321,
     longitude: 37.80009018741985,
     latitude: -119.87529410959473,
@@ -56,20 +56,32 @@ spot = Spot.create!(
 )
 
 
-spot.photos.attach(
-    io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/1.jpg'), 
-    filename:'1.jpg'
-    )
+
 
 spot.photos.attach(
-    io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/11.jpg'), 
-    filename:'11.jpg'
+    io: URI.open('https://campfire-aa-dev.s3.us-west-1.amazonaws.com/50.jpg'), 
+    filename:'50.jpg'
     )
 
-spot.photos.attach(
-io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/12.jpg'), 
-filename:'12.jpg'
+# spot.photos.attach(
+#     io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/11.jpg'), 
+#     filename:'11.jpg'
+#     )
+
+# spot.photos.attach(
+# io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/12.jpg'), 
+# filename:'12.jpg'
+# )
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite"),
+    author_id: User.first,
+    recommended: true,
+    body: "What an awesome place!"
+
 )
+
 
 # 5.times do 
 #     Spot.create!({
@@ -103,5 +115,5 @@ filename:'12.jpg'
 #     }) 
 #   end
 
-#   puts "Done!"
+  puts "Done!"
 end

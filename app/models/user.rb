@@ -25,10 +25,10 @@ class User < ApplicationRecord
   foreign_key: :customer_id,
         dependent: :destroy
 
-  belongs_to :booking,
-  foreign_key: :owner_id,
-  class_name: :Booking
-  
+  has_many :reviews,
+  foreign_key: :author_id,
+  class_name: :Review,
+  dependent: :destroy
 
   has_secure_password
 

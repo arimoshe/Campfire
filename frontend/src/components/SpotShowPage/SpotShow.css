@@ -1,0 +1,124 @@
+.spotContainer {
+    max-width: 1232px;
+    margin: 0 auto;
+}
+
+.headerName {
+    font-weight: 700;
+    font-size: 28px;
+    padding-top: 20px;
+}
+
+.reviewsLocationContainer {
+    margin: 15px 0;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.recommended {
+    color: rgb(0, 197, 133);
+}
+
+.spotImagesContainer {
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    background-color: #000000;
+    margin: -px;
+    box-sizing: border-box;
+    border-radius: 8px
+    ;
+}
+
+.spotImagesLeft {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    overflow: hidden;
+    border-right: 4px solid white;
+    height: min(464px,37.7vw);
+}
+
+#spotImagesLeft {
+    width:110%;
+    box-sizing: border-box;
+    
+    overflow: hidden;
+    
+}
+
+.spotImagesRightContainer {
+    width:50%;
+    display:flex;
+    flex-wrap: wrap;
+    height: min(464px, 37.7vw);
+    border-left: 4px solid white;
+}
+
+.spotImagesRightContainer img {
+    width:120%;
+    height: auto;
+    align-self: center;
+
+}
+
+.spotImagesRightContainer div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 50%;
+}
+
+#spotImagesRightLeftTop {
+    
+    border-right: 4px solid white;
+    border-bottom: 4px solid white;
+    box-sizing: border-box;
+    width:50%;
+}
+
+#spotImagesRightRightTop {
+    border-left: 4px solid white;
+    border-bottom: 4px solid white;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+#spotImagesRightLeftBottom {
+    border-right: 4px solid white;
+    border-top: 4px solid white;
+    box-sizing: border-box;
+    width: 50%;
+}
+
+#spotImagesRightRightBottom {
+    box-sizing: border-box;
+    border-left: 4px solid white;
+    border-top: 4px solid white;
+    width: 50%;
+}
+
+.spotSizeTypeContainer {
+    display: flex;
+    padding: 20px 20px 20px 0;
+    align-content: center;
+
+}
+
+.acres {
+    padding: 20px 50px 20px 0;
+    border-right: 1px solid rgb( 222, 222, 222);
+    font-size: 22px; 
+   
+}
+.type {
+    text-align: center;
+    line-height: 30px;
+    padding: 0px 50px 0px 50px;
+}
+
+.SpotDescriptionContainer {
+    padding: 20px 20px 20px 0;
+    
+}
