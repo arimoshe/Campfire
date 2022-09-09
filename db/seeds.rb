@@ -13,11 +13,19 @@ ApplicationRecord.transaction do
   # Unnecessary if using `rails db:seed:replant`
   Spot.destroy_all
   User.destroy_all
+  Booking.destroy_all
+  Review.destroy_all
+  Tag.destroy_all
+  SpotTag.destroy_all
 
 #   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('spots')
+  ApplicationRecord.connection.reset_pk_sequence!('reviews')
+  ApplicationRecord.connection.reset_pk_sequence!('bookings')
+  ApplicationRecord.connection.reset_pk_sequence!('tags')
+  ApplicationRecord.connection.reset_pk_sequence!('spot_tags')
 
   puts "Creating users..."
   # Create one user with an easy to remember email and password:
@@ -95,6 +103,107 @@ Review.create!(
     recommended: false,
     body: "I was attacked by a bear!"
 
+)
+
+Tag.create!(
+    name: 'Biking',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Boating',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Fishing',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Hiking',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Paddling',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Surfing',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Swimming',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Wildlife watching',
+    tag_type: 'Activities'
+)
+
+Tag.create!(
+    name: 'Redwoods',
+    tag_type: 'Natural features'
+)
+
+Tag.create!(
+    name: 'River, stream, or creek',
+    tag_type: 'Natural features'
+)
+
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Fishing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Surfing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Swimming').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'Redwoods').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    tag_id: Tag.find_by(name: 'River, stream, or creek').id
 )
 
 # 5.times do 
