@@ -75,13 +75,27 @@ spot.photos.attach(
 
 
 Review.create!(
-    spot_id: Spot.find_by(name: "Yosemite"),
-    author_id: User.first,
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.first.id,
     recommended: true,
     body: "What an awesome place!"
 
 )
 
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.first.id,
+    recommended: true,
+    body: "Had a great time!"
+)
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.first.id,
+    recommended: false,
+    body: "I was attacked by a bear!"
+
+)
 
 # 5.times do 
 #     Spot.create!({
