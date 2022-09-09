@@ -101,6 +101,7 @@
 
 .spotSizeTypeContainer {
     display: flex;
+    justify-content:left;
     padding: 20px 20px 20px 0;
     align-content: center;
 
@@ -119,6 +120,111 @@
 }
 
 .SpotDescriptionContainer {
-    padding: 20px 20px 20px 0;
+    display: flex;
+    padding: 20px 100px 20px 0;
+    line-height: 28px;
+
+}
+
+.InfoContainer {
+    display: flex;
+    padding-bottom: 30px;
     
+}
+.InfoContainer > div {
+    width: 700px
+}
+
+.SpotTagContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 25px;
+    text-align: left;
+}
+
+.SpotTagContainer li:first-of-type {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.SpotTagContainer li {
+    padding: 13px;
+    font-size: 17px;
+}
+.SpotTagContainer i {
+    padding: 0 5px;
+    font-size: 20px;
+}
+
+.SpotTagContainer button {
+    border-style: none;
+    background-color: transparent;
+    color: rgb(0, 197, 133);
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.SpotAvailabilityContainer {
+    padding: 40px 0 40px 0
+    
+}
+
+.SpotAvailabilitySelectorsContainer {
+    display: flex;
+    font-size: 12px;
+    padding-top: 20px;
+    line-height: 25px;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 80%;
+}
+
+.SpotDateSelectorContainer , .SpotGuestsSelectorContainer{
+    width: 100%;
+    padding: 0 10px;
+    position: relative;
+}
+
+.checkAvailibilityPill {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 197, 133);
+    color: rgb(255,255,255);
+    width: 350px;
+    text-align: center;
+    height: 45px;
+    border-radius: 100px;
+    align-items: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+#SpotDatesSelectorButton, #SpotGuestsSelectorButton {
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid rgb(222,222,222);
+    height: 45px;
+    width:100%;
+    justify-content:left;
+    font-size: 16px;
+    align-items: center;
+    color: rgb(60, 60, 60);
+}
+
+#SpotDatesSelectorButton i , #SpotGuestsSelectorButton i{
+    padding: 10px;
+    color: rgb(0,0,0);
+}
+
+.SpotDateModalContainer {
+    position:absolute;
+    top: 80px;
+    z-index: 100;
+    padding: 15px;
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 4px 0px;
+    border-radius: 12px;
 }
