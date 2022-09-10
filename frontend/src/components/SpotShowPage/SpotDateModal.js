@@ -12,7 +12,18 @@ function SpotDateModal({ spot }) {
     const [value, setValue] = useState(new Date());
 
     const tileDisabled = ({ activeStartDate, date, view }) => {
+        const now = new Date();
+        if (view === 'month') {
+            if (spot && spot.bookings) {
+                for (let booking of spot.bookings) {
+                    if (date.getTime() > Date.parse(booking.start_date) && date.getTime() < Date.parse(booking.end_date)) {
+                        return true
+                    }
+                }    
+                return false      
+            }
         
+        }
     }
 
     if (!spot) return null
@@ -27,6 +38,7 @@ function SpotDateModal({ spot }) {
                 <Calendar
                     onChange={onChange}
                     value={value} 
+                    tileDisabled={tileDisabled}
                     showDoubleView={true}
                     selectRange={true}
                     prevLabel='←'

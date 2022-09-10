@@ -23,6 +23,7 @@ class User < ApplicationRecord
 
   has_many :bookings,
   foreign_key: :customer_id,
+  class_name: :Booking,
         dependent: :destroy
 
   has_many :reviews,

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { fetchSpot } from "../../store/spots"
+import { toggleSpowShowModal } from "../../store/ui"
 import ReviewsLocationWidget from "./ReviewsLocationWidget"
 import SpotActivities from "./SpotActivities"
 import SpotAvailability from "./SpotAvailability"
@@ -17,6 +18,15 @@ function SpotShow() {
 
     const dispatch = useDispatch()
     const {spotId} = useParams()
+    // const dateRef = useRef(null)
+
+    // const hideModal = (event) => {
+    //     if (!dateRef.current.contains(event.target)) {
+
+    //         dispatch(toggleSpowShowModal(false))
+    //     }
+    // }
+
     useEffect(()=> {
         dispatch(fetchSpot(spotId))
     },[dispatch])
@@ -26,7 +36,7 @@ function SpotShow() {
 
     return (
         <>
-            <div className="siteBody">
+            <div className="siteBody"  >
                 <div className="spotContainer">
                     <h1 className="headerName">{spot.name}</h1>
                     <ReviewsLocationWidget spot={spot} />

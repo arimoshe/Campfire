@@ -20,6 +20,7 @@ json.extract! @spot,
 
         json.activities Spot.joins(:tags).select("tags.name").where("tag_type = 'Activities'")
         json.natural_features Spot.joins(:tags).select("tags.name").where("tag_type = 'Natural features'")
+        json.bookings Spot.joins(:bookings).select("bookings.start_date, bookings.end_date")
         json.reviews Spot.joins(:reviews).select("count(reviews.id)").group("spots.id").first
         json.recommendedReviews Spot.joins(:reviews).select("count(reviews.id)").where("recommended = true").group("spots.id").first
         json.photo_urls @spot.photos.map{ |file| file.url 

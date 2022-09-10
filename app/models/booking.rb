@@ -14,7 +14,13 @@
 #  updated_at  :datetime         not null
 #
 class Booking < ApplicationRecord
-  belongs_to :customer
-  belongs_to :owner
+  belongs_to :customer,
+  foreign_key: :customer_id,
+  class_name: :User
+
+  belongs_to :owner,
+  foreign_key: :customer_id,
+  class_name: :User
+
   belongs_to :spot
 end

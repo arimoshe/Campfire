@@ -206,6 +206,17 @@ SpotTag.create!(
     tag_id: Tag.find_by(name: 'River, stream, or creek').id
 )
 
+Booking.create!(
+    owner_id: User.first.id,
+    customer_id: User.find_by(email: 'demo@demo.com').id,
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    start_date: Date.new(2022, 9, 22),
+    end_date: Date.new(2022, 9, 26),
+    guests: 3,
+    price: 400
+)
+
+
 # 5.times do 
 #     Spot.create!({
 #     name: 'Yosemite',

@@ -72,7 +72,7 @@ export const LoginFormModal = ({toggle}) => {
 
     return (
         <>
-            <div id="LoginContainer" ref={loginContainer}></div>
+            <div id="popContainer" ref={loginContainer}></div>
             <div id="LoginModalContainer" ref={loginModal}  >
                 <form id="loginForm" onSubmit={handleSubmit}>
                     <div id="loginHeader">Welcome!</div>
