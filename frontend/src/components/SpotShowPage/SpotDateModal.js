@@ -34,10 +34,9 @@ function SpotDateModal({ spot }) {
 
     return (
         <>
-            <div className="SpotDateModalContainer" >
+            <div id="SpotDateModal" className="SpotDateModalContainer" >
                 <Calendar
                     onChange={onChange}
-                    value={value} 
                     tileDisabled={tileDisabled}
                     showDoubleView={true}
                     selectRange={true}

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { fetchSpot } from "../../store/spots"
-import { toggleSpowShowModal } from "../../store/ui"
+import { toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
 import ReviewsLocationWidget from "./ReviewsLocationWidget"
 import SpotActivities from "./SpotActivities"
 import SpotAvailability from "./SpotAvailability"
@@ -18,14 +18,18 @@ function SpotShow() {
 
     const dispatch = useDispatch()
     const {spotId} = useParams()
-    // const dateRef = useRef(null)
+    
 
-    // const hideModal = (event) => {
-    //     if (!dateRef.current.contains(event.target)) {
-
-    //         dispatch(toggleSpowShowModal(false))
-    //     }
-    // }
+    const hideModal = (event) => {
+        const dateModal = document.getElementById("SpotDateModal")
+        const guestsModal = document.getElementById("SpotGuestsModal")
+        if (dateModal && !dateModal.contains(event.target)) {
+            dispatch(toggleSpotDatesModal(false))
+        }
+        if (guestsModal && !guestsModal.contains(event.target)) {
+            dispatch(toggleSpotGuestsModal(false))
+        }
+    }
 
     useEffect(()=> {
         dispatch(fetchSpot(spotId))
@@ -36,7 +40,7 @@ function SpotShow() {
 
     return (
         <>
-            <div className="siteBody"  >
+            <div id="spotShow" className="siteBody" onClick={hideModal}  >
                 <div className="spotContainer">
                     <h1 className="headerName">{spot.name}</h1>
                     <ReviewsLocationWidget spot={spot} />
