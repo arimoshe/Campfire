@@ -1,21 +1,22 @@
+import { useSelector } from "react-redux"
 
 
 function SpotImages({spot}) {
-
-
+    if (!spot) {return null}
+// const photoUrls = useSelector(state => state.spots.currentSpot.photoUrls)
     return (
         <>
             
 
             <div className="spotImagesContainer">
                 <div className="spotImagesLeft">
-                    <img id="spotImagesLeft" src={`https://via.placeholder.com/640x800`} alt="campsite" />
+                    <img id="spotImagesLeft" src={spot.photoUrls[0]} alt="campsite" />
                 </div>                
                 <div className="spotImagesRightContainer">   
-                    <div id="spotImagesRightLeftTop"><img  src={`https://via.placeholder.com/640x320`} alt="campsite" /></div>
-                    <div id="spotImagesRightRightTop"><img src={`https://via.placeholder.com/640x800`} alt="campsite" /></div>
-                    <div id="spotImagesRightLeftBottom"><img src={`https://via.placeholder.com/640x480`} alt="campsite" /></div>
-                    <div id="spotImagesRightRightBottom" ><img src={`https://via.placeholder.com/640x480`} alt="campsite" /></div>
+                    <div id="spotImagesRightLeftTop"><img src={spot.photoUrls[1]} alt="campsite" /></div>
+                    <div id="spotImagesRightRightTop"><img src={spot.photoUrls[2]} alt="campsite" /></div>
+                    <div id="spotImagesRightLeftBottom"><img src={spot.photoUrls[3]} alt="campsite" /></div>
+                    <div id="spotImagesRightRightBottom" ><img src={spot.photoUrls[4]} alt="campsite" /></div>
                 </div>
             </div>
         </>

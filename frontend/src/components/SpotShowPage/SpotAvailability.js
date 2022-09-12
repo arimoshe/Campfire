@@ -29,7 +29,7 @@ function SpotAvailability({ spot }) {
                     </div>
                     <div className="SpotGuestsSelectorContainer">
                         GUESTS
-                        <button id="SpotGuestsSelectorButton" onClick={() => (dispatch(toggleSpotGuestsModal(true)))}><i className="fa-solid fa-calendar"></i>{guests && (guests.children + guests.adults) > 0 ? `${guests.children + guests.adults} guests`  : 'Add guests'}</button>
+                        <button id="SpotGuestsSelectorButton" onClick={() => (dispatch(toggleSpotGuestsModal(true)))}><i className="fa-solid fa-user"></i>{guests && (guests.children + guests.adults) > 0 ? `${guests.children + guests.adults} guests`  : 'Add guests'}</button>
                         {showSpotGuestsModal ? <SpotGuestsModal spot={spot} /> : null}
                     </div>
                     <button className="checkAvailibilityPill">Check availability</button>

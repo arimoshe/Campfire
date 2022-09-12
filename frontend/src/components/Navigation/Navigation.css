@@ -75,7 +75,7 @@ li {
 
 
 #navBarContainer {
-    
+    z-index: 1000;
     position: fixed;
     width: 100vw;
     background-color: rgb(243, 242, 239);

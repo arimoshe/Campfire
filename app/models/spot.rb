@@ -36,14 +36,17 @@ class Spot < ApplicationRecord
         foreign_key: :spot_id,
         class_name: :SpotTag,
         dependent: :destroy
+        
     has_many :bookings,
         dependent: :destroy
 
     has_many :tags,
     through: :spot_tags,
-    source: :tag
+    source: :tag,
+    dependent: :destroy
 
-    has_many :reviews
+    has_many :reviews,
+    dependent: :destroy
     
     belongs_to :owner,
         foreign_key: :owner_id,

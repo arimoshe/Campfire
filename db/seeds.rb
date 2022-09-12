@@ -9,7 +9,7 @@
 require 'open-uri'
 
 ApplicationRecord.transaction do 
-#   puts "Destroying tables..."
+  puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
   Spot.destroy_all
   User.destroy_all
@@ -18,7 +18,7 @@ ApplicationRecord.transaction do
   Tag.destroy_all
   SpotTag.destroy_all
 
-#   puts "Resetting primary keys..."
+  puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('spots')
@@ -54,7 +54,7 @@ spot = Spot.create!(
     longitude: -119.87529410959473,
     price: 100,
     acres: 15,
-    about: 'This is a park called Yosemite!',
+    about: 'Yosemite National Park is in California’s Sierra Nevada mountains. It’s famed for its giant, ancient sequoia trees, and for Tunnel View, the iconic vista of towering Bridalveil Fall and the granite cliffs of El Capitan and Half Dome. In Yosemite Village are shops, restaurants, lodging, the Yosemite Museum and the Ansel Adams Gallery, with prints of the photographer’s renowned black-and-white landscapes of the area.',
     capacity: 5 ,
     lodgings: 3,
     rvs: 0,
@@ -64,12 +64,15 @@ spot = Spot.create!(
 )
 
 
+photo1 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/1.jpg'), filename:'1.jpg'}
+photo2 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/2.jpg'), filename:'2.jpg'}
+photo3 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/3.jpg'), filename:'3.jpg'}
+photo4 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/4.jpg'), filename:'4.jpg'}
+photo5 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/5.jpg'), filename:'5.jpg'}
 
 
-spot.photos.attach(
-    io: URI.open('https://campfire-aa-dev.s3.us-west-1.amazonaws.com/50.jpg'), 
-    filename:'50.jpg'
-    )
+
+spot.photos.attach([photo1,photo2,photo3,photo4,photo5])
 
 # spot.photos.attach(
 #     io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/11.jpg'), 
