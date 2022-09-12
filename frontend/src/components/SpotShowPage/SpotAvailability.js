@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
 import SpotDateModal from "./SpotDateModal"
@@ -19,7 +18,9 @@ function SpotAvailability({ spot }) {
         <>
             <div></div>
             <div className="SpotAvailabilityContainer"  >
-            Availability
+                <h2>Availability</h2>
+                <div className="priceContainer">from <div>${spot.price}</div> / night</div>
+                <div className="guestsContainer">for <span>{spot.capacity}</span> guests</div>
                 <div className="SpotAvailabilitySelectorsContainer">
                     <div className="SpotDateSelectorContainer">
                         DATES

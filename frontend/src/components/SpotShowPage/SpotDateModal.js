@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import { useDispatch } from 'react-redux';
 import { updateStoreFilter } from '../../store/filters';
@@ -9,10 +8,9 @@ function SpotDateModal({ spot }) {
 
    const dispatch = useDispatch();
 
-    const [value, setValue] = useState(new Date());
+    // const [value, setValue] = useState(new Date());
 
     const tileDisabled = ({ activeStartDate, date, view }) => {
-        const now = new Date();
         if (view === 'month') {
             if (spot && spot.bookings) {
                 for (let booking of spot.bookings) {
@@ -28,7 +26,7 @@ function SpotDateModal({ spot }) {
 
     if (!spot) return null
     function onChange(nextValue) {
-        setValue(nextValue);
+        // setValue(nextValue);
         dispatch(updateStoreFilter({startDate: nextValue[0], endDate: nextValue[1]}))
     }
 

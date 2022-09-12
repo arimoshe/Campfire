@@ -32,14 +32,14 @@ export const LoginFormModal = ({toggle}) => {
         }
        
         
-        },[])
+        },[dispatch])
 
     useEffect(()=>{
         if (sessionUser) {
             dispatch(toggleLoginModal(false))
 
         }
-    }, [sessionUser])
+    }, [sessionUser, dispatch])
     
 
 

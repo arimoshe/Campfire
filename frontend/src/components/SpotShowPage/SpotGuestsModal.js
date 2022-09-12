@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateStoreFilter } from '../../store/filters';
 import './Calendar.css';
@@ -51,7 +50,7 @@ function SpotGuestsModal({ spot }) {
         } else {
             if (!ele4.classList.contains("greyToggle")) ele4.classList.add("greyToggle")
         }
-    },[guests])
+    },[guests,spot.capacity])
 
 
     return (

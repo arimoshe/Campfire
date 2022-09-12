@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { fetchSpot } from "../../store/spots"
@@ -6,9 +6,9 @@ import { toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
 import ReviewsLocationWidget from "./ReviewsLocationWidget"
 import SpotActivities from "./SpotActivities"
 import SpotAvailability from "./SpotAvailability"
-import SpotDateModal from "./SpotDateModal"
 import SpotDescription from "./SpotDescription"
 import SpotImages from "./SpotImages"
+import SpotMapWrapper from "./SpotMapWrapper"
 import SpotNaturalFeatures from "./SpotNaturalFeatures"
 import './SpotShow.css'
 import SpotSizeType from "./SpotSizeType"
@@ -33,7 +33,7 @@ function SpotShow() {
 
     useEffect(()=> {
         dispatch(fetchSpot(spotId))
-    },[dispatch])
+    }, [dispatch])
 
     const spot = useSelector(state => state.spots.currentSpot)
     if (!spot) return null
@@ -55,6 +55,8 @@ function SpotShow() {
                     </div>
                     <div className="hr"></div>
                     <SpotAvailability spot={spot} />
+                    <div className="hr"></div>
+                    <SpotMapWrapper spot={spot} apiKey={process.env.REACT_APP_MAPS_API_KEY} />
                 </div>
             </div>
         </>
