@@ -33,7 +33,7 @@ function SpotShow() {
 
     useEffect(()=> {
         dispatch(fetchSpot(spotId))
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     const spot = useSelector(state => state.spots.currentSpot)
     if (!spot) return null

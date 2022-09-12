@@ -17,9 +17,10 @@ function SpotMap({spot}) {
                 gestureHandling: 'cooperative'
             }));
         }
-    }, [mapRef, map])
+    }, [mapRef, map, spot.latitude, spot.longitude])
 
-    const marker = new window.google.maps.Marker({
+    // const marker = 
+    new window.google.maps.Marker({
         position: { lat: spot.latitude, lng: spot.longitude },
         map: map,
         icon: {

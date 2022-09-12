@@ -1,9 +1,9 @@
-import { useSelector } from "react-redux"
+
 
 
 function SpotImages({spot}) {
     if (!spot) {return null}
-// const photoUrls = useSelector(state => state.spots.currentSpot.photoUrls)
+
     return (
         <>
             

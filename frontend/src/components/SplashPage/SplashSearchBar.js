@@ -26,7 +26,7 @@ function SplashSearchBar () {
             </div>
         </div>
         <div className="imageContainer">
-            <img className="searchImage" src="https://hipcamp-res.cloudinary.com/f_auto,c_limit,w_1200,q_auto/homepage-us_ulfcxm.jpg" />
+            <img className="searchImage" src="https://hipcamp-res.cloudinary.com/f_auto,c_limit,w_1200,q_auto/homepage-us_ulfcxm.jpg" alt="Great Outdoors"/>
         </div>
         </>
     )
