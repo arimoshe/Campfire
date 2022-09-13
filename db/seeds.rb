@@ -215,7 +215,8 @@ Booking.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
     start_date: Date.new(2022, 9, 22),
     end_date: Date.new(2022, 9, 26),
-    guests: 3,
+    children: 1,
+    adults: 2
     price: 400
 )
 

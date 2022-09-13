@@ -8,30 +8,32 @@ function SpotGuestsModal({ spot }) {
 
     const dispatch = useDispatch();
 
-    const guests = useSelector(state => state.filters.guests);
+    const adults = useSelector(state => state.filters.adults);
+    const children = useSelector(state => state.filters.children);
 
 
-    const incrementGuests = (guestType, currentGuests) => {
-        if (currentGuests.adults + currentGuests.children < spot.capacity) {
-            dispatch(updateStoreFilter({guests:{ ...currentGuests, [guestType]: (currentGuests[guestType] + 1) }}))
+    const incrementGuests = (type, current) => {
+        if (adults + children < spot.capacity) {
+            dispatch(updateStoreFilter({[type]: current + 1}));
         }
     }
     
-    const decrementGuests = (guestType, currentGuests) => {
-        if (currentGuests[guestType] > 1 || (currentGuests[guestType] === 1 && currentGuests.adults + currentGuests.children >1)) {
-            dispatch(updateStoreFilter({ guests: { ...currentGuests, [guestType]: (currentGuests[guestType] - 1) } }))
+    const decrementGuests = (type, current) => {
+        if (current > 1 || current === 1 && adults + children > 1) {
+            dispatch(updateStoreFilter({[type]: current - 1}));
         }
     }
 
     useEffect(()=>{
         const ele = document.getElementsByClassName(`adults toggle subtract`)[0]
         const ele2 = document.getElementsByClassName(`adults toggle add`)[0]
-        if ((guests.adults > 1 || (guests.adults === 1 && guests.adults + guests.children > 1))) {
+        if ((adults > 1 || (adults === 1 && adults + children > 1))) {
             if (ele.classList.contains("greyToggle")) ele.classList.remove("greyToggle")
         } else {
             if (!ele.classList.contains("greyToggle")) ele.classList.add("greyToggle")
         }
-        if (guests.children + guests.adults < spot.capacity) {
+        
+        if (children + adults < spot.capacity) {
             if (ele2.classList.contains("greyToggle")) ele2.classList.remove("greyToggle")
         } else {
             if (!ele2.classList.contains("greyToggle")) ele2.classList.add("greyToggle")
@@ -40,17 +42,17 @@ function SpotGuestsModal({ spot }) {
 
         const ele3 = document.getElementsByClassName(`children toggle subtract`)[0]
         const ele4 = document.getElementsByClassName(`children toggle add`)[0]
-        if ((guests.children > 1 || (guests.children === 1 && guests.adults + guests.children > 1))) {
+        if ((children > 1 || (children === 1 && adults + children > 1))) {
             if (ele3.classList.contains("greyToggle")) ele3.classList.remove("greyToggle")
         } else {
             if (!ele3.classList.contains("greyToggle")) ele3.classList.add("greyToggle")
         }
-        if (guests.children + guests.adults < spot.capacity ) {
+        if (children + adults < spot.capacity ) {
             if (ele4.classList.contains("greyToggle")) ele4.classList.remove("greyToggle")
         } else {
             if (!ele4.classList.contains("greyToggle")) ele4.classList.add("greyToggle")
         }
-    },[guests,spot.capacity])
+    },[adults, children,spot.capacity])
 
 
     return (
@@ -63,9 +65,9 @@ function SpotGuestsModal({ spot }) {
                             <p className='guestDescription'>Ages 13 or above</p>
                         </div>
                         <div className="adults togglesContainer">
-                            <div onClick={() => { decrementGuests("adults", guests) }} className="adults toggle subtract">-</div>
-                            <div>{guests ? guests.adults : 0}</div>
-                            <div onClick={() => { incrementGuests("adults", guests) }} className="adults toggle add">+</div>
+                            <div onClick={() => { decrementGuests("adults", adults) }} className="adults toggle subtract">-</div>
+                            <div>{adults ? adults : 0}</div>
+                            <div onClick={() => { incrementGuests("adults", adults) }} className="adults toggle add">+</div>
                         </div>
                     </li>
                     <li className='children'>
@@ -74,9 +76,9 @@ function SpotGuestsModal({ spot }) {
                             <p className='guestDescription'>Ages 12 or below</p>
                         </div>
                         <div className="adults togglesContainer">
-                            <div onClick={() => { decrementGuests("children", guests) }} className="children toggle subtract">-</div>
-                            <div>{guests ? guests.children : 0}</div>
-                            <div onClick={() => { incrementGuests("children", guests) }} className="children toggle add">+</div>
+                            <div onClick={() => { decrementGuests("children", children) }} className="children toggle subtract">-</div>
+                            <div>{children ? children : 0}</div>
+                            <div onClick={() => { incrementGuests("children", children) }} className="children toggle add">+</div>
                         </div>
                     </li>
                     <li></li>

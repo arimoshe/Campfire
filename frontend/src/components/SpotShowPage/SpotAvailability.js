@@ -1,4 +1,8 @@
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom";
+import { updateStoreFilter } from "../../store/filters";
 import { toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
 import SpotDateModal from "./SpotDateModal"
 import SpotGuestsModal from "./SpotGuestsModal";
@@ -9,10 +13,54 @@ function SpotAvailability({ spot }) {
     const filters = useSelector(state => state.filters);
     const showSpotDatesModal = useSelector(state => state.ui.showSpotDatesModal);
     const showSpotGuestsModal = useSelector(state => state.ui.showSpotGuestsModal);
-    const guests = filters.guests
+    const cookies = document.cookie.split('; ').reduce((prev, current) => { return { ...prev, [current.split('=')[0]]: decodeURIComponent(current.split('=')[1]) } }, {})
+    const history = useHistory();
+
+    useEffect(() => {
+        if (cookies.booking) {
+            if (JSON.parse(cookies.booking).startDate) {
+                dispatch(updateStoreFilter({ startDate: new Date(JSON.parse(cookies.booking).startDate)}));
+                dispatch(updateStoreFilter({ endDate: new Date(JSON.parse(cookies.booking).endDate) }));
+            } 
+            if (JSON.parse(cookies.booking).adults) {
+                dispatch(updateStoreFilter({adults:JSON.parse(cookies.booking).adults }));
+                dispatch(updateStoreFilter({children: JSON.parse(cookies.booking).children }));
+            }
+        }
+    }, [cookies.booking])
 
    
-    if (!spot || !guests) return null
+
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        const cookieObject = {
+            children: filters.children,
+            adults:filters.adults,
+            startDate: filters.startDate,
+            endDate: filters.endDate,
+            spotId: spot.id,
+            ownerId:spot.ownerId,
+            price: (filters.endDate.getTime() - filters.startDate.getTime()+1) / (1000 * 3600 * 24) * spot.price,
+            imageUrl: spot.photoUrls[0],
+            siteName:spot.name,
+
+
+
+        }
+
+        document.cookie = `booking=${encodeURIComponent(JSON.stringify(cookieObject))}; path=/`
+
+        
+ 
+        
+        history.push('/booking')
+
+
+    }
+
+
+    if (!spot) return null
 
     return (
         <>
@@ -29,10 +77,10 @@ function SpotAvailability({ spot }) {
                     </div>
                     <div className="SpotGuestsSelectorContainer">
                         GUESTS
-                        <button id="SpotGuestsSelectorButton" onClick={() => (dispatch(toggleSpotGuestsModal(true)))}><i className="fa-solid fa-user"></i>{guests && (guests.children + guests.adults) > 0 ? `${guests.children + guests.adults} guests`  : 'Add guests'}</button>
+                        <button id="SpotGuestsSelectorButton" onClick={() => (dispatch(toggleSpotGuestsModal(true)))}><i className="fa-solid fa-user"></i>{filters && (filters.children + filters.adults) > 0 ? `${filters.children + filters.adults} ${filters.children + filters.adults === 1 ? 'Guest' : 'Guests' }`  : 'Add guests'}</button>
                         {showSpotGuestsModal ? <SpotGuestsModal spot={spot} /> : null}
                     </div>
-                    <button className="checkAvailibilityPill">Check availability</button>
+                    <button onClick={handleClick} className="checkAvailibilityPill">{filters  && filters.startDate && filters.endDate && (filters.children + filters.adults) > 0 ? `Book Now` :`Check availability`}</button>
                 </div>
             </div>
             

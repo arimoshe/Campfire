@@ -1,0 +1,45 @@
+.BookingContainer {
+    display: flex;
+    justify-content: space-evenly;   
+    width:1200px;
+    margin-top: 40px;
+
+}
+.BookingImgContainer {
+    height:130px;
+    overflow: hidden;
+
+}
+
+.BookingImgContainer img {
+    width: 250px;
+}
+
+.InfoForm {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+
+.InfoForm form {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    line-height: 30px;
+}
+
+.BookingDetails {
+    width: 20%;
+    width: 250px;
+    line-height: 22px;
+}
+.subtotal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.BookingDetails button {
+    width: 100%
+}

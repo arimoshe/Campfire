@@ -13,9 +13,8 @@ import SpotNaturalFeatures from "./SpotNaturalFeatures"
 import './SpotShow.css'
 import SpotSizeType from "./SpotSizeType"
 
-
 function SpotShow() {
-
+    
     const dispatch = useDispatch()
     const {spotId} = useParams()
     

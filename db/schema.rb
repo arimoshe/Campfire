@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_09_171407) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_13_170607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,12 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_171407) do
     t.bigint "customer_id", null: false
     t.bigint "owner_id", null: false
     t.bigint "spot_id", null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer "guests"
-    t.integer "price"
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "adults", null: false
+    t.integer "children", null: false
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["owner_id"], name: "index_bookings_on_owner_id"
     t.index ["spot_id"], name: "index_bookings_on_spot_id"

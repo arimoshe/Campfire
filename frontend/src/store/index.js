@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import bookingReducer from './bookings';
 import filterReducer from './filters';
 import pixaReducer from './pixabay';
 import sessionReducer from './session';
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
     pixa: pixaReducer,
     ui: uiReducer,
     spots: spotReducer,
-    filters: filterReducer
+    filters: filterReducer,
+    bookings: bookingReducer
 }
 )
 

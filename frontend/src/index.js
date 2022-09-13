@@ -9,6 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 import * as pixaActions from './store/pixabay';
+import * as bookingActions from './store/bookings';
+import { CookiesProvider } from "react-cookie";
+
+
 
 const store = configureStore();
 
@@ -18,13 +22,16 @@ if (process.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions;
   window.pixaActions = pixaActions;
+  window.bookingActions = bookingActions;
 }
 
 const Root = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <CookiesProvider>
+          <App />
+        </CookiesProvider>
       </BrowserRouter>
     </Provider>
   )

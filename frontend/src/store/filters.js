@@ -6,7 +6,7 @@ export const updateStoreFilter = (filterObject) =>({
 })
 
 
-const filterReducer = (state = {guests: {adults:0, children:0}}, action) => {
+const filterReducer = (state = {adults:0, children:0}, action) => {
     Object.freeze(state);
     const nextState = { ...state };
 
