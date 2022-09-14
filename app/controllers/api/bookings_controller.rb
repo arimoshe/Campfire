@@ -1,4 +1,8 @@
 class Api::BookingsController < ApplicationController
+
+  before_action :require_logged_in
+
+
   def create
     @booking = Booking.new(booking_params)
     if @booking.save 
@@ -16,6 +20,8 @@ class Api::BookingsController < ApplicationController
   end
 
   def index
+    @bookings = current_user.bookings
+
   end
 end
 

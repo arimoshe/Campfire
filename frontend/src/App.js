@@ -1,5 +1,6 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import AccountPage from "./components/AccountPage";
+import AccountBookingIndex from "./components/AccountPage/AccountBookingIndex";
 import AccountNavigation from "./components/AccountPage/AccountNavigation";
 import BookingPage from "./components/BookingPage";
 import LoginForm from "./components/LoginFormPage";
@@ -19,6 +20,7 @@ function App() {
       </Switch>
       
       <Switch>
+        <Route exact path={'/account/bookings'} component={AccountBookingIndex} />
         <Route exact path={'/account'} component={AccountPage} />
         <Route exact path={'/booking'} component={BookingPage} />
         <Route exact path={'/spots/:spotId'} component={SpotShow} />

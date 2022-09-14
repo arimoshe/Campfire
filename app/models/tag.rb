@@ -6,7 +6,7 @@
 #  name         :string           not null
 #  quantity     :integer
 #  availability :boolean
-#  type         :string           not null
+#  tag_type     :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
