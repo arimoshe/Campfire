@@ -49,11 +49,27 @@
 }
 
 .AccountNavBar li {
-    padding: 0 30px
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
-.AccountNavLink.active {
- background-color: red;
+.AccountNavBar a {
+    text-decoration: none;
+    color: rgb(51,51,51)
+
+}
+
+
+.AccountNavLink.active  {
+ border-bottom:2px solid rgb(0, 197, 133);
+ height: 70px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-weight: bold;
 }
 
 .BookingsList {
@@ -90,21 +106,29 @@
 .BookingListInfoRight {
     display: flex;
     flex-direction: column;
-    align-items:;
 }
 
 .BookingListInfoRight button {
     padding: 20px;
-    margin:20px 30px 0 30px;
+    margin:30px 30px 0 30px;
 }
 
-.pastFuturePill {
+.FuturePill {
     border-radius: 100px;
     background-color:rgb(0, 197, 133);
     color: rgb(255,255,255);
     font-weight: 500;
     padding: 5px 20px;
     font-size:15px;
+}
+
+.PastPill {
+    border-radius: 100px;
+    background-color: rgb(120,120,120);
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    padding: 5px 20px;
+    font-size: 15px;
 }
 
 .SpotName {

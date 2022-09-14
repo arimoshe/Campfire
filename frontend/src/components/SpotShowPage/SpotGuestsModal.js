@@ -27,7 +27,7 @@ function SpotGuestsModal({ spot }) {
     useEffect(()=>{
         const ele = document.getElementsByClassName(`adults toggle subtract`)[0]
         const ele2 = document.getElementsByClassName(`adults toggle add`)[0]
-        if ((adults > 1 || (adults === 1 && adults + children > 1))) {
+        if ((adults > 1 )) {
             if (ele.classList.contains("greyToggle")) ele.classList.remove("greyToggle")
         } else {
             if (!ele.classList.contains("greyToggle")) ele.classList.add("greyToggle")

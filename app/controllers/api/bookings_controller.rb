@@ -14,9 +14,17 @@ class Api::BookingsController < ApplicationController
   end
 
   def destroy
+    @booking = Booking.find_by(id: params[:id])
+    if @booking.destroy 
+      render :show 
+    else
+       render json: @booking.errors.full_messages, status: 422
+    end
   end
 
-  def show
+  def update
+
+  
   end
 
   def index

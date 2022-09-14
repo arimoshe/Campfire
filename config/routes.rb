@@ -10,7 +10,7 @@ namespace :api, defaults: { format: :json } do
   resources :users, only: [:create]
   resource :session, only: [:show, :create, :destroy]
   resources :spots, only: [:index, :show, :create]
-  resources :bookings, only: [:create, :index, :show, :destroy]
+  resources :bookings, only: [:create, :index, :update, :destroy]
 end
 ## other routes here
 

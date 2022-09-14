@@ -5,7 +5,7 @@ import AccountBookingIndexItem from "./AccountBookingIndexItem";
 
 function AccountBookingIndex() {
     const dispatch = useDispatch();
-    const bookings = useSelector(state => Object.values(state.bookings))
+    const bookings = useSelector(state => Object.values(state.bookings)).sort((a, b) => {return new Date(a.endDate).getTime() > new Date(b.startDate).getTime() ? -1 : 1})
     
     useEffect(()=>{
         dispatch(fetchBookings());

@@ -1,7 +1,10 @@
+import { useDispatch } from "react-redux";
+import { cancelBooking } from "../../store/bookings";
 
 
 function AccountBookingIndexItem ({booking}) {
     const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -13,7 +16,7 @@ function AccountBookingIndexItem ({booking}) {
                     <li>
                         <div className="BookingListInfoContainer">
                             <div className="BookingListInfoLeft"> 
-                                <div className="pastFuturePill">{new Date().getTime() < new Date(booking.endDate).getTime() ? `Upcoming Trip` : `Past Trip`}</div>
+                                <div className={new Date().getTime() >= new Date(booking.endDate).getTime() ? `PastPill` : `FuturePill`}>{new Date().getTime() < new Date(booking.endDate).getTime() ? `Upcoming Trip` : `Past Trip`}</div>
                                 <h2 className="SpotName">{booking.spotName}</h2>
                                 <h3 className="SpotLocation">{`in ${booking.spotCity}, ${booking.spotState}`}</h3>
                                 <h3> {new Date(booking.startDate).toLocaleDateString("en-us", dateOptions)} to {new Date(booking.endDate).toLocaleDateString("en-us", dateOptions)} </h3>
@@ -21,8 +24,8 @@ function AccountBookingIndexItem ({booking}) {
                             </div>
                             <div className="BookingListInfoRight">
                                 {new Date().getTime() < new Date(booking.endDate).getTime() ? <button className="EditTrip">Request Trip Change</button> : null}
-                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button className="CancelTrip">Cancel Trip</button> : null}
-                                {new Date().getTime() >= new Date(booking.endDate).getTime() ? <button className="Leave A Review">Cancel Trip</button> : null}
+                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button onClick={(e) => (dispatch(cancelBooking(booking.id)))} className="CancelTrip">Cancel Stay</button> : null}
+                                {new Date().getTime() >= new Date(booking.endDate).getTime() ? <button className="TripReview">Add Your Review</button> : null}
                             </div>
                         </div>
                     </li>

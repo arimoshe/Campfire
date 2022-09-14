@@ -10,8 +10,8 @@ function AccountNavigation() {
             <div className="AccountNavContainer">
                 <ul className="AccountNavBar">
                         <li className="AccountPageLogo"><Link to="/" className="" ><img className="logoPng" src={logo} alt="logo" /></Link></li>
-                    <li><NavLink className='AccountNavLink' exact to="/account" >Account</NavLink></li>
-                    <li><NavLink className='AccountNavLink' to="/account/bookings" >Trips</NavLink></li>
+                        <NavLink className='AccountNavLink' exact to="/account" ><li>Account</li></NavLink>
+                        <NavLink className='AccountNavLink' to="/account/bookings" ><li>Trips</li></NavLink>
                 </ul>
             </div>
         </div>
