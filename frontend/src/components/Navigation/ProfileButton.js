@@ -20,10 +20,10 @@ const ProfileButton = () => {
             <ul>
                 {/* <li>Name: {`${user.firstName} ${user.lastName}`}</li>
                 <li>Email: {user.email}</li> */}
-                <li><Link to={`/`}>Account</Link></li>
-                <li><Link to={`/`}>Trips</Link></li>
-                <li><Link to={`/`}>Host A Spot</Link></li>
-                <li><Link to={`/`}>About Campfire</Link></li>
+                <li><Link to={`/account`}>Account</Link></li>
+                <li><Link to={`/account/trips`}>Trips</Link></li>
+                {/* <li><Link to={`/`}>Host A Spot</Link></li>
+                <li><Link to={`/`}>About Campfire</Link></li> */}
                 <li onClick={logoutUser}>Log out</li>
             </ul>
         </div>;

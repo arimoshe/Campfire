@@ -20,7 +20,7 @@ function App() {
       </Switch>
       
       <Switch>
-        <Route exact path={'/account/bookings'} component={AccountBookingIndex} />
+        <Route exact path={'/account/trips'} component={AccountBookingIndex} />
         <Route exact path={'/account'} component={AccountPage} />
         <Route exact path={'/booking'} component={BookingPage} />
         <Route exact path={'/spots/:spotId'} component={SpotShow} />

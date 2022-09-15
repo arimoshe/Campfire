@@ -2,6 +2,7 @@ const TOGGLE_LOGIN_MODAL = 'ui/TOGGLE_LOGIN_MODAL'
 const TOGGLE_HAMBURGER_MENU_MODAL = 'ui/TOGGLE_HAMBURGER_MENU_MODAL'
 const TOGGLE_SPOT_DATES_MODAL = 'ui/TOGGLE_SPOT_DATES_MODAL'
 const TOGGLE_SPOT_GUESTS_MODAL = 'ui/TOGGLE_SPOT_GUESTS_MODAL'
+const TOGGLE_EDIT_BOOKING_MODAL = 'ui/TOGGLE_EDIT_BOOKING_MODAL'
 
 export const toggleLoginModal = (value) => ({
     type: TOGGLE_LOGIN_MODAL, payload:value
@@ -17,6 +18,10 @@ export const toggleSpotDatesModal = (value) => ({
 
 export const toggleSpotGuestsModal = (value) => ({
     type: TOGGLE_SPOT_GUESTS_MODAL, payload: value
+})
+
+export const toggleEditBookingModal = (value, bookingId) => ({
+    type: TOGGLE_EDIT_BOOKING_MODAL, payload: {value, bookingId}
 })
 
 const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal :false} , action) => {
@@ -35,6 +40,9 @@ const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showS
         case TOGGLE_SPOT_GUESTS_MODAL:
             nextState['showSpotGuestsModal'] = action.payload;
             return nextState;
+        case TOGGLE_EDIT_BOOKING_MODAL:
+            nextState['showEditBookingModal'] = {...nextState['showEditBookingModal'] , [action.payload.bookingId]:action.payload.value};
+            return nextState
         default: 
             return nextState
     }

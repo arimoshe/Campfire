@@ -6,6 +6,7 @@ json.bookings do
             json.spot_image_url Spot.find_by(id: booking.spot_id).photos[0].url
             json.spot_city Spot.find_by(id: booking.spot_id).city
             json.spot_state Spot.find_by(id: booking.spot_id).state
+            json.spot_capacity Spot.find_by(id: booking.spot_id).capacity
         end
         
     end

@@ -26,10 +26,16 @@ function SpotDateModal({ spot }) {
 
     if (!spot) return null
     function onChange(nextValue) {
+        
         // setValue(nextValue);
         dispatch(updateStoreFilter({startDate: nextValue[0], endDate: nextValue[1]}))
     }
 
+
+
+
+
+    
     return (
         <>
             <div id="SpotDateModal" className="SpotDateModalContainer" >

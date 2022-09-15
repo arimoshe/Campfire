@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { updateStoreFilter } from "../../store/filters";
@@ -27,11 +26,12 @@ function SpotAvailability({ spot }) {
                 dispatch(updateStoreFilter({children: JSON.parse(cookies.booking).children }));
             }
         }
-    }, [cookies.booking])
+    }, [cookies.booking, dispatch])
 
    
 
     const handleClick = (e) => {
+        if (filters && filters.startDate && (filters.children + filters.adults) > 0) {
         e.preventDefault();
 
         const cookieObject = {
@@ -56,7 +56,7 @@ function SpotAvailability({ spot }) {
         
         history.push('/booking')
 
-
+    }
     }
 
 

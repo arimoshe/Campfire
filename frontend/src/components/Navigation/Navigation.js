@@ -37,7 +37,7 @@ function Navigation(props) {
                         {currentUser ? undefined : <li className="mobileHide"><span className="underline" onClick={() => showLogin ? null : dispatch(toggleLoginModal(true))}>Log In</span></li>}
                         {currentUser ? undefined : <li className="signupPill"><NavLink to="/signup">Sign Up</NavLink></li>}
                     {currentUser ? <>
-                            <li className=" underline mobileHide"><NavLink to="/trips">Trips</NavLink></li>
+                            <li className=" underline mobileHide"><NavLink to="/account/trips">Trips</NavLink></li>
                             <li className=" underline mobileHide"><NavLink to="/inbox">Inbox</NavLink></li>
                             <li id="profileButttonContainer" className="mobileHide"><ProfileButton /></li>
                         </> : undefined}

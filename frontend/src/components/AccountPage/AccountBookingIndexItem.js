@@ -1,10 +1,26 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cancelBooking } from "../../store/bookings";
+import { toggleEditBookingModal } from "../../store/ui";
+import CreateReviewModal from "./CreateReviewModal";
+import EditBookingModal from "./EditBookingModal";
 
 
 function AccountBookingIndexItem ({booking}) {
+
+    const showEditBookingModal = useSelector(state => state.ui.showEditBookingModal)
     const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
     const dispatch = useDispatch()
+
+    const handleChangeClick = () => {
+        dispatch(toggleEditBookingModal(true, booking.id))
+        setTimeout(()=> {
+            const element = document.getElementsByClassName("EditBookingModalContainer")[0]
+            if (element) {
+                // element.style.transform = "scaleY(1)";
+                element.style.height = '640px';
+            }
+        }, 100)
+    }
 
     return (
         <>
@@ -23,11 +39,13 @@ function AccountBookingIndexItem ({booking}) {
                                 <h3>  {booking.adults || booking.children ? booking.adults + booking.children === 1 ? `${booking.adults + booking.children} Guest` : `${booking.adults + booking.children} Guests` : null}   ({booking.adults ? booking.adults === 1 ? `${booking.adults} Adult` : `${booking.adults} Adults` : null}{booking.children ? `, ` : null}{booking.children ? booking.children === 1 ? `${booking.children} Child` : `${booking.children} Children` : null})</h3>
                             </div>
                             <div className="BookingListInfoRight">
-                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button className="EditTrip">Request Trip Change</button> : null}
-                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button onClick={(e) => (dispatch(cancelBooking(booking.id)))} className="CancelTrip">Cancel Stay</button> : null}
+                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button onClick={handleChangeClick} className="EditTrip">Request Trip Change</button> : null}
+                                {new Date().getTime() < new Date(booking.endDate).getTime() ? <button onClick={(e) => (dispatch(cancelBooking(booking.id)))} className="CancelTrip">Cancel Trip</button> : null}
                                 {new Date().getTime() >= new Date(booking.endDate).getTime() ? <button className="TripReview">Add Your Review</button> : null}
                             </div>
                         </div>
+                        {showEditBookingModal && showEditBookingModal[booking.id] ? <EditBookingModal booking={booking} /> : null}
+                        {new Date().getTime() >= new Date(booking.endDate).getTime() ? <CreateReviewModal booking={booking} /> :  null}
                     </li>
                 </ul>
             </div>

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { submitBooking } from "../../store/bookings";
 import { fetchSpot } from "../../store/spots";
 import { toggleLoginModal } from "../../store/ui";
@@ -32,7 +31,7 @@ function BookingPage () {
         }
         dispatch(submitBooking(bookingObj))
         document.cookie = "booking=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        history.push('/account/bookings')
+        history.push('/account/trips')
     }
 
     
@@ -48,14 +47,8 @@ function BookingPage () {
             
         }
     
-    }, [loginModal])
+    }, [loginModal, cookies.booking, dispatch, session])
     
-    if (!cookies.booking) {
-        console.log(cookies)
-    //    return(
-    //         <Redirect to="/" />
-    //    )
-    }
 
     if (!spot) {
         return null

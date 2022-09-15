@@ -23,8 +23,12 @@ class Api::BookingsController < ApplicationController
   end
 
   def update
-
-  
+    @booking = Booking.find_by(id: params[:id])
+    if @booking.update(booking_params)
+      render :show
+    else
+      render json: @booking.errors.full_messages, status: 422
+    end
   end
 
   def index
