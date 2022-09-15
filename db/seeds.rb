@@ -54,7 +54,7 @@ spot = Spot.create!(
     longitude: -119.87529410959473,
     price: 100,
     acres: 15,
-    about: 'Yosemite National Park is in California’s Sierra Nevada mountains. It’s famed for its giant, ancient sequoia trees, and for Tunnel View, the iconic vista of towering Bridalveil Fall and the granite cliffs of El Capitan and Half Dome. In Yosemite Village are shops, restaurants, lodging, the Yosemite Museum and the Ansel Adams Gallery, with prints of the photographer’s renowned black-and-white landscapes of the area.',
+    about: 'Yosemite National Park is in California\'s Sierra Nevada mountains. It\'s famed for its giant, ancient sequoia trees, and for Tunnel View, the iconic vista of towering Bridalveil Fall and the granite cliffs of El Capitan and Half Dome. In Yosemite Village are shops, restaurants, lodging, the Yosemite Museum and the Ansel Adams Gallery, with prints of the photographer\'s renowned black-and-white landscapes of the area.',
     capacity: 5 ,
     lodgings: 3,
     rvs: 0,
@@ -216,7 +216,7 @@ Booking.create!(
     start_date: Date.new(2022, 9, 22),
     end_date: Date.new(2022, 9, 26),
     children: 1,
-    adults: 2
+    adults: 2,
     price: 400
 )
 
