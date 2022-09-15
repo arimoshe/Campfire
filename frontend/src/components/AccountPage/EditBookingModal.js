@@ -21,9 +21,16 @@ function EditBookingModal ({booking}) {
         }
     };
 
-    const decrementBookingGuests = (current, setter) => {
-        if (current > 1) {
-            setter( current - 1 );
+    const decrementBookingGuests = (type, current, setter) => {
+        if (type === "adults") {
+            if (current > 1) {
+                setter( current - 1 );
+            }
+        }
+        else {
+            if (current >= 1) {
+                setter(current - 1);
+            } 
         }
     };
     
@@ -95,7 +102,7 @@ function EditBookingModal ({booking}) {
                                 <p className='guestDescription'>Ages 13 or above</p>
                             </div>
                             <div className="adults togglesContainer">
-                                <div onClick={() => { decrementBookingGuests( adults, setAdults) }} className={`${adults <= 1 ? 'greyToggle' : null} adults toggle subtract`}>-</div>
+                                <div onClick={() => { decrementBookingGuests("adults", adults, setAdults) }} className={`${adults <= 1 ? 'greyToggle' : null} adults toggle subtract`}>-</div>
                                 <div>{adults ? adults : 0}</div>
                                 <div onClick={() => { incrementBookingGuests(adults, setAdults) }} className={`${children + adults >= booking.spotCapacity ? 'greyToggle' : null} adults toggle add`}>+</div>
                             </div>
@@ -106,7 +113,7 @@ function EditBookingModal ({booking}) {
                                 <p className='guestDescription'>Ages 12 or below</p>
                             </div>
                             <div className="adults togglesContainer">
-                                <div onClick={() => { decrementBookingGuests(children, setChildren) }} className={`${children < 1 ? 'greyToggle' : null} children toggle subtract`}>-</div>
+                                <div onClick={() => { decrementBookingGuests("children", children, setChildren) }} className={`${children < 1 ? 'greyToggle' : null} children toggle subtract`}>-</div>
                                 <div>{children ? children : 0}</div>
                                 <div onClick={() => { incrementBookingGuests(children, setChildren) }} className={`${children + adults >= booking.spotCapacity ? 'greyToggle' : null} children toggle add`}>+</div>
                             </div>

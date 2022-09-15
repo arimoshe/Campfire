@@ -64,15 +64,7 @@ spot = Spot.create!(
 )
 
 
-photo1 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/1.jpg'), filename:'1.jpg'}
-photo2 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/2.jpg'), filename:'2.jpg'}
-photo3 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/3.jpg'), filename:'3.jpg'}
-photo4 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/4.jpg'), filename:'4.jpg'}
-photo5 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/5.jpg'), filename:'5.jpg'}
 
-
-
-spot.photos.attach([photo1,photo2,photo3,photo4,photo5])
 
 # spot.photos.attach(
 #     io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/11.jpg'), 
@@ -213,8 +205,8 @@ Booking.create!(
     owner_id: User.first.id,
     customer_id: User.find_by(email: 'demo@demo.com').id,
     spot_id: Spot.find_by(name: "Yosemite").id,
-    start_date: Date.new(2022, 9, 22),
-    end_date: Date.new(2022, 9, 26),
+    start_date: Date.new(2022, 9, 01),
+    end_date: Date.new(2022, 9, 04),
     children: 1,
     adults: 2,
     price: 400
@@ -255,3 +247,13 @@ Booking.create!(
 
   puts "Done!"
 end
+
+photo1 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/1.jpg'), filename:'1.jpg'}
+photo2 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/2.jpg'), filename:'2.jpg'}
+photo3 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/3.jpg'), filename:'3.jpg'}
+photo4 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/4.jpg'), filename:'4.jpg'}
+photo5 = {io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/5.jpg'), filename:'5.jpg'}
+
+
+
+Spot.find_by(name: 'Yosemite').photos.attach([photo1,photo2,photo3,photo4,photo5])

@@ -19,7 +19,7 @@ function SpotGuestsModal({ spot }) {
     }
     
     const decrementGuests = (type, current) => {
-        if (current > 1 || (current === 1 && adults + children > 1)) {
+        if (current > 1 || (type === "children" && current >= 1)) {
             dispatch(updateStoreFilter({[type]: current - 1}));
         }
     }
