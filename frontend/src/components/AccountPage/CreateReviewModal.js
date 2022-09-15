@@ -1,13 +1,57 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { submitReview } from "../../store/reviews";
+import { toggleBookingPageModal } from "../../store/ui";
 
 
 function CreateReviewModal ({booking}) {
-
-    const [recommended, setRecommended] = useState('yes')
+    const dispatch = useDispatch();
+    const [recommended, setRecommended] = useState('yes');
+    const [body, setBody] = useState('Write Your Review Here...');
+    const [errors, setErrors] = useState([]);
+    const user = useSelector(state => state.session.user)
 
     const handleChange = (e) => {
-        console.log(e.target.value)
-        setRecommended(e.target.value)
+        setRecommended(e.target.value);
+    }
+
+    const removeDefault = (e) => {
+        if (e.target.value === 'Write Your Review Here...') {
+            setBody("");
+        }
+    }
+
+    const handleTextChange = (e) => {
+        setBody(e.target.value);
+    }
+
+    const handleCancel = () => {
+        dispatch(toggleBookingPageModal(false, booking.id))
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const reviewObject = {
+            spot_id: booking.spotId,
+            recommended: recommended === "yes",
+            author_id: user.id,
+            body: body
+        };
+        setErrors([]);
+        dispatch(submitReview(reviewObject))
+            .catch(async (res) => {
+                let data;
+                try {
+                    data = await res.clone().json();
+                }
+                catch {
+                    data = await res.text();
+                }
+                if (data && data.errors) { setErrors(data.errors); }
+                else if (data) { setErrors([data]); }
+                else { setErrors([res.statusText]); }
+            })
+            if (errors.length < 1) {dispatch(toggleBookingPageModal(false, booking.id))}
     }
 
     return (
@@ -21,11 +65,12 @@ function CreateReviewModal ({booking}) {
                     <label htmlFor="radioThumbsDown"><i className="fa-solid fa-thumbs-down"></i> Not Recommended</label>
                 </div>
                 <div className="ReviewBodyContainer">
-                    <textarea defaultValue={'Write Your Review Here...'}></textarea>
+                    <textarea onClick={removeDefault} onChange={handleTextChange} value={body}></textarea>
                 </div>
+                {errors.length > 0 ? <ul className="errors">{errors.map(error => (<li key={Math.random()}>{error}</li>))}</ul> : null}
                 <div className="submitButtons">
-                    <div >Submit</div>
-                    <div >Cancel</div>
+                    <div onClick={handleSubmit} >Submit</div>
+                    <div onClick={handleCancel}>Cancel</div>
                 </div>
             </div>
         </>

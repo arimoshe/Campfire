@@ -47,7 +47,7 @@ function BookingPage () {
             
         }
     
-    }, [loginModal, cookies.booking, dispatch, session])
+    }, [loginModal,  dispatch ])
     
 
     if (!spot) {

@@ -10,6 +10,7 @@ import csrfFetch from './store/csrf';
 import * as sessionActions from './store/session';
 import * as pixaActions from './store/pixabay';
 import * as bookingActions from './store/bookings';
+import * as reviewActions from './store/reviews';
 import { CookiesProvider } from "react-cookie";
 
 
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.pixaActions = pixaActions;
   window.bookingActions = bookingActions;
+  window.reviewActions = reviewActions
 }
 
 const Root = () => {

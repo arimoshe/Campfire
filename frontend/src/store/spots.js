@@ -43,7 +43,7 @@ const spotReducer = (state= {} , action) => {
         case RECEIVE_SPOTS:
             return {...state, allSpots: action.payload}
         case RECEIVE_SPOT:
-            return{...state, currentSpot: action.payload}
+            return { ...state, currentSpot: action.payload.currentSpot}
         default:
             return nextState
     }

@@ -12,6 +12,7 @@
             json.spot_city Spot.find_by(id: @booking.spot_id).city
             json.spot_state Spot.find_by(id: @booking.spot_id).state
             json.spot_capacity Spot.find_by(id: @booking.spot_id).capacity
+            json.spot_id @booking.spot_id
 # end
         
     

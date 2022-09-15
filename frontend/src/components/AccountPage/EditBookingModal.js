@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Calendar } from "react-calendar";
 import { useDispatch, useSelector } from "react-redux";
 import { updateBooking } from "../../store/bookings";
-import { toggleEditBookingModal } from "../../store/ui";
+import { toggleBookingPageModal } from "../../store/ui";
 
 function EditBookingModal ({booking}) {
 
@@ -62,12 +62,12 @@ function EditBookingModal ({booking}) {
     const handleSubmit = () => {
         if (startDate && endDate && adults >= 1) {
         dispatch(updateBooking({ adults, children, start_date: startDate, end_date: endDate }, booking.id))
-        dispatch(toggleEditBookingModal(false, booking.id))
+            dispatch(toggleBookingPageModal(false, booking.id))
         }
     }
 
     const handleCancel = () => {
-        dispatch(toggleEditBookingModal(false, booking.id ))
+        dispatch(toggleBookingPageModal(false, booking.id ))
     }
 
     return (

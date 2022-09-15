@@ -2,7 +2,8 @@ const TOGGLE_LOGIN_MODAL = 'ui/TOGGLE_LOGIN_MODAL'
 const TOGGLE_HAMBURGER_MENU_MODAL = 'ui/TOGGLE_HAMBURGER_MENU_MODAL'
 const TOGGLE_SPOT_DATES_MODAL = 'ui/TOGGLE_SPOT_DATES_MODAL'
 const TOGGLE_SPOT_GUESTS_MODAL = 'ui/TOGGLE_SPOT_GUESTS_MODAL'
-const TOGGLE_EDIT_BOOKING_MODAL = 'ui/TOGGLE_EDIT_BOOKING_MODAL'
+const TOGGLE_BOOKING_PAGE_MODAL = 'ui/TOGGLE_BOOKING_PAGE_MODAL'
+const HIDE_ALL_BOOKINGS_PAGE_MODALS = 'ui/HIDE_ALL_BOOKINGS_PAGE_MODALS'
 
 export const toggleLoginModal = (value) => ({
     type: TOGGLE_LOGIN_MODAL, payload:value
@@ -20,11 +21,16 @@ export const toggleSpotGuestsModal = (value) => ({
     type: TOGGLE_SPOT_GUESTS_MODAL, payload: value
 })
 
-export const toggleEditBookingModal = (value, bookingId) => ({
-    type: TOGGLE_EDIT_BOOKING_MODAL, payload: {value, bookingId}
+export const toggleBookingPageModal = (value, bookingId) => ({
+    type: TOGGLE_BOOKING_PAGE_MODAL, payload: {value, bookingId}
 })
 
-const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal :false} , action) => {
+
+export const hideAllBookingsPageModals = () => ({
+    type: HIDE_ALL_BOOKINGS_PAGE_MODALS
+})
+
+const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal: false, showBookingPageModal :null} , action) => {
     Object.freeze(state);
     const nextState = {...state};
     switch (action.type) {
@@ -40,8 +46,13 @@ const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showS
         case TOGGLE_SPOT_GUESTS_MODAL:
             nextState['showSpotGuestsModal'] = action.payload;
             return nextState;
-        case TOGGLE_EDIT_BOOKING_MODAL:
-            nextState['showEditBookingModal'] = {...nextState['showEditBookingModal'] , [action.payload.bookingId]:action.payload.value};
+        case TOGGLE_BOOKING_PAGE_MODAL:
+            nextState['showBookingPageModal'] = {...nextState['showBookingPageModal'] , [action.payload.bookingId]:action.payload.value};
+            return nextState
+        case HIDE_ALL_BOOKINGS_PAGE_MODALS:
+            if (nextState['showBookingPageModal']) {
+                Object.keys(nextState['showBookingPageModal']).forEach((key) => nextState.showBookingPageModal[key]= false)
+            }
             return nextState
         default: 
             return nextState

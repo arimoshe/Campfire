@@ -1,9 +1,9 @@
 import csrfFetch from "./csrf"
 
-const CREATE_BOOKING = 'reviews/CREATE_BOOKING';
-const GET_BOOKINGS = 'reviews/GET_BOOKINGS';
-const DESTROY_BOOKING = 'reviews/DESTROY_BOOKING';
-const EDIT_BOOKING = 'reviews/EDIT_BOOKING';
+const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
+const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
+const DESTROY_BOOKING = 'bookings/DESTROY_BOOKING';
+const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
 
 export const getBookings = (bookings) => ({
     type: GET_BOOKINGS, payload: bookings

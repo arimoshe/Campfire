@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import bookingReducer from './bookings';
 import filterReducer from './filters';
 import pixaReducer from './pixabay';
+import reviewReducer from './reviews';
 import sessionReducer from './session';
 import spotReducer from './spots';
 import uiReducer from './ui';
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     ui: uiReducer,
     spots: spotReducer,
     filters: filterReducer,
-    bookings: bookingReducer
+    bookings: bookingReducer,
+    reviews: reviewReducer
 }
 )
 

@@ -143,8 +143,6 @@
 .EditBookingModalContainer {
     overflow: hidden;
     height:0px;
-    /* transform-origin: top;
-    transform: scaleY(0); */
     transition: height .3s ease-in-out;
 
 }
@@ -237,9 +235,13 @@
 .CreateReviewModalContainer {
     width:100%;
     display: flex;
+    height:0px; 
+    overflow: hidden;
     flex-direction: column;
     border: 1px solid rgb(222,222,222);
-    border-top: none
+    border-top: none;
+    box-sizing: border-box;
+    transition: height .3s ease-in-out;
 }
 
 .thumbsContainer {
@@ -276,8 +278,7 @@
     color: rgb(255, 255, 255)
 }
 
-.thumbsContainer div {
-}
+
 
 .ReviewBodyContainer {
     display: flex;
@@ -289,7 +290,8 @@
     width:100%;
     padding: 20px;
     margin: 0 20px 20px 20px;
-    font-family:'Roboto', sans-serif;;
+    font-family:'Roboto', sans-serif;
+    font-size: 16px;
 }
 .CreateReviewModalContainer h2 {
     padding: 20px 0 0 20px

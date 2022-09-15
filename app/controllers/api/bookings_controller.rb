@@ -6,7 +6,6 @@ class Api::BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save 
-      
       render :show
     else 
       render json: @booking.errors.full_messages, status: 422
@@ -45,7 +44,6 @@ def booking_params
     :spot_id,
     :customer_id,
     :owner_id, 
-    :spot_id, 
     :start_date,
     :end_date,
     :adults,

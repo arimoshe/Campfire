@@ -337,10 +337,63 @@ background-color: rgb(230, 239, 217)
 }
 
 .SpotLocationContainer {
-    margin: 50px 0 0 0;
+    margin: 50px 0 ;
 }
 
 
 .SpotLocationContainer p {
     font-weight: 500;
+}
+
+.spotReviewItems {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%
+}
+
+.SpotReviewItemContainer {
+    width: 600px
+}
+
+.SpotReviewsContainer {
+    margin: 30px 0 50px 0
+}
+
+.SpotReviewHeader {
+    padding:0 0 20px 0;
+}
+
+.SpotReviewHeader li:first-of-type {
+    padding: 10px 0;
+    color:rgb(0, 197, 133);
+}
+
+.SpotReviewItemCustomerHeader {
+    display: flex;
+}
+
+.SpotReviewItemCustomerHeader ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    justify-content: space-around;
+}
+
+.SpotReviewItemCustomerHeader ul li:first-of-type {
+    font-weight: bold;
+}
+
+
+.SpotReviewItemContainer p {
+    padding: 30px 20px 0 0;
+    line-height: 26px;
+    ;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.SpotReviewItemContainer {
+    padding-bottom: 30px;
 }
