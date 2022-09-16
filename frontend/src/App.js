@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import SignupForm from "./components/SignupFormPage";
 import SplashPage from "./components/SplashPage";
+import SpotSearchPage from "./components/SpotSearchPage";
 import SpotShow from "./components/SpotShowPage";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       </Switch>
       
       <Switch>
+        <Route exact path={'/search'} component={SpotSearchPage} />
         <Route exact path={'/account/trips'} component={AccountBookingIndex} />
         <Route exact path={'/account'} component={AccountPage} />
         <Route exact path={'/booking'} component={BookingPage} />

@@ -58,7 +58,7 @@ function SpotShow() {
                     <div className="hr"></div>
                     <SpotMapWrapper spot={spot} apiKey={process.env.REACT_APP_MAPS_API_KEY} />
                     <div className="hr"></div>
-                    <SpotReviews spot={spot} />
+                    {spot.reviews ? <SpotReviews spot={spot} />: null}
                 </div>
             </div>
         </>

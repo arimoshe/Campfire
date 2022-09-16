@@ -9,6 +9,6 @@ json.bookings do
             json.spot_capacity Spot.find_by(id: booking.spot_id).capacity
             json.spot_id booking.spot_id
         end
-        json.reviews 
+        # json.reviews 
     end
 end

@@ -35,7 +35,7 @@ export const fetchSpots = () => async dispatch => {
 }
 
 
-const spotReducer = (state= {} , action) => {
+const spotReducer = (state = { currentSpot:null , allSpots :null} , action) => {
     Object.freeze(state);
     const nextState = {...state};
 
