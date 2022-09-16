@@ -24,7 +24,6 @@ function SpotSearchPage (props) {
         if (params.get("page") && page !== parseInt(params.get("page"))) { setPage(parseInt(params.get("page"))) }
         dispatch(fetchSpots(page));
         if (spots) {
-            console.log(Object.values(spots)[0].resultsCount)
             setMaxPage(Math.floor(Object.values(spots)[0].resultsCount/10))
         }
 

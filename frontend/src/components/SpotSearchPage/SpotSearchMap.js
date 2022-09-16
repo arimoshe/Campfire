@@ -32,7 +32,6 @@ function SpotSearchMap({ spots }) {
 
         
             if (markerList.length > 0) {
-                console.log(markerList)
                 markerList.forEach((marker) => {
                     marker.setMap(null)
                 })

@@ -54,7 +54,8 @@ const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showS
             nextState['showSpotDatesModal'] = action.payload;
             return nextState;
         case TOGGLE_SPOT_GUESTS_MODAL:
-            return nextState['showSpotGuestsModal'] = action.payload;
+            nextState['showSpotGuestsModal'] = action.payload;
+            return nextState
         case TOGGLE_SPLASH_DATES_MODAL:
             nextState['showSplashDatesModal'] = action.payload;
             return nextState;
