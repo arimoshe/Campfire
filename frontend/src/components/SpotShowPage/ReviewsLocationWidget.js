@@ -8,7 +8,7 @@ function ReviewsLocationWidget({spot}) {
     return (
         <>
             <div className="reviewsLocationContainer" >
-                <span className="recommended"><i className="fa-solid fa-thumbs-up"></i>{Math.floor(100 * (spot.recommendedReviews.count / spot.totalReviews.count))}%</span> · {spot.totalReviews.count} reviews · {spot.city}, {spot.state} 
+                {spot.totalReviews > 0 ? <><span className="recommended"><i className="fa-solid fa-thumbs-up"></i>{Math.floor(100 * (spot.recommendedReviews / spot.totalReviews))}%</span> · {spot.totalReviews} reviews · </> : null}{spot.city}, {spot.state} 
             </div>
         </>
     )

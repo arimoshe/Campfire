@@ -23,8 +23,10 @@ json.current_spot do
         json.activities Spot.joins(:tags).select("tags.name").where("tag_type = 'Activities'")
         json.natural_features Spot.joins(:tags).select("tags.name").where("tag_type = 'Natural features'")
         json.bookings Spot.joins(:bookings).select("bookings.start_date, bookings.end_date")
-        json.total_reviews Spot.joins(:reviews).select("count(reviews.id)").group("spots.id").first
-        json.recommended_reviews Spot.joins(:reviews).select("count(reviews.id)").where("recommended = true").group("spots.id").first
+        json.total_reviews @spot.reviews.count
+        # json.total_reviews Spot.joins(:reviews).select("count(reviews.id)").group("spots.id").first
+        json.recommended_reviews @spot.reviews.where(reviews: {recommended: true}).count
+        # json.recommended_reviews Spot.joins(:reviews).select("count(reviews.id)").where("recommended = true").group("spots.id").first
         json.photo_urls @spot.photos.map{ |file| file.url }
 
 
