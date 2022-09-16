@@ -170,6 +170,12 @@ li {
 }
 #menuLogo {
     display: flex;
+    align-items: center;
+}
+
+#menuLogo button {
+    margin-left: 10px;
+    padding: 0 10px;
 }
 
 .hamburgerMenuContainer {

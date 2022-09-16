@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 
-.SplashContainer > h2 {
+.SplashContainer > div:last-of-type {
     width: 100%;
     text-align:left;
     padding: 100px 0 30px 0;
@@ -147,12 +147,15 @@
     height: 480px;
     overflow: hidden;
     border-radius: 24px;
+    display: flex;
+    align-items: center;
 }
 
 .searchImage {
     width:100%;
     z-index:0;
     overflow: hidden;
+    margin-top: -40px;
 }
 
 .SplashDoubleContainer {
@@ -216,4 +219,60 @@
     font-size: 18px;
     color: rgb(224, 80, 40);
     align-self: center;
+}
+
+
+.SplashDateModalContainer {
+    position: absolute;
+    top: 80px;
+    right: -350px;
+    z-index: 1000;
+    padding: 15px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 4px 0px;
+    border-radius: 12px;
+}
+
+.DateSelectorContainer.splash i , .GuestsSelectorContainer.splash i, .SearchInputContainer i {
+    padding: 0 10px
+}
+
+.SplashGuestsModalList {
+    display: flex;
+    flex-direction: column;
+}
+
+.SplashGuestsModalContainer {
+    position: absolute;
+    top: 80px;
+    z-index: 1000;
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 4px 0px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    right: 0;
+    left: 0
+}
+
+.SplashGuestsModalList>li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+    border-bottom: 1px solid rgb(222, 222, 222)
+}
+
+#SearchSelectorButton input {
+    height:100%;
+    width: 100%;
+    border:none;
+    font-size: 20px;
+}
+
+#SearchSelectorButton input:focus {
+    outline-width: 0;
+}
+
+#SearchSelectorButton {
+    overflow: hidden;
 }

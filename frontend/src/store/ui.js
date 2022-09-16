@@ -2,6 +2,8 @@ const TOGGLE_LOGIN_MODAL = 'ui/TOGGLE_LOGIN_MODAL'
 const TOGGLE_HAMBURGER_MENU_MODAL = 'ui/TOGGLE_HAMBURGER_MENU_MODAL'
 const TOGGLE_SPOT_DATES_MODAL = 'ui/TOGGLE_SPOT_DATES_MODAL'
 const TOGGLE_SPOT_GUESTS_MODAL = 'ui/TOGGLE_SPOT_GUESTS_MODAL'
+const TOGGLE_SPLASH_DATES_MODAL = 'ui/TOGGLE_SPLASH_DATES_MODAL'
+const TOGGLE_SPLASH_GUESTS_MODAL = 'ui/TOGGLE_SPLASH_GUESTS_MODAL'
 const TOGGLE_BOOKING_PAGE_MODAL = 'ui/TOGGLE_BOOKING_PAGE_MODAL'
 const HIDE_ALL_BOOKINGS_PAGE_MODALS = 'ui/HIDE_ALL_BOOKINGS_PAGE_MODALS'
 
@@ -21,6 +23,14 @@ export const toggleSpotGuestsModal = (value) => ({
     type: TOGGLE_SPOT_GUESTS_MODAL, payload: value
 })
 
+export const toggleSplashGuestsModal = (value) => ({
+    type: TOGGLE_SPLASH_GUESTS_MODAL, payload: value
+})
+
+export const toggleSplashDatesModal = (value) => ({
+    type: TOGGLE_SPLASH_DATES_MODAL, payload: value
+})
+
 export const toggleBookingPageModal = (value, bookingId) => ({
     type: TOGGLE_BOOKING_PAGE_MODAL, payload: {value, bookingId}
 })
@@ -30,7 +40,7 @@ export const hideAllBookingsPageModals = () => ({
     type: HIDE_ALL_BOOKINGS_PAGE_MODALS
 })
 
-const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal: false, showBookingPageModal :null} , action) => {
+const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal: false, showSpashDatesModal: false, showSplashGuestsModal: false, showBookingPageModal :null} , action) => {
     Object.freeze(state);
     const nextState = {...state};
     switch (action.type) {
@@ -44,7 +54,12 @@ const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showS
             nextState['showSpotDatesModal'] = action.payload;
             return nextState;
         case TOGGLE_SPOT_GUESTS_MODAL:
-            nextState['showSpotGuestsModal'] = action.payload;
+            return nextState['showSpotGuestsModal'] = action.payload;
+        case TOGGLE_SPLASH_DATES_MODAL:
+            nextState['showSplashDatesModal'] = action.payload;
+            return nextState;
+        case TOGGLE_SPLASH_GUESTS_MODAL:
+            nextState['showSlashGuestsModal'] = action.payload;
             return nextState;
         case TOGGLE_BOOKING_PAGE_MODAL:
             nextState['showBookingPageModal'] = {...nextState['showBookingPageModal'] , [action.payload.bookingId]:action.payload.value};

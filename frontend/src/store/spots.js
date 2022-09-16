@@ -2,7 +2,7 @@ import csrfFetch from "./csrf"
 
 const RECEIVE_SPOTS = 'spots/RECEIVE_SPOTS'
 const RECEIVE_SPOT = 'spots/RECEIVE_SPOT'
-
+const CLEAR_SPOT_STORE = 'spots/CLEAR_SPOT_STORE'
 
 export const addToStoreSpots = (spots)=> ({
     type: RECEIVE_SPOTS, payload:spots
@@ -10,6 +10,10 @@ export const addToStoreSpots = (spots)=> ({
 
 export const addToStoreSpot = (spot) => ({
     type: RECEIVE_SPOT, payload: spot
+})
+
+export const clearSpotsStore = () => ({
+    type: CLEAR_SPOT_STORE
 })
 
 export const fetchSpot = (spotId) => async dispatch => {
@@ -23,8 +27,8 @@ export const fetchSpot = (spotId) => async dispatch => {
     }
 }
 
-export const fetchSpots = () => async dispatch => {
-    const res = await csrfFetch(`/api/spots/`)
+export const fetchSpots = (page) => async dispatch => {
+    const res = await csrfFetch(`/api/spots?page=${page}`)
     if (res.ok) {
         const data = await res.json();
         dispatch(addToStoreSpots(data))
@@ -44,6 +48,8 @@ const spotReducer = (state = { currentSpot:null , allSpots :null} , action) => {
             return {...state, allSpots: action.payload}
         case RECEIVE_SPOT:
             return { ...state, currentSpot: action.payload.currentSpot}
+        case CLEAR_SPOT_STORE:
+            return {};
         default:
             return nextState
     }

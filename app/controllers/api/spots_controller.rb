@@ -13,13 +13,32 @@ class Api::SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.all.includes(photos_attachments: :blob)
-    if @spots
-      render :index
+    if params[:page]
+      @spots = Spot.all.limit(10).offset((params[:page].to_i - 1) * 10).order(:id).includes(photos_attachments: :blob)
+      @count = Spot.all.count
+      if @spots
+        render :index
+      else
+        render json: @spots.errors.full_messages, status: 422
+      end
+
     else
-      render json: @spots.errors.full_messages, status: 422
+      @spots = Spot.all.limit(10).order(:id).includes(photos_attachments: :blob)
+      @count = Spot.all.count
+      if @spots
+        render :index
+      else
+        render json: @spots.errors.full_messages, status: 422
+      end
     end
+
+    
   end
 
+
+
+  private 
+
+  
 
 end

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import './Navigation.css'
 import LoginFormModal from "../LoginFormModal";
@@ -18,7 +18,7 @@ function Navigation(props) {
 
     const dispatch = useDispatch();
 
-
+    const location = useLocation();
 
 
     return (
@@ -31,6 +31,7 @@ function Navigation(props) {
                         <ul id="menuLogo">
                             <li className="hamburgerMenu" onClick={() => (dispatch(toggleHamburgerMenuModal(true)))}><i className="fa-solid fa-bars"></i></li>
                             <li><NavLink to="/" className="logo" ><img className="logoPng" src={logo} alt="" /></NavLink></li>
+                            {location.pathname === "/search" ? <li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input type="text" /></button></li> : null}
                         </ul>
                     </li>
                     <li className="rightNavContainer"><ul id="rightNav">

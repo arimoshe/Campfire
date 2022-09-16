@@ -1,10 +1,14 @@
+import { useHistory } from "react-router-dom";
 
 function SplashDoubleItem ({h3, p, url}) {
-
+    const history = useHistory();
+    const handleClick = () => {
+        history.push('/search')
+    }
 
     return(
         <>
-            <div className="DoubleItemContainer">
+            <div onClick={handleClick} className="DoubleItemContainer">
                 <div className="DoubleItemImage">
                     <img src={url} alt="nature" />
                 </div>
