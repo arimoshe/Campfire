@@ -184,6 +184,10 @@ li {
     display: none;
 }
 
+#SearchSelectorButton i {
+    padding-right: 5px;
+}
+
 @media only screen and (max-width: 600px) {
     .hamburgerMenu {
         display: block;
@@ -232,4 +236,4 @@ li {
     #closeXLi i {
        font-size: 22px;
     }
-}
+}   

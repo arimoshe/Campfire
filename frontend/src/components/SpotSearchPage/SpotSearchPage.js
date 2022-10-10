@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { clearSpotsStore, fetchSpots } from '../../store/spots';
 import SpotSearchItem from './SpotSearchItem';
+import SpotSearchMap from './SpotSearchMap';
 import SpotSearchMapWrapper from './SpotSearchMapWrapper';
 import './SpotSearchPage.css'
 
@@ -46,7 +47,27 @@ function SpotSearchPage (props) {
     
 
     if (!spots) {
-        return null;
+        if (totalSpotsFound) {
+            return (
+                <>
+                    <div className="SpotSearchOuterContainer">
+                        <div className="SpotSearchContainer">
+                            <div className="SpotsSearchItemsContainer">
+
+                                <div className='spotsSearchNothingFound'>No camping spots were found near this location. Here are some suggestions: San Francisco, Florida, Crater Lake...</div>
+
+                            </div>
+                            <div className="SpotsSearchMapContainer">
+                                <SpotSearchMap spots={[]} />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )
+        } else {
+            return null
+        }
+        
     }
     return (
 
@@ -54,11 +75,11 @@ function SpotSearchPage (props) {
         <div className="SpotSearchOuterContainer">
             <div className="SpotSearchContainer">
                 <div className="SpotsSearchItemsContainer">
-                        <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${10 * page} of ${totalSpotsFound}`}</div>
+                        <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${((10 * page) - totalSpotsFound) < 10 ? totalSpotsFound : 10 * page } of ${totalSpotsFound}`}</div>
                 
                     <div>
                         <ul className="spotsSearchItems">
-                            {Object.values(spots).map((spot)=>(<li key={spot.id}><SpotSearchItem spot={spot} /></li>))}
+                            {spots ? Object.values(spots).map((spot)=>(<li key={spot.id}><SpotSearchItem spot={spot} /></li>)) :"no spots found" }
                         </ul>
                         <ul className="SearchNav">
                             {page > 1 ? <li onClick={handlePrev}>Prev</li> : null}

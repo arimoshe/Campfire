@@ -28,6 +28,10 @@
     width:100%;
 }
 
+.spotsSearchNothingFound {
+    padding: 20px;
+}
+
 .spotsSearchDescriptionReviews {
     padding-top: 5px;
     height: 16px;

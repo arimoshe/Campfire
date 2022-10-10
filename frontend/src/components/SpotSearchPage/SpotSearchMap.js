@@ -11,22 +11,21 @@ function SpotSearchMap({ spots }) {
     // const [count, setCount] = useState(0);
     window.markerList = []
     useEffect(() => {
-        // 
-        const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) + Math.min(...spots.map((spot) => spot.latitude))) / 2
-        const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) + Math.min(...spots.map((spot) => spot.longitude))) / 2
-        if (mapRef.current && !map) {
-           setMap(new window.google.maps.Map(mapRef.current, {
-                center: { lat: centerLat, lng: centerLng },
-                zoom:3,
-                disableDefaultUI: true,
-                zoomControl: true,
-                gestureHandling: 'cooperative'
-            }));
+        if (spots.length > 1) {
+            const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) + Math.min(...spots.map((spot) => spot.latitude))) / 2
+            const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) + Math.min(...spots.map((spot) => spot.longitude))) / 2
+            if (mapRef.current && !map) {
+            setMap(new window.google.maps.Map(mapRef.current, {
+                    center: { lat: centerLat, lng: centerLng },
+                    zoom:3,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    gestureHandling: 'cooperative'
+                }));
 
-            return () => {
-
+            
             }
-        }
+        
 
         const markerLatLngArr = new window.google.maps.LatLngBounds();
 
@@ -59,7 +58,24 @@ function SpotSearchMap({ spots }) {
             markerLatLngArr.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude))
             map.fitBounds(markerLatLngArr)
         })
-        },1000)   
+        },1000)  
+        } else {
+            const centerLat = 39.35946822011334;
+            const centerLng = -99.40333457735373;
+            if (mapRef.current && !map) {
+                setMap(new window.google.maps.Map(mapRef.current, {
+                    center: { lat: centerLat, lng: centerLng },
+                    zoom: 3,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    gestureHandling: 'cooperative'
+                }));
+
+                return () => {
+
+                }
+            }
+        } 
     
     }, [map, spots])
     

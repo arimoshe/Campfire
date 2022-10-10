@@ -4,6 +4,8 @@ import SplashDouble from './SplashDouble';
 import './SplashPage.css'
 import SplashSearchBar from './SplashSearchBar';
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { useEffect } from 'react';
+import { clearFilter } from '../../store/filters';
 
 function SplashPage () {
     const dispatch = useDispatch()
@@ -17,6 +19,9 @@ function SplashPage () {
             dispatch(toggleSplashGuestsModal(false))
         }
     }
+    useEffect(() => {
+        dispatch(clearFilter())
+    }, [])
 
     return(
         <>
