@@ -27,8 +27,13 @@ export const fetchSpot = (spotId) => async dispatch => {
     }
 }
 
-export const fetchSpots = (page) => async dispatch => {
-    const res = await csrfFetch(`/api/spots?page=${page}`)
+export const fetchSpots = (page, filterObj) => async dispatch => {
+    let url = `/api/spots?page=${page}`
+    url += `&adults=${filterObj.adults}`;
+     url += `&children=${filterObj.children}`;
+    if (filterObj.lat) { url += `&lat=${filterObj.lat}`; };
+    if (filterObj.lng) { url += `&lng=${filterObj.lng}`; };
+    const res = await csrfFetch(url)
     if (res.ok) {
         const data = await res.json();
         dispatch(addToStoreSpots(data))
@@ -45,7 +50,7 @@ const spotReducer = (state = { currentSpot:null , allSpots :null} , action) => {
 
     switch (action.type) {
         case RECEIVE_SPOTS:
-            return {...state, allSpots: action.payload}
+            return {...state, allSpots: action.payload.allSpots, resultsCount: action.payload.resultsCount}
         case RECEIVE_SPOT:
             return { ...state, currentSpot: action.payload.currentSpot}
         case CLEAR_SPOT_STORE:

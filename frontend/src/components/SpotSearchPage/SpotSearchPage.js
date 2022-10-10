@@ -12,9 +12,11 @@ function SpotSearchPage (props) {
     const history = useHistory()
     const [page, setPage] = useState(1);
     
+    const filterObj = useSelector(state => state.filters)
     const [maxPage, setMaxPage] = useState(6)
     const dispatch = useDispatch();
     const spots = useSelector(state => state.spots.allSpots)
+    const totalSpotsFound = useSelector(state => state.spots.resultsCount)
 
     let params = new URLSearchParams(document.location.search);
     if (params.get("page") && page !== parseInt(params.get("page"))) { setPage(parseInt(params.get("page"))) }
@@ -22,10 +24,7 @@ function SpotSearchPage (props) {
     useEffect(()=>{
         let params = new URLSearchParams(document.location.search);
         if (params.get("page") && page !== parseInt(params.get("page"))) { setPage(parseInt(params.get("page"))) }
-        dispatch(fetchSpots(page));
-        if (spots) {
-            setMaxPage(Math.floor(Object.values(spots)[0].resultsCount/10))
-        }
+        dispatch(fetchSpots(page, filterObj))
 
         return(
             ()=>dispatch(clearSpotsStore())
@@ -55,7 +54,7 @@ function SpotSearchPage (props) {
         <div className="SpotSearchOuterContainer">
             <div className="SpotSearchContainer">
                 <div className="SpotsSearchItemsContainer">
-                        <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${10 * page} of ${Object.values(spots)[0].resultsCount}`}</div>
+                        <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${10 * page} of ${totalSpotsFound}`}</div>
                 
                     <div>
                         <ul className="spotsSearchItems">
@@ -63,10 +62,12 @@ function SpotSearchPage (props) {
                         </ul>
                         <ul className="SearchNav">
                             {page > 1 ? <li onClick={handlePrev}>Prev</li> : null}
+                                {page >= 3 ? <li>{page - 2} </li> : null}
+                                {page  >= 2 ? <li> {page - 1}</li> : null}
                             <li className="currentPage">{page}</li>
-                            {(page + 1) <= maxPage ? <li>{page + 1} </li>: null}
-                            {(page + 2) <= maxPage ? <li> {page + 2 }</li> : null}
-                            {page < maxPage ? <li onClick={handleNext}>Next</li> : null}
+                                {(page + 1) <= Math.ceil(totalSpotsFound / 10) ? <li>{page + 1} </li>: null}
+                                {(page + 2) <= Math.ceil(totalSpotsFound / 10) ? <li> {page + 2 }</li> : null}
+                                {page < Math.ceil(totalSpotsFound / 10) ? <li onClick={handleNext}>Next</li> : null}
                         </ul>
                     </div>
                 </div>

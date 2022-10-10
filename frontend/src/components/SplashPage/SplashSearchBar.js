@@ -5,16 +5,47 @@ import SplashDateModal from "./SplashDateModal";
 import SplashGuestsModal from "./SplashGuestsModal";
 
 import tent from '../../dominik-jirovsky-re2LZOB2XvY-unsplash.jpg'
+import { updateStoreFilter } from "../../store/filters";
+import { useEffect, useRef } from "react";
 
 function SplashSearchBar () {
     const history = useHistory();
-    const handleClick = () => {
-        history.push('/search')
-    }
+   
     const showSplashDatesModal = useSelector(state => state.ui.showSplashDatesModal)
     const showSlashGuestsModal = useSelector(state => state.ui.showSlashGuestsModal)
     const filters = useSelector(state => state.filters);
     const dispatch = useDispatch();
+    const auto = useRef();
+    const AutoCompleteRef = useRef();
+
+    const handleClick = () => {
+        
+        history.push('/search')
+    }
+
+    const options = {
+        // types: ['street_address', 'establishment'],
+        fields: ['geometry'],
+        componentRestrictions: { 'country': ['US'] }
+    }
+
+    useEffect(() => {
+        AutoCompleteRef.current = new window.google.maps.places.Autocomplete(
+            auto.current,
+            options
+        );
+
+        AutoCompleteRef.current.addListener("place_changed", async function () {
+            const place = await AutoCompleteRef.current.getPlace();
+            const filterObj = { 
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            }
+            dispatch(updateStoreFilter(filterObj    ))
+        })
+    }, [])
+
+
     if (!filters) {return null}
 
     return(
@@ -24,7 +55,7 @@ function SplashSearchBar () {
                 <div className="splashSearchInputs">
                     <div className="SearchInputContainer splash">
                         WHERE TO?
-                        <button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input type="text"/></button>
+                        <button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" placeholder="Try Yellowstone, Bay Area, Utah... "/></button>
                         
                     </div>
                     <div className="DateSelectorContainer splash">

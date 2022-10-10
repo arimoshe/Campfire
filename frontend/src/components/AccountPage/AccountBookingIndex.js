@@ -17,7 +17,7 @@ function AccountBookingIndex() {
         <>
         <div className="AccountBookingsOuterContainer">
             <ul>
-                {bookings.map((booking)=>(<li key={booking.id}>{<AccountBookingIndexItem booking={booking}/>}</li>))}
+                { bookings.length > 0 ? bookings.map((booking)=>(<li key={booking.id}>{<AccountBookingIndexItem bookingId={booking.id}/>}</li>)) : <li>You haven't booked any trips yet</li>}
             </ul>
         </div>
         </>

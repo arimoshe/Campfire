@@ -8,6 +8,7 @@ json.bookings do
             json.spot_state Spot.find_by(id: booking.spot_id).state
             json.spot_capacity Spot.find_by(id: booking.spot_id).capacity
             json.spot_id booking.spot_id
+            json.spot_review Spot.find_by(id: booking.spot_id).reviews.where(reviews: {author_id: booking.customer_id})
         end
         # json.reviews 
     end

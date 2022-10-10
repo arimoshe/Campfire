@@ -1,9 +1,11 @@
 import csrfFetch from "./csrf"
+import { CREATE_REVIEW, EDIT_REVIEW } from "./reviews";
 
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const GET_BOOKINGS = 'bookings/GET_BOOKINGS';
 const DESTROY_BOOKING = 'bookings/DESTROY_BOOKING';
 const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
+const DESTROY_BOOKING_REVIEW = "bookings/DESTROY_BOOKING_REVIEW"
 
 export const getBookings = (bookings) => ({
     type: GET_BOOKINGS, payload: bookings
@@ -19,6 +21,10 @@ export const destroyBooking = (bookingId) => ({
 
 export const editBooking = (booking) => ({
     type: EDIT_BOOKING, payload: booking
+})
+
+export const destroyBookingReview = (bookingId) => ({
+    type: DESTROY_BOOKING_REVIEW, payload: bookingId
 })
 
 export const updateBooking = (booking, bookingId) => async dispatch => {
@@ -77,15 +83,23 @@ const bookingReducer = (state={}, action) => {
     const nextState = {...state};
 
     switch (action.type) {
+        case CREATE_REVIEW:
+            nextState[action.payload.bookingId].spotReview = Object.values(action.payload.review);
+            return nextState;
+        case EDIT_REVIEW:
+            nextState[action.payload.bookingId].spotReview = Object.values(action.payload.review);
+            return nextState;
         case DESTROY_BOOKING:
             delete nextState[action.payload];
             return nextState;
+        case DESTROY_BOOKING_REVIEW:
+            nextState[action.payload].spotReview = {};
+            return nextState
         case CREATE_BOOKING:
             return {...nextState, [action.payload.id]: action.payload}
         case GET_BOOKINGS:
             return { ...nextState, ...action.payload}
         case EDIT_BOOKING:
-            console.log({ [action.payload.id]: action.payload })
             return { ...nextState, [action.payload.id]: action.payload }
         default:
             return nextState

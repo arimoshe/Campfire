@@ -112,12 +112,13 @@ li {
     font-family: 'Roboto', sans-serif;
 }
 
-.profileMenu li{
+.profileMenu li {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 400;
     padding: 0;
     color: rgba(0, 0, 0, 1);
+    cursor: pointer;
 
     
 }
@@ -140,7 +141,8 @@ li {
     margin-bottom: -10px;   
 }
 .logoIcon {
-    width: 35px
+    width: 35px;
+    filter: drop-shadow(0px 2px 4px rgb(0 0 0 / 16%));
 }
 
 .signupPill {

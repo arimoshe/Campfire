@@ -114,6 +114,7 @@
 .SearchInputContainer {
     width: 50%;
 }
+
 .splashSearchInputs i {
     padding-left: 5px;
 }
@@ -267,6 +268,14 @@
     width: 100%;
     border:none;
     font-size: 20px;
+    font-weight: 400;
+    color: rgb(60, 60, 60);
+}
+
+#SearchSelectorButton input::placeholder {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(160,160,160);
 }
 
 #SearchSelectorButton input:focus {
@@ -275,4 +284,13 @@
 
 #SearchSelectorButton {
     overflow: hidden;
+}
+.pac-icon {
+    display: none;
+}
+.pac-item {
+    line-height: 60px;
+}
+.pac-container {
+    border-radius: 12px;
 }

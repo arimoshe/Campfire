@@ -1,4 +1,4 @@
-.AccountBookingsOuterContainer {
+.AccountBookingsOuterContainer, .AccountOuterContainer{
     width:100%;
     display: flex;
     flex-direction: column;
@@ -7,7 +7,7 @@
     
 }
 
-.AccountBookingsOuterContainer > ul {
+.AccountBookingsOuterContainer > ul , .AccountOuterContainer > ul {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
 }
 
 
-.AccountBookingsOuterContainer > ul > li {
+.AccountBookingsOuterContainer > ul > li , .AccountOuterContainer > ul > li {
     padding: 30px 0
 }
 
@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     width:1232px;
-    
+    justify-content: space-between;
     border-bottom: 1px solid rgb(222,222,222);
 }
 
@@ -132,7 +132,7 @@
     font-size: 15px;
 }
 
-.SpotName {
+.accountSpotName {
     padding: 15px 0
 }
 
@@ -295,4 +295,59 @@
 }
 .CreateReviewModalContainer h2 {
     padding: 20px 0 0 20px
+}
+
+.delete-review {
+    width: 200px;
+    background-color: rgb(0, 197, 133);
+    border-radius: 100px;
+    padding: 10px 0;
+    border-style: none;
+    color:rgb(255, 255, 255);
+    align-self: center;
+    margin-bottom: 10px;
+}
+
+.AccountOuterContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.AccountOuterContainerRow > div {
+    width: 30%;
+    padding:30px 0 30px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.AccountOuterContainer form {
+    width: 800px;
+    max-width: 80%;
+    border: 1px solid rgb(222, 222, 222)
+}
+
+.AccountOuterContainerRow {
+    display: flex;
+    width: 100%;
+}
+
+.AccountOuterContainerRow input {
+    border-style: none;
+    width: 100%;
+    padding-left: 10px
+}
+
+.AccountDelete {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0px;
+    border:1px solid rgb(222, 222, 222);
+    border-top-style:none ;
+    width: 800px;
+    max-width: 80%;
+    cursor: pointer;
 }

@@ -6,9 +6,9 @@ function SpotMapWrapper({apiKey, spot}) {
 
     return (
         <>
-            <Wrapper apiKey={apiKey}>
+            {/* <Wrapper apiKey={apiKey}> */}
                 <SpotMap spot={spot}/>
-            </Wrapper>
+            {/* </Wrapper> */}
         </>
     )
 }

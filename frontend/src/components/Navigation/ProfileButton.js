@@ -24,7 +24,7 @@ const ProfileButton = () => {
                 <li><Link to={`/account/trips`}>Trips</Link></li>
                 {/* <li><Link to={`/`}>Host A Spot</Link></li>
                 <li><Link to={`/`}>About Campfire</Link></li> */}
-                <li onClick={logoutUser}>Log out</li>
+                <li  onClick={logoutUser}>Log out</li>
             </ul>
         </div>;
 

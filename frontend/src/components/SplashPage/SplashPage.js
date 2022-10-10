@@ -3,6 +3,7 @@ import { toggleSplashDatesModal, toggleSplashGuestsModal } from '../../store/ui'
 import SplashDouble from './SplashDouble';
 import './SplashPage.css'
 import SplashSearchBar from './SplashSearchBar';
+import { Wrapper } from "@googlemaps/react-wrapper";
 
 function SplashPage () {
     const dispatch = useDispatch()
@@ -19,6 +20,7 @@ function SplashPage () {
 
     return(
         <>
+            
             <div onClick={hideModal} className="pageContainer">
             <div className="SplashContainer">
                 <div className="SplashTextContainer">

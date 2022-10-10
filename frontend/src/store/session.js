@@ -48,6 +48,42 @@ export const signupUser = ( email, password, firstName, lastName) => async dispa
 
 }
 
+export const updateUser = (id,firstName, lastName, email) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            email,
+            first_name: firstName,
+            last_name: lastName
+        })
+
+    })
+    if (res.ok) {
+        const data = await res.json();
+        storeCurrentUser(data.user);
+        dispatch(setSessionUser(data.user));
+        return res;
+    } else {
+        throw res
+    }
+
+}
+
+export const deleteUser = (id) => async dispatch => {
+    const res = await csrfFetch(`/api/users/${id}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const data = await res.json();
+        dispatch(removeSessionUser())
+        storeCurrentUser(null)
+    } else {
+        throw res
+    }
+
+}
+
+
 export const logout = () => async dispatch => {
     const res = await csrfFetch('/api/session', {
         method: 'DELETE'
