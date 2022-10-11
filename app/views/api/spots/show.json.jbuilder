@@ -20,8 +20,8 @@ json.current_spot do
         :high_demand, 
         :owner_id
 
-        json.activities Spot.joins(:tags).select("tags.name").where("tag_type = 'Activities'")
-        json.natural_features Spot.joins(:tags).select("tags.name").where("tag_type = 'Natural features'")
+        json.activities @spot.tags.select("tags.name").where(["tags.tag_type = ?", "Activities"])
+        json.natural_features @spot.tags.select("tags.name").where("tag_type = 'Natural features'")
         json.bookings Spot.joins(:bookings).select("bookings.start_date, bookings.end_date")
         json.total_reviews @spot.reviews.count
         # json.total_reviews Spot.joins(:reviews).select("count(reviews.id)").group("spots.id").first

@@ -1,19 +1,43 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import logoIcon from './../../CampfireIcon.png'
 
-function SpotSearchItem({spot}) {
+function SpotSearchItem({spot, pins}) {
     const history = useHistory();
     const handleClick = (e) => {
         e.preventDefault();
         history.push(`/spots/${spot.id}`)
     }
     
+    const handleMouseOver = () => {
+        if (pins.current[spot.id]) {
+            const icon = {
+                url: logoIcon,
+                scaledSize: new window.google.maps.Size(60, 60),
+                anchor: new window.google.maps.Point(30, 60)
+            }
+            pins.current[spot.id].setIcon(icon)
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (pins.current[spot.id]) {
+            const icon = {
+                url: logoIcon,
+                scaledSize: new window.google.maps.Size(30, 30),
+                anchor: new window.google.maps.Point(15, 30)
+            }
+            pins.current[spot.id].setIcon(icon)
+        }
+    };
+
+
     if (!spot) {return null}
 
     return (
 
         <>
-            <div onClick={handleClick} className="SpotSearchItemContainer">
+            <div onClick={handleClick} onMouseOver={handleMouseOver} onMouseOut={handleMouseLeave} id={"spot" + spot.id} className="SpotSearchItemContainer">
                 <div className="SpotsSearchItemImgContainer">
                     <div className="spotsSearchWidget"></div>
                     <div className="SpotsSearchItemImg"><img src={spot.photoUrls} alt="Campsite" /></div>

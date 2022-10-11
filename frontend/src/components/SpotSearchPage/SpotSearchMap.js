@@ -1,64 +1,71 @@
 import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
 import logoIcon from './../../CampfireIcon.png'
 
 
 
-function SpotSearchMap({ spots }) {
+function SpotSearchMap({ pins}) {
 
     const [map, setMap] = useState(null)
-    const [markerList, setMarkerList] = useState([])
+    const [pinsDropped, setPinsDropped] = useState(false)
+    const spotsObj = useSelector(state => state.spots.allSpots)
+    let spots;
+    if (spotsObj) { spots = Object.values(spotsObj)}
+
     const mapRef = useRef(null);
     // const [count, setCount] = useState(0);
     window.markerList = []
     useEffect(() => {
-        if (spots.length > 1) {
+        Object.values(pins.current).forEach((pin) => {
+            pin.setMap(null)
+        })
+        pins.current = {}
+        setPinsDropped(false);
+        if (spots && spots.length > 1) {
             const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) + Math.min(...spots.map((spot) => spot.latitude))) / 2
             const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) + Math.min(...spots.map((spot) => spot.longitude))) / 2
+            let googleMap;
             if (mapRef.current && !map) {
-            setMap(new window.google.maps.Map(mapRef.current, {
+            googleMap = new window.google.maps.Map(mapRef.current, {
                     center: { lat: centerLat, lng: centerLng },
                     zoom:3,
                     disableDefaultUI: true,
                     zoomControl: true,
                     gestureHandling: 'cooperative'
-                }));
-
-            
+                });
+            setMap(googleMap)
             }
         
-
-        const markerLatLngArr = new window.google.maps.LatLngBounds();
-
-        
-            if (markerList.length > 0) {
-                markerList.forEach((marker) => {
-                    marker.setMap(null)
-                })
-                
-                // setMarkerList([])
-            }
+            
+            const bounds = new window.google.maps.LatLngBounds();
             
             
-            setTimeout(()=>{
             spots.forEach((spot) => {
-                setMarkerList(markerList.concat(new window.google.maps.Marker({
+                let marker;
+                marker = new window.google.maps.Marker({
                 position: { lat: spot.latitude, lng: spot.longitude },
-                map: map,
+                map: googleMap || map,
                 animation: window.google.maps.Animation.DROP,
                 icon: {
                     url: logoIcon,
                     scaledSize: new window.google.maps.Size(30, 30),
-                    origin: new window.google.maps.Point(0, 0)
+                    anchor: new window.google.maps.Point(15, 30)
+                    }
+                })
+                pins.current[spot.id] = marker;
+                let markerListeners;
+                const handleHover = () => {
+                    Array.from(document.getElementsByClassName('SpotSearchItemContainer')).map((element) => element.classList.remove("active"))
+                    const domElement = document.getElementById("spot" + spot.id)
+                    domElement.classList.add("active");
+                    domElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-            }))
-            )
+                marker.addListener("mouseover", handleHover );
+                bounds.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude));
+                googleMap ?  googleMap.fitBounds(bounds) : map.fitBounds(bounds)
+            })
             
-            
-            
-            markerLatLngArr.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude))
-            map.fitBounds(markerLatLngArr)
-        })
-        },1000)  
+        
         } else {
             const centerLat = 39.35946822011334;
             const centerLng = -99.40333457735373;
@@ -77,10 +84,46 @@ function SpotSearchMap({ spots }) {
             }
         } 
     
-    }, [map, spots])
+    }, [])
     
    
+    useEffect(() => {
+        Object.values(pins.current).forEach((pin) => {
+            pin.setMap(null)
+        })
+        pins.current = {}
+        setPinsDropped(false);
+        if (map && spots) {
+        
+            const bounds = new window.google.maps.LatLngBounds();
 
+
+            spots.forEach((spot) => {
+                let marker;
+                marker = new window.google.maps.Marker({
+                    position: { lat: spot.latitude, lng: spot.longitude },
+                    map: map,
+                    animation: window.google.maps.Animation.DROP,
+                    icon: {
+                        url: logoIcon,
+                        scaledSize: new window.google.maps.Size(30, 30),
+                        origin: new window.google.maps.Point(0, 0)
+                    }
+                })
+                pins.current[spot.id] = marker;
+                let markerListeners;
+                const handleHover = () => {
+                    Array.from(document.getElementsByClassName('SpotSearchItemContainer')).map((element) => element.classList.remove("active"))
+                    const domElement = document.getElementById("spot" + spot.id)
+                    domElement.classList.add("active");
+                    domElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                marker.addListener("mouseover", handleHover);
+                bounds.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude));
+                 map.fitBounds(bounds)
+            })
+        }
+    },[spots])
     
     // const markerListTemp = []
     // if (count === 0 ) {

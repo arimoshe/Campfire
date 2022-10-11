@@ -21,7 +21,20 @@
 
 .SpotSearchItemContainer {
     width:100%;
-    padding-bottom: 30px
+    padding-bottom: 30px;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+.SpotSearchItemContainer.active {
+    transform: scale(1.05);
+}
+
+.SpotSearchItemContainer.active  .SpotsSearchItemImgContainer{
+    box-shadow: rgb(0 0 0 / 16%) 0px 2px 4px 0px;
+}
+
+.SpotSearchItemContainer.active .SpotName {
+    text-decoration: underline;
 }
 
 .SpotSearchContainer {
@@ -30,6 +43,8 @@
 
 .spotsSearchNothingFound {
     padding: 20px;
+    width:50%;
+    text-align: center;
 }
 
 .spotsSearchDescriptionReviews {
@@ -107,6 +122,10 @@
     height: 30px;
     width: 30px;
     cursor: pointer;
+}
+
+.SearchNav a {
+    text-decoration: none;
 }
 
 .currentPage {

@@ -150,6 +150,31 @@ Tag.create!(
     tag_type: 'Natural features'
 )
 
+Tag.create!(
+    name: 'Forest',
+    tag_type: 'Natural features'
+)
+
+Tag.create!(
+    name: 'Mountainous',
+    tag_type: 'Natural features'
+)
+
+Tag.create!(
+    name: 'Field',
+    tag_type: 'Natural features'
+)
+
+Tag.create!(
+    name: 'Wetlands',
+    tag_type: 'Natural features'
+)
+
+Tag.create!(
+    name: 'Farm',
+    tag_type: 'Natural features'
+)
+
 
 spot = Spot.create!(
     name: 'Yosemite',
@@ -350,6 +375,10 @@ abouts = ['Covering most of Mount Desert Island and other coastal islands, Acadi
 acres = [49071, 8256, 76678, 242755, 801163, 172971, 30779, 35835, 337597, 241904, 46766, 249561, 26692, 183224, 32571, 3408395, 4740911, 64701, 1508938, 7523897, 91, 1013126, 3223383, 1201647, 310044, 77180, 107345, 522426, 86367, 33264, 325605, 5554, 15349, 571790, 795155, 3674529, 669650, 461901, 1750716, 2619816, 106589, 54016, 52485, 236381, 7021, 504780, 922649, 221390, 26685, 138999, 265807, 92867, 404062, 200192, 70446, 15052, 218222, 146344, 33970, 8323146, 2219790, 147242]
 
 50.times do |i|
+
+    activities = ['Biking', 'Boating', 'Fishing', 'Hiking', 'Paddling', 'Surfing' , 'Swimming', 'Wildlife watching']
+
+    features = ['Redwoods','River, stream, or creek', 'Forest', 'Mountainous', 'Field', 'Wetlands','Farm' ]
     
     Spot.create!({
     name: parks[i],
@@ -370,60 +399,82 @@ acres = [49071, 8256, 76678, 242755, 801163, 172971, 30779, 35835, 337597, 24190
     owner_id: users.sample 
     })
 
-    if [true,false].sample 
-    SpotTag.create!(
-    spot_id: Spot.find_by(name: parks[i]).id,
-    tag_id: Tag.find_by(name: 'Biking').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
+    [2,3,4].sample.times do 
+
+        activity = activities.sample
+        activities.delete(activity)
+        SpotTag.create!(
         spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Boating').id
-    )
+        tag_id: Tag.find_by(name: activity).id
+        )
+
     end
-    if [true,false].sample 
-    SpotTag.create!(
+
+    [2,3,4].sample.times do 
+
+        feature = features.sample
+        activities.delete(feature)
+        SpotTag.create!(
         spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Fishing').id
-    )
+        tag_id: Tag.find_by(name: feature).id
+        )
+
     end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Hiking').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Surfing').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Swimming').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Wildlife watching').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'Redwoods').id
-    )
-    end
-    if [true,false].sample 
-    SpotTag.create!(
-        spot_id: Spot.find_by(name: parks[i]).id,
-        tag_id: Tag.find_by(name: 'River, stream, or creek').id
-    )
-    end
+
+    # if [true,false].sample 
+    # SpotTag.create!(
+    # spot_id: Spot.find_by(name: parks[i]).id,
+    # tag_id: Tag.find_by(name: 'Biking').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Boating').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Fishing').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Hiking').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Surfing').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Swimming').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Wildlife watching').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'Redwoods').id
+    # )
+    # end
+    # if [true,false].sample 
+    # SpotTag.create!(
+    #     spot_id: Spot.find_by(name: parks[i]).id,
+    #     tag_id: Tag.find_by(name: 'River, stream, or creek').id
+    # )
+    # end
 end
 
 
@@ -484,11 +535,6 @@ SpotTag.create!(
 
 SpotTag.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
-    tag_id: Tag.find_by(name: 'Boating').id
-)
-
-SpotTag.create!(
-    spot_id: Spot.find_by(name: "Yosemite").id,
     tag_id: Tag.find_by(name: 'Surfing').id
 )
 
@@ -511,6 +557,279 @@ SpotTag.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
     tag_id: Tag.find_by(name: 'River, stream, or creek').id
 )
+
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Wetlands').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Redwoods').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Mountainous').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Swimming').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Paddling').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Field').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    tag_id: Tag.find_by(name: 'Wetlands').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'Surfing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'Fishing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'River, stream, or creek').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'Swimming').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'Surfing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'Fishing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'River, stream, or creek').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Ocean Beach").id,
+    tag_id: Tag.find_by(name: 'Wetlands').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Paddling').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Boating').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Biking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Redwoods').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    tag_id: Tag.find_by(name: 'Field').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'Fishing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'River, stream, or creek').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Fallen Leaf Campground").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'Hiking').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'Fishing').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'Wildlife watching').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'River, stream, or creek').id
+)
+
+SpotTag.create!(
+    spot_id: Spot.find_by(name: "Pyramid Creek Trailhead").id,
+    tag_id: Tag.find_by(name: 'Forest').id
+)
+
+
 
 Booking.create!(
     owner_id: User.first.id,
