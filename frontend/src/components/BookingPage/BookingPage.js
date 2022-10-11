@@ -75,13 +75,19 @@ function BookingPage () {
                 </div>
                 <div className="BookingDetails">
                         <div className="BookingImgContainer"><img src={spot.photoUrls[0]} alt="campsite" /></div>
-                    <h4>Your Trip To:</h4>
-                    <p>{cookies.booking.siteName}</p>
-                    <p>
-                        {new Date(cookies.booking.startDate).toLocaleDateString("en-us", dateOptions)} to {new Date(cookies.booking.endDate).toLocaleDateString("en-us", dateOptions)}
-                    </p>
+                    <div className="location">
+                        <h4>Your Trip To:</h4>
+                        <p>{cookies.booking.siteName}</p>
+                    </div>
+                    <div className="dates">  
+                        <p>
+                            {new Date(cookies.booking.startDate).toLocaleDateString("en-us", dateOptions)} to {new Date(cookies.booking.endDate).toLocaleDateString("en-us", dateOptions)}
+                        </p>
+                    </div>
+                    <div className="guests">
                         <p>{cookies.booking.adults ? cookies.booking.adults === 1 ? `${cookies.booking.adults} Adult` : `${cookies.booking.adults} Adults` :null}</p>
                         <p>{cookies.booking.children ? cookies.booking.children === 1 ? `${cookies.booking.children} Child` : `${cookies.booking.children} Children` : null}</p>
+                    </div>
                     <hr />
                     <div className="subtotal">
                         <p>Subtotal</p>
