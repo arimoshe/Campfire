@@ -40,21 +40,21 @@ const SpotSearchItemList = ({pins}) => {
         history.push(`/search?page=${page + 1}`)
     }
 
-    if (!spots && !totalSpotsFound) {
+    if (!spots && totalSpotsFound === 0) {
         
 
        return <div className='spotsSearchNothingFound'>No camping spots were found near this location. Here are some suggestions: San Francisco, Florida, Crater Lake...</div>
 
         
         
-    } else if (!spots && totalSpotsFound) {
+    } else if (!spots ) {
        return  <div className='spotsSearchNothingFound'>Loading</div>
     }
 
     return (
         <>
             <div className="SpotsSearchItemsContainer">
-                <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${((10 * page) - totalSpotsFound) < 10 ? totalSpotsFound : 10 * page} of ${totalSpotsFound}`}</div>
+                <div className="spotsSearchItemsCounter">{`${1 + (10 * (page - 1))} - ${((10 * page) >= totalSpotsFound) ? totalSpotsFound : 10 * page} of ${totalSpotsFound}`}</div>
 
                 <div>
                     <ul className="spotsSearchItems">
