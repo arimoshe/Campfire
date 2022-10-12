@@ -2,28 +2,31 @@
 
 # Campfire
 
-[Campfire](https://campfire-aa.herokuapp.com/) is a full-stack, single-page demo application cloning the look and functionality of Hipcamp. 
+## What is Campfire
+
+[Campfire](https://campfire-aa.herokuapp.com/) is a full-stack, single-page demo application cloning the look and functionality of Hipcamp - a campsite booking website and application. 
 
 The project utilizes a React-Redux front-end and a Ruby on Rails back-end with Postgresql and Amazon S3 used for database and storage. 
 
 ## Key Features
 
 - Full User authentication 
-- Search for campsites with paginated results
-- Google Maps Javscript API map showing markers for search results and showing location of campsite on the campsite specific page
+- Search for campsites with paginated results and filtered by location and campsite capacity
+- Google Maps Javscript API map showing markers for search results and Places API to enable autocomplete location search
 - Modals employed for information gathering including login, booking dates picker and booking guest pickers
-- Make a reservation on dates not already booked 
-- Edit and cancel future reservations 
-- Leave "Recommended" and text reviews on past bookings 
+- Reservation date picker prevents selection of dates already booked 
+- Create, edit and cancel future reservations 
+- Leave "Recommended" and text reviews on past bookings including review edit and delete functionality
 
 
 # Technologies, Libraries, APIs
 
 ## APIs:
-- Google Maps Javascript API for displaying map of campsite and search results
+- Google Maps Javascript API for displaying map of search results with pins corresponding to individual campsites
+- Google Places API for autocompleting user location input and converting locations into latitude and longitude coordinates
 
 ## Libraries:
-- React Calendar for a creating a customized date picker with unavailable already booked dates
+- React Calendar for a creating a customized date picker with booked dates not selectable
 
 ## Front-End:
 - Javascript
@@ -43,3 +46,4 @@ The project utilizes a React-Redux front-end and a Ruby on Rails back-end with P
 
 ## Module Building
 - Webpack
+
