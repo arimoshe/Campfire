@@ -18,7 +18,6 @@ function BookingPage () {
 
     const handleBooking = (e) => {
         e.preventDefault()
-        console.log(cookies.booking)
         const bookingObj = {
             customer_id: session.user.id,
             owner_id: cookies.booking.ownerId,

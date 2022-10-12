@@ -28,7 +28,6 @@ function AccountBookingIndexItem ({bookingId}) {
     }
 
     const reviewButton = () => {
-        console.log(review[0])
         if (review.length > 0) {
             return (<button onClick={handleChangeClick} className="TripReview">Edit Your Review</button>)
         } else {

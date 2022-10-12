@@ -9,7 +9,7 @@ import HamburgerMenuModal from "./HamburgerMenuModal";
 import { useEffect, useRef } from "react";
 import { updateStoreFilter } from "../../store/filters";
 import { fetchSpots } from "../../store/spots";
-
+import { FaLinkedin, FaGithubSquare } from 'react-icons/fa'
 
 
 function Navigation(props) {
@@ -59,6 +59,12 @@ function Navigation(props) {
                             <li className="hamburgerMenu" onClick={() => (dispatch(toggleHamburgerMenuModal(true)))}><i className="fa-solid fa-bars"></i></li>
                             <li><NavLink to="/" className="logo" ><img className="logoPng" src={logo} alt="" /></NavLink></li>
                             {location.pathname === "/search" ? <li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}
+                        </ul>
+                    </li>
+                    <li className="aboutLinks">
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/ari-moshe"><FaLinkedin /></a></li>
+                            <li><a href="https://github.com/arimoshe"><FaGithubSquare /></a></li>
                         </ul>
                     </li>
                     <li className="rightNavContainer"><ul id="rightNav">

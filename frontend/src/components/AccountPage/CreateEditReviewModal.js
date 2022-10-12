@@ -18,7 +18,6 @@ function CreateEditReviewModal ({bookingId}) {
     useEffect(() => {
         
         if (booking.spotReview.length > 0) {
-            console.log(booking.spotReview[0], booking.spotReview[0].recommended, booking.spotReview[0].body );
             if (booking.spotReview[0].recommended) {
                 setRecommended('yes');
             } else { setRecommended('no'); }
@@ -63,7 +62,6 @@ function CreateEditReviewModal ({bookingId}) {
         setErrors([]);
         if (booking.spotReview.length > 0) {
             reviewObject.id = booking.spotReview[0].id;
-            console.log(reviewObject)
             dispatch(updateReview(reviewObject, booking.id))
                 .catch(async (res) => {
                     let data;
