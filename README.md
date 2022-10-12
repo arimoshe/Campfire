@@ -55,3 +55,4 @@ The project utilizes a React-Redux front-end and a Ruby on Rails back-end with P
 
 ## Module Building
 - Webpack
+
