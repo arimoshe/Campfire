@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import logoIcon from './../../CampfireIcon.png'
+import logoIcon from './../../CampfireIconBorderShadow.svg'
 
 function SpotSearchItem({spot, pins}) {
     const history = useHistory();
@@ -13,8 +13,8 @@ function SpotSearchItem({spot, pins}) {
         if (pins.current[spot.id]) {
             const icon = {
                 url: logoIcon,
-                scaledSize: new window.google.maps.Size(60, 60),
-                anchor: new window.google.maps.Point(30, 60)
+                scaledSize: new window.google.maps.Size(70, 70),
+                anchor: new window.google.maps.Point(35, 70)
             }
             pins.current[spot.id].setIcon(icon)
         }
@@ -24,8 +24,8 @@ function SpotSearchItem({spot, pins}) {
         if (pins.current[spot.id]) {
             const icon = {
                 url: logoIcon,
-                scaledSize: new window.google.maps.Size(30, 30),
-                anchor: new window.google.maps.Point(15, 30)
+                scaledSize: new window.google.maps.Size(40, 40),
+                anchor: new window.google.maps.Point(20, 40)
             }
             pins.current[spot.id].setIcon(icon)
         }

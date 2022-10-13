@@ -51,6 +51,7 @@ function AccountPage () {
     }
 
     const handleDelete = () => {
+        if (sessionUser.email === "demo@demo.com") {return alert("Demo User cannot be deleted")}
         if (window.confirm("Are you sure you want to delete your account?")) {
             dispatch(deleteUser(sessionUser.id));
         }

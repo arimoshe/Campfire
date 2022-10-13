@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useSelector } from "react-redux"
-import logoIcon from './../../CampfireIcon.png'
+import logoIcon from './../../CampfireIconBorderShadow.svg'
 
 
 
@@ -48,8 +48,8 @@ function SpotSearchMap({ pins}) {
                 animation: window.google.maps.Animation.DROP,
                 icon: {
                     url: logoIcon,
-                    scaledSize: new window.google.maps.Size(30, 30),
-                    anchor: new window.google.maps.Point(15, 30)
+                    scaledSize: new window.google.maps.Size(40, 40),
+                    anchor: new window.google.maps.Point(20, 40)
                     }
                 })
                 pins.current[spot.id] = marker;
@@ -106,8 +106,8 @@ function SpotSearchMap({ pins}) {
                     animation: window.google.maps.Animation.DROP,
                     icon: {
                         url: logoIcon,
-                        scaledSize: new window.google.maps.Size(30, 30),
-                        origin: new window.google.maps.Point(0, 0)
+                        scaledSize: new window.google.maps.Size(40, 40),
+                        anchor: new window.google.maps.Point(20, 40)
                     }
                 })
                 pins.current[spot.id] = marker;

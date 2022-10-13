@@ -12,7 +12,7 @@ function SpotReviews ({spot}) {
                 <ul className="spotReviewItems">
                     {Object.values(spot.reviews).map((review, i)=>(i < 6 ? <li key={review.id}><SpotReviewItem review={review} /></li> : null))}
                 </ul>
-                {spot.totalReviews > 6 ? <button>Show all {spot.totalReviews} reviews </button> : null}
+                {/* {spot.totalReviews > 6 ? <button>Show all {spot.totalReviews} reviews </button> : null} */}
             </div>
         </>
     )

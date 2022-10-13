@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-import logoIcon from './../../CampfireIcon.svg'
+import logoIcon from './../../CampfireIconBorderShadow.svg'
 
 function SpotMap({spot}) {
 

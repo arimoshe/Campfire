@@ -376,6 +376,7 @@ acres = [49071, 8256, 76678, 242755, 801163, 172971, 30779, 35835, 337597, 24190
 
 50.times do |i|
 
+    review_users = User.all.ids
     activities = ['Biking', 'Boating', 'Fishing', 'Hiking', 'Paddling', 'Surfing' , 'Swimming', 'Wildlife watching']
 
     features = ['Redwoods','River, stream, or creek', 'Forest', 'Mountainous', 'Field', 'Wetlands','Farm' ]
@@ -421,61 +422,18 @@ acres = [49071, 8256, 76678, 242755, 801163, 172971, 30779, 35835, 337597, 24190
 
     end
 
-    # if [true,false].sample 
-    # SpotTag.create!(
-    # spot_id: Spot.find_by(name: parks[i]).id,
-    # tag_id: Tag.find_by(name: 'Biking').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Boating').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Fishing').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Hiking').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Surfing').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Swimming').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Wildlife watching').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'Redwoods').id
-    # )
-    # end
-    # if [true,false].sample 
-    # SpotTag.create!(
-    #     spot_id: Spot.find_by(name: parks[i]).id,
-    #     tag_id: Tag.find_by(name: 'River, stream, or creek').id
-    # )
-    # end
+    [0,1,2,3,4,5,6,7,8].sample.times do 
+        review_user = review_users.sample
+        review_users.delete(review_user)
+        Review.create!(
+        spot_id: Spot.find_by(name: parks[i]).id,
+        author_id: review_user,
+        recommended: [true, true, true, true, false].sample,
+        body: Faker::Lorem.sentence(word_count: [7,8,9,10,11].sample)
+        )
+    end
 end
+
 
 
 # spot.photos.attach(
@@ -491,26 +449,216 @@ end
 
 Review.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
-    author_id: User.first.id,
+    author_id: User.all.ids.sample,
     recommended: true,
     body: "What an awesome place!"
-
 )
-
 Review.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
-    author_id: User.first.id,
+    author_id: User.all.ids.sample,
     recommended: true,
     body: "Had a great time!"
 )
-
 Review.create!(
     spot_id: Spot.find_by(name: "Yosemite").id,
-    author_id: User.first.id,
+    author_id: User.all.ids.sample,
     recommended: false,
     body: "I was attacked by a bear!"
-
 )
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Beautiful cabin, very clean!"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "I would reccomend hiking Half Dome"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "What a view from the campsite"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Yosemite").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "I'd love to come again"
+)
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Loved the steam train"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Loved all the trails"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: false,
+    body: "The electricity hookup didn't work"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: false,
+    body: "Such a special place!"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "I love that it's so close to home"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Tilden").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Definitely try the merry-go-round"
+)
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "The trees are amazing"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "A great place to relax"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Redwoods are majestic"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Muir Woods").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "The natural beauty is all around you"
+)
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "The hike to the top is worth it"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "What a view from the peak"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "It was pretty good but the bathrooms could be cleaner"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mt. Tamalpais").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Loved it"
+)
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Lots of places to explore"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "I would be sure to check out the museum"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    author_id: User.all.ids.sample,
+    recommended: false,
+    body: "The campsite was tiny"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Such a cute place"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Mare Island").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Would com again. 5 stars"
+)
+
+
+
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "A bit of a trek to get to but the waterfall is amazing"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Alamere Falls").id,
+    author_id: User.all.ids.sample,
+    recommended: false,
+    body: "The trail to get there is overgrown and unsafe"
+)
+
+
+Review.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "It's huge, so much to do"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    author_id: User.all.ids.sample,
+    recommended: false,
+    body: "Too crowded"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "I loved the Conservatory of Flowers"
+)
+Review.create!(
+    spot_id: Spot.find_by(name: "Golden Gate Park").id,
+    author_id: User.all.ids.sample,
+    recommended: true,
+    body: "Check out the buffalo!"
+)
+
+
+
+
+
 
 
 SpotTag.create!(
