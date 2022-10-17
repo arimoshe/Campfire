@@ -22,7 +22,7 @@ json.current_spot do
 
         json.activities @spot.tags.select("tags.name").where(["tags.tag_type = ?", "Activities"])
         json.natural_features @spot.tags.select("tags.name").where("tag_type = 'Natural features'")
-        json.bookings Spot.joins(:bookings).select("bookings.start_date, bookings.end_date")
+        json.bookings @spot.bookings.select("bookings.start_date, bookings.end_date")
         json.total_reviews @spot.reviews.count
         # json.total_reviews Spot.joins(:reviews).select("count(reviews.id)").group("spots.id").first
         json.recommended_reviews @spot.reviews.where(reviews: {recommended: true}).count

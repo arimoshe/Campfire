@@ -13,7 +13,6 @@ function SpotSearchMap({ pins}) {
     if (spotsObj) { spots = Object.values(spotsObj)}
 
     const mapRef = useRef(null);
-    // const [count, setCount] = useState(0);
     window.markerList = []
     useEffect(() => {
         Object.values(pins.current).forEach((pin) => {
@@ -22,8 +21,10 @@ function SpotSearchMap({ pins}) {
         pins.current = {}
         setPinsDropped(false);
         if (spots && spots.length > 1) {
-            const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) + Math.min(...spots.map((spot) => spot.latitude))) / 2
-            const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) + Math.min(...spots.map((spot) => spot.longitude))) / 2
+            const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) 
+            + Math.min(...spots.map((spot) => spot.latitude))) / 2;
+            const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) 
+            + Math.min(...spots.map((spot) => spot.longitude))) / 2;
             let googleMap;
             if (mapRef.current && !map) {
             googleMap = new window.google.maps.Map(mapRef.current, {
@@ -77,13 +78,8 @@ function SpotSearchMap({ pins}) {
                     zoomControl: true,
                     gestureHandling: 'cooperative'
                 }));
-
-                return () => {
-
-                }
             }
         } 
-    
     }, [])
     
    

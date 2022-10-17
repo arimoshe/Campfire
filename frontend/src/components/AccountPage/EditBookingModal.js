@@ -13,6 +13,7 @@ function EditBookingModal ({booking}) {
     const [children, setChildren] = useState(booking.children);
     const [startDate, setStartDate] = useState(booking.startDate);
     const [endDate, setEndDate] = useState(booking.endDate);
+    const [calValue, setCalValue] = useState([new Date(booking.startDate),new Date(booking.endDate)]);
     // const [errors, setErrors] = useState("");
 
     const incrementBookingGuests = (current, setter) => {
@@ -34,36 +35,77 @@ function EditBookingModal ({booking}) {
         }
     };
     
-    function onChange(nextValue) {
-        if (nextValue[0]) {
-            let cancelClick = false;
-            for (let book of bookings) {
-                if (nextValue[0].getTime() < new Date(book.start_date).getTime() && nextValue[1].getTime() > new Date(book.end_date).getTime()) {
-                    cancelClick = true;
-                }
-            }
-            if (cancelClick) {
-                nextValue=[null,null];
-            }
+    
 
-        }
-        setStartDate(nextValue[0]);
-        setEndDate(nextValue[1]);
-    };
-
-    const tileDisabled = ({ activeStartDate, date, view }) => {
+    const tileDisabled = ({ date, view }) => {
         if (view === 'month') {
             if (bookings) {
+                let disabledRanges = []
                 for (let ele of bookings) {
-                    if ( date >= new Date(ele.startDate) && date <= new Date(ele.endDate)) {
-                        return true
+                    if (ele.startDate !== booking.startDate || ele.endDate !== booking.endDate) {
+                        disabledRanges.push([new Date(ele.startDate), new Date(ele.endDate)])
                     }
                 }
-                return false
+                return isWithinRanges(date, disabledRanges)
             }
-
         }
     }
+
+    const isWithinRanges = (date, ranges) => {
+        return ranges.some((range) => {
+            return date >= range[0] && date < range[1]
+        })
+    }
+
+
+    function onChange(nextValue) {
+        if (bookings) {
+            for (let book of bookings) {
+                if (nextValue[0].getTime() < new Date(book.endDate).getTime() && nextValue[1].getTime() > new Date(book.startDate).getTime()) {
+                    setCalValue([new Date(booking.startDate), new Date(booking.endDate)]);
+                    setStartDate(new Date(booking.startDate));
+                    setEndDate(new Date(booking.endDate));
+                } else {
+                    setCalValue(nextValue);
+                    setStartDate(nextValue[0]);
+                    setEndDate(nextValue[1]);
+
+                }
+            }
+        }
+    }
+
+
+    // function onChange(nextValue) {
+    //     if (nextValue[0]) {
+    //         let cancelClick = false;
+    //         for (let book of bookings) {
+    //             if (nextValue[0].getTime() < new Date(book.start_date).getTime() && nextValue[1].getTime() > new Date(book.end_date).getTime()) {
+    //                 cancelClick = true;
+    //             }
+    //         }
+    //         if (cancelClick) {
+    //             nextValue=[null,null];
+    //         }
+
+    //     }
+    //     setStartDate(nextValue[0]);
+    //     setEndDate(nextValue[1]);
+    // };
+
+    // const tileDisabled = ({ activeStartDate, date, view }) => {
+    //     if (view === 'month') {
+    //         if (bookings) {
+    //             for (let ele of bookings) {
+    //                 if ( date >= new Date(ele.startDate) && date <= new Date(ele.endDate)) {
+    //                     return true
+    //                 }
+    //             }
+    //             return false
+    //         }
+
+    //     }
+    // }
 
 
     const handleSubmit = () => {
@@ -82,7 +124,8 @@ function EditBookingModal ({booking}) {
             <div className="EditBookingModalContainer">
                 <Calendar
                     onChange={onChange}
-                    defaultValue={[new Date(booking.startDate),new Date(booking.endDate)]}
+                    value={calValue}
+                    returnValue={"range"}
                     tileDisabled={tileDisabled}
                     showDoubleView={true}
                     selectRange={true}
