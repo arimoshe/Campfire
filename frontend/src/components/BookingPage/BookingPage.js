@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { submitBooking } from "../../store/bookings";
 import { fetchSpot } from "../../store/spots";
 import { toggleLoginModal } from "../../store/ui";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './BookingPage.css'
 
 function BookingPage () {   
@@ -13,7 +13,7 @@ function BookingPage () {
     const cookies = document.cookie.split('; ').reduce((prev, current) => { return { ...prev, [current.split('=')[0]]: decodeURIComponent(current.split('=')[1]) } }, {})
     const dispatch = useDispatch()
     const history = useHistory();
-    
+    cookies.booking=JSON.parse(cookies.booking)
     
 
     const handleBooking = (e) => {
@@ -36,10 +36,8 @@ function BookingPage () {
     
     useEffect(()=>{
         if (cookies.booking) {
-            cookies.booking=JSON.parse(cookies.booking)
             dispatch(fetchSpot(cookies.booking.spotId))
         }
-        
 
         if (session) {
             if (!session.user) {
@@ -50,10 +48,6 @@ function BookingPage () {
     
     }, [loginModal,  dispatch ])
     
-    if (!cookies.booking) {
-        return (<Redirect to={"/"} />)
-        
-    }
 
     if (!spot) {
         return null

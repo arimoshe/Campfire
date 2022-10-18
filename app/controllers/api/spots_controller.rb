@@ -13,6 +13,8 @@ class Api::SpotsController < ApplicationController
   end
 
   def index
+    puts "puts"
+    puts params
     @spots = Spot.all.where(["capacity >= ?",  params[:adults].to_i + params[:children].to_i] )
     if params[:lat]
       @spots = @spots.where(["(((latitude - ?) between -5 and 5) AND ((longitude - ?) between -5 and 5))", params[:lat], params[:lng]])
@@ -28,6 +30,8 @@ class Api::SpotsController < ApplicationController
     else
       render json: @spots.errors.full_messages, status: 422
     end
+
+    
   end
 
 

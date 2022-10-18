@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { fetchSpot } from "../../store/spots"
-import { hideAllModals, toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
+import { toggleSpotDatesModal, toggleSpotGuestsModal } from "../../store/ui"
 import ReviewsLocationWidget from "./ReviewsLocationWidget"
 import SpotActivities from "./SpotActivities"
 import SpotAvailability from "./SpotAvailability"
@@ -32,8 +32,7 @@ function SpotShow() {
     }
 
     useEffect(()=> {
-        dispatch(fetchSpot(spotId));
-        return (()=>dispatch(hideAllModals()))
+        dispatch(fetchSpot(spotId))
     }, [dispatch, spotId])
 
     const spot = useSelector(state => state.spots.currentSpot)

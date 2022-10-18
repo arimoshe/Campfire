@@ -434,20 +434,7 @@ acres = [49071, 8256, 76678, 242755, 801163, 172971, 30779, 35835, 337597, 24190
     end
 end
 
-# 50.times do |i|
 
-#     review_users = User.all.ids
-# [0,1,2,3,4,5,6,7,8].sample.times do 
-#         review_user = review_users.sample
-#         review_users.delete(review_user)
-#         Review.create!(
-#         spot_id: Spot.find_by(name: parks[i]).id,
-#         author_id: review_user,
-#         recommended: [true, true, true, true, false].sample,
-#         body: Faker::Lorem.sentence(word_count: [7,8,9,10,11].sample)
-#         )
-#     end
-# end
 
 # spot.photos.attach(
 #     io: URI.open('https://campfire-aa-seeds.s3.us-west-1.amazonaws.com/CampfireImages/11.jpg'), 

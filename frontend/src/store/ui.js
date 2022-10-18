@@ -6,7 +6,6 @@ const TOGGLE_SPLASH_DATES_MODAL = 'ui/TOGGLE_SPLASH_DATES_MODAL'
 const TOGGLE_SPLASH_GUESTS_MODAL = 'ui/TOGGLE_SPLASH_GUESTS_MODAL'
 const TOGGLE_BOOKING_PAGE_MODAL = 'ui/TOGGLE_BOOKING_PAGE_MODAL'
 const HIDE_ALL_BOOKINGS_PAGE_MODALS = 'ui/HIDE_ALL_BOOKINGS_PAGE_MODALS'
-const HIDE_ALL__MODALS = 'ui/HIDE_ALL__MODALS'
 
 export const toggleLoginModal = (value) => ({
     type: TOGGLE_LOGIN_MODAL, payload:value
@@ -41,10 +40,6 @@ export const hideAllBookingsPageModals = () => ({
     type: HIDE_ALL_BOOKINGS_PAGE_MODALS
 })
 
-export const hideAllModals = () => ({
-    type: HIDE_ALL__MODALS
-})
-
 const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showSpotDatesModal: false, showSpotGuestsModal: false, showSpashDatesModal: false, showSplashGuestsModal: false, showBookingPageModal :null} , action) => {
     Object.freeze(state);
     const nextState = {...state};
@@ -71,17 +66,9 @@ const uiReducer = (state = { loginModal: false, hamburgerMenuModal: false, showS
             nextState['showBookingPageModal'] = {...nextState['showBookingPageModal'] , [action.payload.bookingId]:action.payload.value};
             return nextState
         case HIDE_ALL_BOOKINGS_PAGE_MODALS:
-            
-            return nextState
-        case HIDE_ALL__MODALS:
-            Object.keys(nextState).forEach((key)=>{
-                if (key !== 'showBookingPageModal') {nextState[key] = false}
-                else {
-                    if (nextState['showBookingPageModal']) {
-                        Object.keys(nextState['showBookingPageModal']).forEach((key) => nextState.showBookingPageModal[key] = false)
-                    }
-                 }
-            })
+            if (nextState['showBookingPageModal']) {
+                Object.keys(nextState['showBookingPageModal']).forEach((key) => nextState.showBookingPageModal[key]= false)
+            }
             return nextState
         default: 
             return nextState
