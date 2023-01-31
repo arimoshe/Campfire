@@ -1,4 +1,5 @@
-import csrfFetch, { storeCSRFToken } from "./csrf"
+import csrfFetch, { storeCSRFToken } from "./csrf";
+import { getBookings } from "./bookings";
 
 const SET_SESSION_USER = 'session/SET_SESSION'
 const REMOVE_SESSION_USER = 'session/REMOVE_SESSION'
@@ -89,8 +90,9 @@ export const logout = () => async dispatch => {
         method: 'DELETE'
     })
     if (res.ok) {
-        dispatch(removeSessionUser())
-        storeCurrentUser(null)
+        dispatch(removeSessionUser());
+        dispatch(getBookings({}))
+        storeCurrentUser(null);
         return res
     }
     else {
