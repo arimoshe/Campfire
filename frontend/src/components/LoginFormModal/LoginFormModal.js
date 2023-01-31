@@ -85,7 +85,7 @@ export const LoginFormModal = ({toggle}) => {
                     {errors[0] ? <ul className="errors">{errors.map(error => (<li key={Math.random()}>{error}</li>))}</ul> : null}
                 </form>
                 
-                <div id="LoginSignupContainer"><p>"Don't have a Campfire accont? <Link to={"/signup"} >Sign Up!</Link></p></div>
+                <div id="LoginSignupContainer"><p>"Don't have a Campfire account? <Link to={"/signup"} >Sign Up!</Link></p></div>
             </div>
            
             

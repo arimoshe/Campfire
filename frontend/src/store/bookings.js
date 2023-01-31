@@ -98,7 +98,7 @@ const bookingReducer = (state={}, action) => {
         case CREATE_BOOKING:
             return {...nextState, [action.payload.id]: action.payload}
         case GET_BOOKINGS:
-            return { ...nextState, ...action.payload}
+            return { ...action.payload}
         case EDIT_BOOKING:
             return { ...nextState, [action.payload.id]: action.payload }
         default:
