@@ -245,4 +245,7 @@ li {
     #closeXLi i {
        font-size: 22px;
     }
+    .aboutLinks {
+        display: none;
+    }
 }   

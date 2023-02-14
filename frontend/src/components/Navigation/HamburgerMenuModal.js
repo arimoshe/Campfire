@@ -1,11 +1,23 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { logout } from "../../store/session";
 import { toggleHamburgerMenuModal, toggleLoginModal } from "../../store/ui";
 
 
 const HamburgerMenuModal = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user)
+
+    const logoutUser = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+    };
+
+    const closeLogout =  (e) => {
+        logoutUser(e);
+        dispatch(dispatch(toggleHamburgerMenuModal(false)));
+    }
+
     return (
         <>
             <ul className="hamburgerMenuContainer">
@@ -13,16 +25,10 @@ const HamburgerMenuModal = () => {
                 <Link to={`/`} >
                     <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Home</p><i className="fa-solid fa-angle-right"></i></li>
                 </Link>
-                <Link to={`/near-me`} >
-                    <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Near Me</p><i className="fa-solid fa-angle-right"></i></li>
-                </Link>
-                <Link to={`/about`} >
-                    <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>About</p><i className="fa-solid fa-angle-right"></i></li>
-                </Link>
-                <Link to={`/`} >
-                    <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Start Hosting</p><i className="fa-solid fa-angle-right"></i></li>
-                </Link >  
-                {currentUser ? null : <li onClick={() => (dispatch(toggleLoginModal(true)))}><p>Log in</p><i className="fa-solid fa-angle-right"></i></li>}
+                <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p><a href="https://www.linkedin.com/in/ari-moshe">LinkedIn</a></p><i className="fa-solid fa-angle-right"></i></li>
+                <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p><a href="https://github.com/arimoshe">GitHub</a></p><i className="fa-solid fa-angle-right"></i></li>
+                {currentUser ? <Link to={`/account/trips`} ><li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Trips</p><i className="fa-solid fa-angle-right"></i></li></Link > :null}
+                {currentUser ? <li onClick={closeLogout}><p>Log Out</p><i className="fa-solid fa-angle-right"></i></li> : <li onClick={() => (dispatch(toggleLoginModal(true)))}><p>Log in</p><i className="fa-solid fa-angle-right"></i></li>}
             </ul>
         </>
     )
