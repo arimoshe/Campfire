@@ -302,36 +302,88 @@
 .pac-container {
     border-radius: 12px;
 }
+.SplashDateModal {
+    z-index: 100000 !important;
+}
+
 
 @media only screen and (max-width: 1232px) {
+
     .DateSelectorContainer.splash,
     .GuestsSelectorContainer.splash,
     .SearchInputContainer.splash {
         max-width: inherit;
     }
+
     .searchPill {
         width: 100%;
         margin: 20px 0 30px 0
     }
+
     .imageContainer {
-        width:90vw;
+        width: 90vw;
     }
+
     .SplashDoubleContainer {
-        width:90vw;
+        width: 90vw;
         flex-direction: column;
         align-items: center;
     }
-    .DoubleItemImage  {
+
+    .DoubleItemImage {
         width: 90vw;
     }
+
     .DoubleItemLabelText {
         line-height: 14px;
     }
+
     .DoubleItemContainer {
         margin-bottom: 40px;
         height: 100%;
     }
+
     .DoubleItemLabelText p {
         line-height: 26px;
     }
+
+    .SplashDateModalContainer {
+        right: inherit;
+        left: 0;
+    }
+}
+
+@media only screen and (max-width: 1232px) and (min-width: 861px) {}
+
+@media only screen and (max-width: 860px) {
+    .react-calendar__viewContainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .react-calendar--doubleView div {
+        width: 300px !important;
+    }
+
+    .react-calendar--doubleView {
+        width: 350px !important;
+    }
+
+
+}
+
+@media only screen and (max-width: 442px) {
+    .SplashDateModalContainer {
+            right: inherit;
+            top: 5px;
+            left: calc( -50px + (( 100vw - 350px) / 2 )) ;
+            transform: scale(.8); 
+    }
+         
+         
+        
+    .SplashSearchBarContainer {
+        padding: 20px 35px; 
+    }
+
 }
