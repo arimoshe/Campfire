@@ -10,9 +10,16 @@ import SpotSearchMapWrapper from './SpotSearchMapWrapper';
 import './SpotSearchPage.css'
 
 
+
 function SpotSearchPage (props) {
     
     const pins = useRef({});
+    const mapReference = useRef({})
+
+    const storeMap = useSelector(state => state.map)
+    const spotsObj = useSelector(state => state.spots.allSpots)
+    let spots;
+    if (spotsObj) { spots = Object.values(spotsObj) }
     
   
     const toggle = (e) => {
@@ -20,7 +27,6 @@ function SpotSearchPage (props) {
         const mapElement = document.getElementsByClassName('SpotsSearchMapContainer')[0];
         const listButton = document.getElementById('listButton')
         const mapButton = document.getElementById('mapButton')
-        console.log(e)
 
         if (e.target.value === "list") {
             listElement.style.display="inherit";
@@ -37,7 +43,16 @@ function SpotSearchPage (props) {
             mapButton.style.background = "rgb(222, 222, 222)";
             listButton.style.fontWeight = "initial"
             listButton.style.background = "transparent"
-        }
+            if (spots) {
+                const bounds = new window.google.maps.LatLngBounds();
+                spots.forEach((spot) => {
+                    bounds.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude));
+                })
+                console.log(mapReference.current)
+                mapReference.current.fitBounds(bounds)
+            }
+            
+    }
     };
    
    
@@ -55,7 +70,7 @@ function SpotSearchPage (props) {
             <div className="SpotSearchContainer">
                 <SpotSearchItemList pins={pins} />
                 <div className="SpotsSearchMapContainer">
-                        <SpotSearchMap  pins={pins} />
+                        <SpotSearchMap pins={pins} mapReference={mapReference} />
                 </div>
             </div>
                 <div id='mobileListMapSelector'><button id='listButton' value={"list"} onClick={toggle}>List</button><div className='dividePipe'></div><button id='mapButton' value={"map"} onClick={ toggle}>Map</button></div>
