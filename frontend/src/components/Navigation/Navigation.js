@@ -58,7 +58,7 @@ function Navigation(props) {
                         <ul id="menuLogo">
                             <li className="hamburgerMenu" onClick={() => (dispatch(toggleHamburgerMenuModal(true)))}><i className="fa-solid fa-bars"></i></li>
                             <li><NavLink to="/" className="logo" ><img className="logoPng" src={logo} alt="" /></NavLink></li>
-                            {location.pathname === "/search" ? <li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}
+                            {location.pathname === "/search" ? <li className="searchSelector"><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}
                         </ul>
                     </li>
                     <li className="aboutLinks">
@@ -75,9 +75,10 @@ function Navigation(props) {
                             {/* <li className=" underline mobileHide"><NavLink to="/inbox">Inbox</NavLink></li> */}
                             <li id="profileButttonContainer" className="mobileHide"><ProfileButton /></li>
                         </> : undefined}
-                    </ul></li>
-
+                    </ul>
+                    </li>
                 </ul>
+                <div className="mobileSearchSelectorButton">{location.pathname === "/search" ? <li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}</div>
             </div>
         </>
     )

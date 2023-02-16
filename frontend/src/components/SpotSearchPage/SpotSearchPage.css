@@ -107,6 +107,7 @@
 
 .SpotsSearchMapContainer {
     position: relative;
+    display: initial;
 }
 
 .SearchNav {
@@ -145,3 +146,48 @@
     width: 50%;
 }
 
+
+
+@media only screen and (max-width: 600px) {
+    .SpotSearchOuterContainer {
+        padding-top: 147px;
+    }
+
+    .SpotsSearchItemsContainer {
+        width: 100%;
+    }
+    .SpotsSearchMapContainer {
+        display:none;
+    }
+    .SearchGoogleMap {
+        width: 100%;
+    }
+    #mobileListMapSelector {
+        display: inherit;
+        position: fixed;
+        bottom:60px;
+        border-radius: 1000px;
+        border:3px solid rgb(0, 197, 133);
+        background-color: #ffffff;
+        overflow: hidden;
+        z-index: 1;
+    }
+    #mobileListMapSelector button {
+        border-style: none;
+        padding: 16px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 17px;
+
+    }
+    #listButton {
+        font-weight: bold;
+        background: rgb(222, 222, 222);
+    }
+    .dividePipe {
+        padding: 16px 0;
+        border: 2px solid rgb(222, 222, 222);
+    }
+    .SpotsSearchItemImgContainer {
+        height: 12vh
+    }
+}

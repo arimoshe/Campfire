@@ -142,3 +142,6 @@ abbr {
 textarea {
     resize: none;
 }
+button {
+    background: none;
+}

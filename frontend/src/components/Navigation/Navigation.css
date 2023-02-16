@@ -196,6 +196,9 @@ li {
     font-size: 40px;
     color:rgb(0,0,0);
 }
+.mobileSearchSelectorButton {
+    display: none;;
+}
 
 @media only screen and (max-width: 600px) {
     .hamburgerMenu {
@@ -216,7 +219,9 @@ li {
         height: 100vh;
         display: flex;
         flex-direction: column;
-
+        position: relative;
+        background-color: white;
+        z-index: 1000;
 
     }
 
@@ -246,6 +251,14 @@ li {
        font-size: 22px;
     }
     .aboutLinks {
+        display: none;
+    }
+    .mobileSearchSelectorButton {
+        display: initial;
+        padding: 0px 15px 15px 24px;
+
+    }
+    .searchSelector {
         display: none;
     }
 }   
