@@ -146,6 +146,10 @@
     width: 50%;
 }
 
+#mobileListMapSelector {
+    display: none;
+}
+
 
 
 @media only screen and (max-width: 600px) {

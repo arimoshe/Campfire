@@ -26,7 +26,6 @@ function SpotSearchMap({ pins, mapReference }) {
         })
         pins.current = {}
         setPinsDropped(false);
-        console.log(spots)
         if (spots && spots.length > 1) {
             const centerLat = (Math.max(...spots.map((spot) => spot.latitude)) + Math.min(...spots.map((spot) => spot.latitude))) / 2
             const centerLng = (Math.max(...spots.map((spot) => spot.longitude)) + Math.min(...spots.map((spot) => spot.longitude))) / 2
@@ -125,16 +124,18 @@ function SpotSearchMap({ pins, mapReference }) {
                 pins.current[spot.id] = marker;
                 let markerListeners;
                 const handleHoverClick = (e) => {
-                    const listElement = document.getElementsByClassName('SpotsSearchItemsContainer')[0];
-                    const mapElement = document.getElementsByClassName('SpotsSearchMapContainer')[0];
-                    const listButton = document.getElementById('listButton')
-                    const mapButton = document.getElementById('mapButton')
-                    listElement.style.display = "inherit";
-                    mapElement.style.display = "none";
-                    listButton.style.fontWeight = "bold";
-                    listButton.style.background = "rgb(222, 222, 222)";
-                    mapButton.style.fontWeight = "initial";
-                    mapButton.style.background = "transparent"
+                    if (window.getComputedStyle(document.getElementById("mobileListMapSelector")).display !== "none") {
+                        const listElement = document.getElementsByClassName('SpotsSearchItemsContainer')[0];
+                        const mapElement = document.getElementsByClassName('SpotsSearchMapContainer')[0];
+                        const listButton = document.getElementById('listButton')
+                        const mapButton = document.getElementById('mapButton')
+                        listElement.style.display = "inherit";
+                        mapElement.style.display = "none";
+                        listButton.style.fontWeight = "bold";
+                        listButton.style.background = "rgb(222, 222, 222)";
+                        mapButton.style.fontWeight = "initial";
+                        mapButton.style.background = "transparent"
+                    }
                     Array.from(document.getElementsByClassName('SpotSearchItemContainer')).map((element) => element.classList.remove("active"))
                     const domElement = document.getElementById("spot" + spot.id)
                     domElement.classList.add("active");
