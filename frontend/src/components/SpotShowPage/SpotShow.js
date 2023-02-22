@@ -46,12 +46,14 @@ function SpotShow() {
                     <ReviewsLocationWidget spot={spot} />
                     <SpotImages spot={spot}/>
                     <div className="InfoContainer">
-                        <div>
+                        <div className="sizeTypeDescriptionContainer">
                         <SpotSizeType spot={spot} />
                         <SpotDescription spot={spot} />
                         </div>
+                        <div className="tagsContainer">
                         <SpotActivities spot={spot} />
                         <SpotNaturalFeatures spot={spot} />
+                        </div>
                     </div>
                     <div className="hr"></div>
                     <SpotAvailability spot={spot} />

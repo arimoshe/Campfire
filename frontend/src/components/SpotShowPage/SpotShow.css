@@ -1,4 +1,5 @@
 .spotContainer {
+    width: 100%;
     max-width: 1232px;
     margin: 0 auto;
 }
@@ -6,7 +7,7 @@
 .headerName {
     font-weight: 700;
     font-size: 28px;
-    padding-top: 20px;
+    margin-top: 20px;
 }
 
 .reviewsLocationContainer {
@@ -24,10 +25,8 @@
     overflow: hidden;
     align-items: flex-start;
     background-color: #000000;
-    margin: -px;
     box-sizing: border-box;
-    border-radius: 8px
-    ;
+    border-radius: 8px;
 }
 
 .spotImagesLeft {
@@ -121,18 +120,29 @@
 
 .SpotDescriptionContainer {
     display: flex;
-    padding: 20px 100px 20px 0;
+    padding: 20px 20px 20px 0;
     line-height: 28px;
+    text-align: justify;
 
 }
 
 .InfoContainer {
     display: flex;
     padding-bottom: 30px;
+    flex-wrap: wrap;
     
 }
-.InfoContainer > div {
-    width: 700px
+
+.tagsContainer {
+    display: flex;
+    width: 49%;
+}
+
+.sizeTypeDescriptionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 49%
+
 }
 
 .SpotTagContainer {
@@ -151,9 +161,10 @@
 .SpotTagContainer li {
     padding: 13px;
     font-size: 17px;
+    line-height: 26px;
 }
 .SpotTagContainer i , .SpotTagContainer svg{
-    padding: 0 5px;
+    padding: 5px 5px;
     font-size: 20px;
 }
 
@@ -232,13 +243,14 @@
 }
 .SpotGuestsModalContainer {
     position: absolute;
-    top: 80px;
+    top: 0px;
     z-index: 1000;
     box-shadow: rgb(0 0 0 / 16%) 0px 2px 4px 0px;
     background-color: rgb(255,255,255);
     border-radius: 12px;
     right: 0;
     left: 0
+
 }
 .SpotGuestsModalList > li {
     display: flex;
@@ -387,7 +399,6 @@ background-color: rgb(230, 239, 217)
 .SpotReviewItemContainer p {
     padding: 30px 20px 0 0;
     line-height: 26px;
-    ;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
@@ -396,4 +407,107 @@ background-color: rgb(230, 239, 217)
 
 .SpotReviewItemContainer {
     padding-bottom: 30px;
+}
+
+@media only screen and (max-width: 1232px) and (min-width: 601px) {
+    .type {
+        padding: 0px 20px 0px 20px;
+    }
+    .SpotAvailabilityContainer {
+        padding: 40px 20px;
+    }
+
+    .SpotLocationContainer, .headerName, .SpotReviewsContainer,  .reviewsLocationContainer, .InfoContainer{
+        padding: 0 20px
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .SpotLocationContainer,
+        .headerName,
+        .SpotReviewsContainer,
+        .reviewsLocationContainer,
+        .InfoContainer {
+            padding: 0 20px
+        }
+    .InfoContainer > div {
+        width: 100vw;
+    }
+    .acres {
+        padding: 20px 
+    }
+    .type {
+        padding: 0px 20px 0px 20px;
+    }
+    .SpotDescriptionContainer {
+        text-align: justify;
+        padding: 0;
+        max-width: calc(100vw - 40px);
+        width: 100%
+
+    }
+    .SpotReviewItemContainer {
+        width: 100%;
+        
+    }
+    .SpotAvailabilityContainer {
+        padding: 40px 20px;
+    }
+    .SpotLocationContainer {
+        padding: 0 20px
+    }
+    .SpotReviewsContainer {
+        padding: 0 20px;
+    }
+    .spotImagesContainer {
+        display: flex;
+        width:500vw;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        background-color: #000000;
+        box-sizing: border-box;
+        border-radius: initial
+    }
+    .spotImagesContainer div {
+        width: 100vw !important;
+        display: initial;
+        height: fit-content;
+        padding: 0;
+        margin: 0;
+        border: none !important;
+        overflow: visible;
+    } 
+    .spotImagesContainer img {
+        width: 100vw ;
+        display: initial;
+        padding: 0;
+        margin: 0;
+        border: none;
+    }
+    .spotImagesContainer .spotImagesRightContainer{
+        display: flex ;
+        flex-wrap: nowrap;
+    }
+    .mobileCarousel {
+       overflow:scroll;
+    }
+    .SpotAvailabilitySelectorsContainer {
+        flex-direction: column;
+    }
+    .checkAvailibilityPill {
+        margin: 15px 0;
+        width: 100%;
+        font-size: 16px;
+    }
+    .SpotGuestsModalContainer {
+        position: relative;
+        ;
+    }
+    .SpotAvailabilitySelectorsContainer .SpotDateModalContainer {
+        left: -5px;
+    }
+    .spotReviewItems {
+        flex-direction: column;
+    }
+    
 }

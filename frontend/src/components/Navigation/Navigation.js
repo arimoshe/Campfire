@@ -78,7 +78,7 @@ function Navigation(props) {
                     </ul>
                     </li>
                 </ul>
-                <div className="mobileSearchSelectorButton">{location.pathname === "/search" ? <li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}</div>
+                {location.pathname === "/search" ? <div className="mobileSearchSelectorButton"><li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li></div> : null}
             </div>
         </>
     )

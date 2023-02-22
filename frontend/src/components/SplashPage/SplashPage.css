@@ -353,37 +353,46 @@
     }
 }
 
-@media only screen and (max-width: 1232px) and (min-width: 861px) {}
-
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 800px) {
     .react-calendar__viewContainer {
         display: flex;
         flex-direction: column;
+        width: 100% !important;
     }
 
-    .react-calendar--doubleView div {
-        width: 300px !important;
+    .react-calendar--doubleView  {
+        width: calc(100vw - 40px) !important;
+        padding: 15px !important;
+        
     }
 
-    .react-calendar--doubleView {
-        width: 350px !important;
+    .react-calendar__viewContainer {
+        width: 100% !important;
+    }
+    .react-calendar--doubleView .react-calendar__viewContainer > * {
+        width: inherit !important;
+        margin: 0;
     }
 
-
+    .DateSelectorContainer .react-calendar--doubleView {
+        width: calc(100vw - 40px) !important;;
+    }
+    .SplashDateModalContainer {
+        left: -30px;
+    }
+    .SplashSearchBarContainer {
+        padding: 20px 35px;
+    }   
+    .SearchContainer {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 442px) {
-    .SplashDateModalContainer {
-            right: inherit;
-            top: 5px;
-            left: calc( -50px + (( 100vw - 350px) / 2 )) ;
-            transform: scale(.8); 
-    }
+    
          
          
         
-    .SplashSearchBarContainer {
-        padding: 20px 35px; 
-    }
+    
 
 }
