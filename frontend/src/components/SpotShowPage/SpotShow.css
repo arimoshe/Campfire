@@ -458,10 +458,14 @@ background-color: rgb(230, 239, 217)
         width: 100vw;
     }
     .acres {
-        padding: 20px 
+        padding: 20px 5px;
+        font-size: 16px;
     }
     .type {
-        padding: 0px 20px 0px 20px;
+        padding: 0px 5px 0px 5px;
+    }
+    .SpotTagContainer{
+        padding: 0;
     }
     .SpotDescriptionContainer {
         text-align: justify;
@@ -486,6 +490,7 @@ background-color: rgb(230, 239, 217)
     .spotImagesContainer {
         display: flex;
         width:500vw;
+        height: 180px;
         align-items: flex-start;
         flex-wrap: nowrap;
         background-color: #000000;
@@ -496,6 +501,8 @@ background-color: rgb(230, 239, 217)
         width: 100vw !important;
         display: initial;
         height: fit-content;
+        /* max-height: 300px;
+        min-height: 200px; */
         padding: 0;
         margin: 0;
         border: none !important;
@@ -503,6 +510,7 @@ background-color: rgb(230, 239, 217)
     } 
     .spotImagesContainer img {
         width: 100vw ;
+        height: 220px; 
         display: initial;
         padding: 0;
         margin: 0;

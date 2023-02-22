@@ -223,6 +223,7 @@
 
 .DoubleItemContainer button {
     border:none;
+    background: white;
     border-radius: 100px;
     padding:16px 50px;
     font-size: 18px;
@@ -365,6 +366,9 @@
     }   
     .SearchContainer {
         width: 100%;
+    }
+    .DoubleItemLabelText {
+        width: 75%
     }
 }
 
