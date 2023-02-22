@@ -55,6 +55,29 @@ h2 {
    color:rgb(255,255,255);
 }
 
+@media only screen and (max-width: 800px) {
+    .react-calendar {
+        max-width: initial !important;
+    }
+    .react-calendar__viewContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+    }
 
+    .react-calendar--doubleView {
+        width: calc(100vw - 40px) !important;
+        padding: 15px !important;
 
+    }
+
+    .react-calendar__viewContainer {
+        width: 100% !important;
+    }
+
+    .react-calendar--doubleView .react-calendar__viewContainer>* {
+        width: inherit !important;
+        margin: 0;
+    }
+}
 

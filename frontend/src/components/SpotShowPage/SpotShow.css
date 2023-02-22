@@ -421,8 +421,32 @@ background-color: rgb(230, 239, 217)
         padding: 0 20px
     }
 }
+@media only screen and (max-width: 800px) and (min-width: 601px) {
+    .SpotDateModalContainer {
+        position: relative;
+        top: 10px;
+        left: -15px;
+        margin-bottom: 20px;
+        width: inherit;
+    }
+    .SpotAvailabilitySelectorsContainer {
+        flex-direction: column;
+    }
+    .checkAvailibilityPill {
+        margin: 15px 0;
+        width: 100%;
+        font-size: 16px;
+    }
+    
+}
 
 @media screen and (max-width: 600px) {
+    .SpotDateModalContainer {
+        position: relative;
+        top: 10px;
+        margin-bottom: 20px;
+        width: inherit;
+    }
     .SpotLocationContainer,
         .headerName,
         .SpotReviewsContainer,
@@ -504,10 +528,9 @@ background-color: rgb(230, 239, 217)
         ;
     }
     .SpotAvailabilitySelectorsContainer .SpotDateModalContainer {
-        left: -5px;
+        left: -15px;
     }
     .spotReviewItems {
         flex-direction: column;
     }
-    
 }
