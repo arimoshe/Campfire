@@ -48,7 +48,6 @@ function SpotSearchPage (props) {
                 spots.forEach((spot) => {
                     bounds.extend(new window.google.maps.LatLng(spot.latitude, spot.longitude));
                 })
-                console.log(mapReference.current)
                 mapReference.current.fitBounds(bounds)
             }
             
