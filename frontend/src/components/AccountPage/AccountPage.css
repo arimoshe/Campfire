@@ -11,13 +11,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
     border:1px solid rgb(222,222,222)
 }
 
 
 .AccountBookingsOuterContainer > ul > li , .AccountOuterContainer > ul > li {
-    padding: 30px 0
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .AccountNavOuterContainer {
@@ -48,7 +51,7 @@
     height: 70px
 }
 
-.AccountNavBar li {
+.AccountNavBar li :not(.hamburgerMenu, .fa-solid, .AccountPageLogo > a,  .AccountPageLogo .logoPng){
     padding: 0 30px;
     display: flex;
     align-items: center;
@@ -56,10 +59,9 @@
     text-decoration: none;
 }
 
-.AccountNavBar a {
+.AccountNavLink {
     text-decoration: none;
     color: rgb(51,51,51)
-
 }
 
 
@@ -93,7 +95,7 @@
     display: flex;
     justify-content: space-between;
     border: 1px solid rgb(222, 222, 222);
-        border-top: none;
+    border-top: none;
 }
 
 .BookingListInfoLeft {
@@ -350,4 +352,60 @@
     width: 800px;
     max-width: 80%;
     cursor: pointer;
+}
+
+.thumbsContainer label {
+    width: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+    .AccountNavLink {
+        display: none !important; 
+        border:none
+    }
+    .BookingsList {
+        width: 100%;
+    }
+    .BookingListImgContainer {
+        height: 16vh;
+    }
+    .BookingListInfoContainer {
+        border: none;
+        border-bottom: 1px solid rgb(222, 222, 222);
+        flex-direction: column;
+    }
+    .BookingListInfoRight .CancelTrip {
+        margin-bottom: 30px;
+    }
+    .AccountBookingsOuterContainer > ul, .AccountOuterContainer > ul {
+        border:none;
+    }
+    .thumbsContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .AccountNavBar .hamburgerMenu {
+        margin-left:  24px;
+    }
+    .AccountPageLogo {
+        border: none;
+    }
+    .AccountPageLogo > a {
+        padding: 0px;
+    }
+    .AccountPageLogo .logoPng {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 750px) and (min-width: 601px) {
+.BookingsList {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .EditBookingModalContainer > .react-calendar--doubleView {
+        width: 100% !important;
+    }
 }

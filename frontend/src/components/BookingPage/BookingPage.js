@@ -35,6 +35,7 @@ function BookingPage () {
 
     
     useEffect(()=>{
+        window.scrollTo(0,0);
         if (cookies.booking) {
             dispatch(fetchSpot(cookies.booking.spotId))
         }

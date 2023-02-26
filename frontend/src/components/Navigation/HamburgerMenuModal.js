@@ -27,7 +27,8 @@ const HamburgerMenuModal = () => {
                 </Link>
                 <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p><a href="https://www.linkedin.com/in/ari-moshe">LinkedIn</a></p><i className="fa-solid fa-angle-right"></i></li>
                 <li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p><a href="https://github.com/arimoshe">GitHub</a></p><i className="fa-solid fa-angle-right"></i></li>
-                {currentUser ? <Link to={`/account/trips`} ><li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Trips</p><i className="fa-solid fa-angle-right"></i></li></Link > :null}
+                {currentUser ? <Link to={`/account`} ><li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Account</p><i className="fa-solid fa-angle-right"></i></li></Link > :null}
+                {currentUser ? <Link to={`/account/trips`} ><li onClick={() => (dispatch(toggleHamburgerMenuModal(false)))}><p>Trips</p><i className="fa-solid fa-angle-right"></i></li></Link > : null}
                 {currentUser ? <li onClick={closeLogout}><p>Log Out</p><i className="fa-solid fa-angle-right"></i></li> : <li onClick={() => (dispatch(toggleLoginModal(true)))}><p>Log in</p><i className="fa-solid fa-angle-right"></i></li>}
             </ul>
         </>

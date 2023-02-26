@@ -1,10 +1,11 @@
 .BookingContainer {
     display: flex;
     justify-content: space-evenly;   
-    width:1200px;
+    max-width:1200px;
+    width: 100%;
     margin-top: 40px;
-
 }
+
 .BookingImgContainer {
     height:130px;
     overflow: hidden;
@@ -16,7 +17,7 @@
 }
 
 .InfoForm {
-    padding:20px 0 ;
+    padding:20px 0;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -73,4 +74,31 @@
     border-color: rgb(0, 197, 133);
     background-color: rgb(255,255,255);
     color: rgb(0, 197, 133);
+}
+@media only screen and (max-width: 1000px) and (min-width: 651px) { 
+    .InfoForm {
+        width: 50%;
+    }
+
+}
+@media only screen and (max-width: 650px) {
+    .BookingContainer {
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .InfoForm {
+        width: 100%;
+    }
+    .InfoForm form {
+        width: 80%
+    }
+    .BookingDetails {
+        width: 80%;
+        max-width: 300px;;
+        margin: 30px 0;
+    }   
+    .BookingImgContainer img {
+        width: 300px;
+    }
 }
