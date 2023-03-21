@@ -8,7 +8,7 @@ function SpotMap({spot}) {
     const mapRef = useRef(null)
 
     useEffect(()=>{
-        if (mapRef.current && !map) {
+        if (mapRef.current && !map && window.google) {
             setMap(new window.google.maps.Map(mapRef.current, { 
                 center: { lat: spot.latitude, lng: spot.longitude}, 
                 zoom: 10,
@@ -16,19 +16,20 @@ function SpotMap({spot}) {
                 zoomControl: true,
                 gestureHandling: 'cooperative'
             }));
+            new window.google.maps.Marker({
+                position: { lat: spot.latitude, lng: spot.longitude },
+                map: map,
+                icon: {
+                    url: logoIcon,
+                    scaledSize: new window.google.maps.Size(70, 70),
+                    origin: new window.google.maps.Point(0, 0)
+                },
+            });
         }
     }, [mapRef, map, spot.latitude, spot.longitude])
 
     // const marker = 
-    new window.google.maps.Marker({
-        position: { lat: spot.latitude, lng: spot.longitude },
-        map: map,
-        icon: {
-            url: logoIcon, 
-            scaledSize: new window.google.maps.Size(70, 70),
-            origin: new window.google.maps.Point(0,0)
-        },
-    });
+    
 
     return (
         <>

@@ -82,6 +82,9 @@ h2 {
 }
 
 @media only screen and (max-width: 600px) {
+    #spotShow {
+        padding-top:130px;
+    }
     li.hamburgerMenu {
         display: block;
         border-radius: 6px;
@@ -138,7 +141,7 @@ h2 {
     }
 
     .mobileSearchSelectorButton {
-        display: initial;
+        display: block;
         padding: 0px 15px 15px 24px;
 
     }

@@ -1,5 +1,5 @@
 import { GiPaddles, GiSurfBoard, GiRiver, GiCircleForest, GiGrass, GiReed, GiFarmTractor } from 'react-icons/gi'
-import { FaMountain } from 'react-icons/fa'
+import { FaMountain } from 'react-icons/fa/'
 
 function SpotNaturalFeatures({ spot }) {
 

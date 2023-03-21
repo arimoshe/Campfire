@@ -23,8 +23,10 @@ function Navigation(props) {
     const history = useHistory();
 
     const location = useLocation();
-    const auto = useRef();
-    const AutoCompleteRef = useRef();
+    const auto1 = useRef();
+    const auto2 = useRef();
+    const AutoCompleteRef1 = useRef();
+    const AutoCompleteRef2 = useRef();
     const options = {
         // types: ['street_address', 'establishment'],
         fields: ['geometry'],
@@ -32,21 +34,37 @@ function Navigation(props) {
     }
 
     useEffect(() => {
-        AutoCompleteRef.current = new window.google.maps.places.Autocomplete(
-            auto.current,
-            options
-        );
+        if (window.google) {
+            AutoCompleteRef1.current = new window.google.maps.places.Autocomplete(
+                auto1.current,
+                options
+            );
 
-        AutoCompleteRef.current.addListener("place_changed", async function () {
-            const place = await AutoCompleteRef.current.getPlace();
-            const filterObj = {
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng()
-            }
-            dispatch(updateStoreFilter(filterObj))
-            dispatch(fetchSpots(1, filterObj))
-        })
-    }, [location])
+            AutoCompleteRef1.current.addListener("place_changed", async function () {
+                const place = await AutoCompleteRef1.current.getPlace();
+                const filterObj = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                }
+                dispatch(updateStoreFilter(filterObj))
+                dispatch(fetchSpots(1, filterObj))
+            });
+            AutoCompleteRef2.current = new window.google.maps.places.Autocomplete(
+                auto2.current,
+                options
+            );
+
+            AutoCompleteRef2.current.addListener("place_changed", async function () {
+                const place = await AutoCompleteRef2.current.getPlace();
+                const filterObj = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                }
+                dispatch(updateStoreFilter(filterObj))
+                dispatch(fetchSpots(1, filterObj))
+            });
+        }
+    }, [location, window.google])
 
     return (
         <>
@@ -58,7 +76,7 @@ function Navigation(props) {
                         <ul id="menuLogo">
                             <li className="hamburgerMenu" onClick={() => (dispatch(toggleHamburgerMenuModal(true)))}><i className="fa-solid fa-bars"></i></li>
                             <li><NavLink to="/" className="logo" ><img className="logoPng" src={logo} alt="" /></NavLink></li>
-                            {location.pathname === "/search" ? <li className="searchSelector"><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li> : null}
+                            {location.pathname === "/search" ? <li className="searchSelector"><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto1} type="text" /></button></li> : null}
                         </ul>
                     </li>
                     <li className="aboutLinks">
@@ -78,7 +96,7 @@ function Navigation(props) {
                     </ul>
                     </li>
                 </ul>
-                {location.pathname === "/search" ? <div className="mobileSearchSelectorButton"><li><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto} type="text" /></button></li></div> : null}
+                {location.pathname === "/search" || location.pathname.slice(0,6) === "/spots" ? <div className="mobileSearchSelectorButton"><button id="SearchSelectorButton" ><i className="fa-solid fa-magnifying-glass"></i><input ref={auto2} type="text" /></button></div> : null}
             </div>
         </>
     )

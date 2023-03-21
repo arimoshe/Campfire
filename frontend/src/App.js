@@ -11,6 +11,10 @@ import SpotSearchPage from "./components/SpotSearchPage";
 import SpotShow from "./components/SpotShowPage";
 
 function App() {
+
+
+
+
   return (
     <>
       

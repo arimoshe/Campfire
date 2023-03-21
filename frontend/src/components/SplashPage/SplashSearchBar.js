@@ -24,26 +24,27 @@ function SplashSearchBar () {
     }
 
     const options = {
-        // types: ['street_address', 'establishment'],
         fields: ['geometry'],
         componentRestrictions: { 'country': ['US'] }
     }
 
     useEffect(() => {
-        AutoCompleteRef.current = new window.google.maps.places.Autocomplete(
-            auto.current,
-            options
-        );
+        if(window.google) {
+            AutoCompleteRef.current = new window.google.maps.places.Autocomplete(
+                auto.current,
+                options
+            );
 
-        AutoCompleteRef.current.addListener("place_changed", async function () {
-            const place = await AutoCompleteRef.current.getPlace();
-            const filterObj = { 
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng()
-            }
-            dispatch(updateStoreFilter(filterObj    ))
-        })
-    }, [])
+            AutoCompleteRef.current.addListener("place_changed", async function () {
+                const place = await AutoCompleteRef.current.getPlace();
+                const filterObj = { 
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                }
+                dispatch(updateStoreFilter(filterObj    ))
+            })
+        }
+    }, [window.google])
 
 
     if (!filters) {return null}
