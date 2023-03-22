@@ -168,6 +168,7 @@
     }
     .SearchGoogleMap {
         width: 100%;
+        left: 0;
     }
     #mobileListMapSelector {
         display: inherit;
