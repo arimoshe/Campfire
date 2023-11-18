@@ -173,7 +173,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     
-    overflow: hidden;
+    overflow: visible;
     margin-top: 40px;
 }
 
@@ -191,7 +191,13 @@
     max-width: 604px;
     width: 100%;
     border-radius: 24px;
+    transition: transform .5s ease-in-out;
 }
+    
+.DoubleItemContainer:hover {
+    transform: translateY(-10px);
+}
+
 
 .DoubleItemLabel {
     position: relative;
@@ -229,8 +235,14 @@
     font-size: 18px;
     color: rgb(224, 80, 40);
     align-self: center;
+    transition:color .5s ease-in-out, background .5s ease-in-out, border .5s ease-in-out;
 }
 
+.DoubleItemContainer button:hover {
+    border: 1px white solid;
+    background:rgb(224, 80, 40); 
+    color: white;
+}
 
 .SplashDateModalContainer {
     position: absolute;
